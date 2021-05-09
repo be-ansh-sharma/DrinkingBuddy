@@ -1,0 +1,13 @@
+import React from 'react';
+import { Text } from 'react-native';
+import styles from './Text.style';
+
+const MyText = props => {
+  return (
+    <Text {...props} style={{ ...styles.text, ...props.style }}>
+      {props.children}
+    </Text>
+  );
+};
+
+export default MyText;
