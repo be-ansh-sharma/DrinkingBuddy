@@ -1,10 +1,12 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+import Text from '../../../component/text/Text';
+import Heading from '../../../component/heading/Heading';
 
 const Exercise = props => {
   return (
     <View>
-      <Text>Exercise</Text>
+      <Heading>How much do you exercise?</Heading>
     </View>
   );
 };

@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const getFromStorage = async key => {
+export const getFromStorage = async key => {
   try {
     const result = await AsyncStorage.getItem('@person');
     return result != null ? JSON.parse(result) : null;
@@ -9,7 +9,7 @@ const getFromStorage = async key => {
   }
 };
 
-const setToStorage = async (key, value) => {
+export const setToStorage = async (key, value) => {
   try {
     await AsyncStorage.setItem(key, JSON.stringify(value));
   } catch (err) {
@@ -17,4 +17,10 @@ const setToStorage = async (key, value) => {
   }
 };
 
-export { getFromStorage, setToStorage };
+export const changeMetric = (value, system) => {
+  if (system === 'Kg') {
+    return Math.ceil(+value / 2.205);
+  } else {
+    return Math.floor(+value * 2.205);
+  }
+};

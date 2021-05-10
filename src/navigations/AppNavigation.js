@@ -9,6 +9,7 @@ import Home from '../screens/home/Home';
 import Welcome from '../screens/information/welcome/Welcome';
 import Gender from '../screens/information/gender/Gender';
 import Weight from '../screens/information/weight/Weight';
+import Exercise from '../screens/information/exercise/Exercise';
 
 const Tab = createMaterialTopTabNavigator();
 const Stack = createStackNavigator();
@@ -52,6 +53,11 @@ function AppNavigation() {
           <Stack.Screen
             name="Weight"
             component={Weight}
+            options={{ ...defaultOptions, headerShown: false }}
+          />
+          <Stack.Screen
+            name="Exercise"
+            component={Exercise}
             options={{ ...defaultOptions, headerShown: false }}
           />
         </Fragment>

@@ -4,12 +4,13 @@ import {
   REMOVE_PERSON,
   SET_CUP,
   SET_GENDER,
+  SET_WEIGHT,
 } from '../actions/person';
 
 const initialState = {
   gender: '',
-  weight: 0,
-  weightType: 'metric',
+  weight: 70,
+  weightType: 'Kg',
   exerciseMinutes: 0,
   dailyGoal: 0,
   dailyGoalType: 'ml',
@@ -42,6 +43,12 @@ const person = (state = initialState, action) => {
       return {
         ...state,
         gender: action.gender,
+      };
+    case SET_WEIGHT:
+      return {
+        ...state,
+        weight: action.weightSystem.weight,
+        weightType: action.weightSystem.weightType,
       };
     default:
       return state;

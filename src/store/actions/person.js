@@ -6,6 +6,7 @@ export const STORE_PERSON = 'STORE_PERSON';
 export const REMOVE_PERSON = 'REMOVE_PERSON';
 export const SET_CUP = 'SET_CUP';
 export const SET_GENDER = 'SET_GENDER';
+export const SET_WEIGHT = 'SET_WEIGHT';
 
 export const fetchPerson = () => {
   return async dispatch => {
@@ -15,11 +16,6 @@ export const fetchPerson = () => {
         dispatch({
           type: FETCH_PERSON,
           person: storedPerson,
-        });
-      } else {
-        dispatch({
-          type: FETCH_PERSON,
-          person: new Person('', 0, 'metric', 0),
         });
       }
     } catch (err) {
@@ -69,5 +65,12 @@ export const setGender = gender => {
   return {
     type: SET_GENDER,
     gender: gender,
+  };
+};
+
+export const setWeight = weightSystem => {
+  return {
+    type: SET_WEIGHT,
+    weightSystem: weightSystem,
   };
 };

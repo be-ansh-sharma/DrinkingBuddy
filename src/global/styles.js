@@ -19,4 +19,5 @@ export const BUTTON = {
   alignItems: 'center',
   borderRadius: 25,
   marginBottom: 20,
+  elevation: 12,
 };
