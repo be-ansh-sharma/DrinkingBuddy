@@ -6,17 +6,20 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: COLOR.background,
   },
-  weightWrapper: {
+  exerciseWrapper: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: '30%',
     height: 200,
   },
+  icon: {
+    width: '45%',
+    aspectRatio: 1,
+  },
   picker: {
     width: '50%',
     flexGrow: 2,
     flexDirection: 'row',
-    //margin: 10,
     marginRight: '10%',
   },
   pickerItem: {
@@ -28,9 +31,9 @@ export default StyleSheet.create({
     justifyContent: 'center',
     overflow: 'hidden',
   },
-  icon: {
-    width: '45%',
-    aspectRatio: 1,
+  info: {
+    color: 'gray',
+    marginBottom: '10%',
   },
   next: {
     ...BUTTON,

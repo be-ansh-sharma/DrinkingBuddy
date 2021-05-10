@@ -10,7 +10,7 @@ import { changeMetric } from '../../../global/helper';
 import { useDispatch, useSelector } from 'react-redux';
 import { setWeight } from '../../../store/actions/person';
 
-const weightNumbers = Array.from(Array(800), (_, index) =>
+const weightNumbers = Array.from(Array(881), (_, index) =>
   (++index).toString(),
 );
 
@@ -32,7 +32,6 @@ const Weight = props => {
         weightNumbers[weightSelected],
         metricNumbers[item],
       );
-      console.log(newWeight);
       setWeightSelected(--newWeight);
       setMetricSelected(item);
     }
