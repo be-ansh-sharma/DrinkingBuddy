@@ -1,16 +1,20 @@
 import { StyleSheet } from 'react-native';
-import { COLOR } from '../../../global/styles';
+import { COLOR, BUTTON } from '../../../global/styles';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLOR.background,
   },
-  weightWrapper: {
+  wakeWrapper: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: '30%',
     height: 200,
+  },
+  icon: {
+    width: '45%',
+    aspectRatio: 1,
   },
   picker: {
     width: '50%',
@@ -28,8 +32,14 @@ export default StyleSheet.create({
     justifyContent: 'center',
     overflow: 'hidden',
   },
-  icon: {
-    width: '45%',
-    aspectRatio: 1,
+  prev: {
+    ...BUTTON,
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    marginLeft: 20,
+  },
+  submit: {
+    width: '50%',
   },
 });

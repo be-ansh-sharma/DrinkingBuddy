@@ -5,15 +5,26 @@ import {
   SET_CUP,
   SET_GENDER,
   SET_WEIGHT,
+  SET_EXERCISE,
+  SET_SLEEP,
+  SET_WAKE,
 } from '../actions/person';
 
 const initialState = {
   gender: '',
   weight: 70,
   weightType: 'Kg',
-  exerciseMinutes: 0,
+  exerciseMinutes: 60,
   dailyGoal: 0,
   dailyGoalType: 'ml',
+  sleep: {
+    hour: 23,
+    minute: 0,
+  },
+  wake: {
+    hour: 6,
+    minute: 0,
+  },
   cup: null,
 };
 
@@ -49,6 +60,21 @@ const person = (state = initialState, action) => {
         ...state,
         weight: action.weightSystem.weight,
         weightType: action.weightSystem.weightType,
+      };
+    case SET_EXERCISE:
+      return {
+        ...state,
+        exerciseMinutes: action.exerciseMinutes,
+      };
+    case SET_SLEEP:
+      return {
+        ...state,
+        sleep: action.sleep,
+      };
+    case SET_WAKE:
+      return {
+        ...state,
+        wake: action.wake,
       };
     default:
       return state;

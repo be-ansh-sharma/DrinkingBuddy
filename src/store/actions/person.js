@@ -7,6 +7,9 @@ export const REMOVE_PERSON = 'REMOVE_PERSON';
 export const SET_CUP = 'SET_CUP';
 export const SET_GENDER = 'SET_GENDER';
 export const SET_WEIGHT = 'SET_WEIGHT';
+export const SET_EXERCISE = 'SET_EXERCISE';
+export const SET_SLEEP = 'SET_SLEEP';
+export const SET_WAKE = 'SET_WAKE';
 
 export const fetchPerson = () => {
   return async dispatch => {
@@ -30,7 +33,7 @@ export const storePerson = (gender, weight, weightType, exerciseMinutes) => {
       const person = new Person(gender, weight, weightType, exerciseMinutes);
       await setToStorage('@person', person);
       dispatch({
-        type: FETCH_PERSON,
+        type: STORE_PERSON,
         person: person,
       });
     } catch (err) {
@@ -72,5 +75,26 @@ export const setWeight = weightSystem => {
   return {
     type: SET_WEIGHT,
     weightSystem: weightSystem,
+  };
+};
+
+export const setExercise = minutes => {
+  return {
+    type: SET_EXERCISE,
+    exerciseMinutes: minutes,
+  };
+};
+
+export const setSleep = sleep => {
+  return {
+    type: SET_SLEEP,
+    sleep: sleep,
+  };
+};
+
+export const setWake = wake => {
+  return {
+    type: SET_WAKE,
+    wake: wake,
   };
 };

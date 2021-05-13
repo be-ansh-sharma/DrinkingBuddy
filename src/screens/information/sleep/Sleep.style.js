@@ -6,11 +6,15 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: COLOR.background,
   },
-  weightWrapper: {
+  sleepWrapper: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: '30%',
     height: 200,
+  },
+  icon: {
+    width: '45%',
+    aspectRatio: 1,
   },
   picker: {
     width: '50%',
@@ -27,9 +31,5 @@ export default StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
-  },
-  icon: {
-    width: '45%',
-    aspectRatio: 1,
   },
 });

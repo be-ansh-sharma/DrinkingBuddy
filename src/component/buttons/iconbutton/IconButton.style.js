@@ -8,10 +8,10 @@ export default StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     borderRadius: 30,
-    marginVertical: 16,
+    marginVertical: 20,
     padding: 4,
     width: '70%',
-    //justifyContent: 'space-between',
+    elevation: 12,
   },
   buttonWrapper: {
     justifyContent: 'center',

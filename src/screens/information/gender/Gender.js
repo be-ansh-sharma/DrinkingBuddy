@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Pressable, View } from 'react-native';
-import Text from '../../../component/text/Text';
 import styles from './Gender.style';
 import Male from '../../../../assets/images/male.svg';
 import Female from '../../../../assets/images/female.svg';

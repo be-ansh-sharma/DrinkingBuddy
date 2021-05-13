@@ -6,14 +6,16 @@ class Person {
     this.exerciseMinutes = exerciseMinutes || 0;
 
     switch (weightType) {
-      case 'metric':
-        this.dailyGoal = this.weight * (2 / 3) + (this.exerciseMinutes / 30) * 12;
-        this.dailyGoal = +(this.dailyGoal * 0.0295735).toFixed(1);
-        this.dailyGoalType = 'litres';
+      case 'Kg':
+        this.dailyGoal =
+          this.weight * (2 / 3) + (this.exerciseMinutes / 30) * 12;
+        this.dailyGoal = Math.ceil(this.dailyGoal * 29.57);
+        this.dailyGoalType = 'ml';
         break;
-      case 'imperial':
-        this.dailyGoal = this.weight * (2 / 3) + (this.exerciseMinutes / 30) * 12;
-        this.dailyGoal = +this.dailyGoal.toFixed(1);
+      case 'lbs':
+        this.dailyGoal = Math.ceil(
+          this.weight * (2 / 3) + (this.exerciseMinutes / 30) * 12,
+        );
         this.dailyGoalType = 'oz.';
         break;
       default:

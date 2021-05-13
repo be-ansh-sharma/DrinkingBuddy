@@ -10,6 +10,9 @@ import Welcome from '../screens/information/welcome/Welcome';
 import Gender from '../screens/information/gender/Gender';
 import Weight from '../screens/information/weight/Weight';
 import Exercise from '../screens/information/exercise/Exercise';
+import Sleep from '../screens/information/sleep/Sleep';
+import Wake from '../screens/information/wake/Wake';
+import Finish from '../screens/information/finish/Finish';
 
 const Tab = createMaterialTopTabNavigator();
 const Stack = createStackNavigator();
@@ -25,7 +28,6 @@ const HomeTab = () => {
 };
 
 const defaultOptions = {
-  headerShown: true,
   headerLeft: null,
   headerTitle: 'Drinking Buddy',
   headerStyle: {
@@ -43,22 +45,33 @@ function AppNavigation() {
           <Stack.Screen
             name="Welcome"
             component={Welcome}
-            options={{ ...defaultOptions, headerShown: false }}
+            options={defaultOptions}
           />
           <Stack.Screen
             name="Gender"
             component={Gender}
-            options={{ ...defaultOptions, headerShown: false }}
+            options={defaultOptions}
           />
           <Stack.Screen
             name="Weight"
             component={Weight}
-            options={{ ...defaultOptions, headerShown: false }}
+            options={defaultOptions}
           />
           <Stack.Screen
             name="Exercise"
             component={Exercise}
-            options={{ ...defaultOptions, headerShown: false }}
+            options={defaultOptions}
+          />
+          <Stack.Screen
+            name="Sleep"
+            component={Sleep}
+            options={defaultOptions}
+          />
+          <Stack.Screen name="Wake" component={Wake} options={defaultOptions} />
+          <Stack.Screen
+            name="Finish"
+            component={Finish}
+            options={defaultOptions}
           />
         </Fragment>
       ) : (

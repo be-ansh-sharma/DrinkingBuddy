@@ -5,13 +5,13 @@ import { WheelPicker } from 'react-native-wheel-picker-android';
 import { COLOR } from '../../../global/styles';
 import styles from './Weight.style';
 import WeightSVG from '../../../../assets/images/weight.svg';
-import Icon from '../../../component/Icons/Icon';
 import { changeMetric } from '../../../global/helper';
 import { useDispatch, useSelector } from 'react-redux';
 import { setWeight } from '../../../store/actions/person';
+import Footer from '../../../component/information/footer/Footer';
 
 const weightNumbers = Array.from(Array(881), (_, index) =>
-  (++index).toString(),
+  (++index).toString().padStart(2, '0'),
 );
 
 const metricNumbers = ['Kg', 'lbs'];
@@ -85,19 +85,9 @@ const Weight = props => {
           </View>
         </View>
       </View>
-      <Icon
-        name="chevron-back-outline"
-        size={35}
-        color={COLOR.background}
-        pressHandler={prevScreenHanlder}
-        style={styles.prev}
-      />
-      <Icon
-        name="arrow-forward-outline"
-        size={35}
-        color={COLOR.background}
-        pressHandler={nextScreenHanlder}
-        style={styles.next}
+      <Footer
+        prevScreenHanlder={prevScreenHanlder}
+        nextScreenHanlder={nextScreenHanlder}
       />
     </View>
   );

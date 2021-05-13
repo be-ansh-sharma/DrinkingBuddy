@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { COLOR, BUTTON } from '../../../global/styles';
+import { COLOR } from '../../../global/styles';
 
 export default StyleSheet.create({
   container: {
@@ -34,19 +34,5 @@ export default StyleSheet.create({
   info: {
     color: 'gray',
     marginBottom: '10%',
-  },
-  next: {
-    ...BUTTON,
-    position: 'absolute',
-    bottom: 0,
-    right: 0,
-    marginRight: 20,
-  },
-  prev: {
-    ...BUTTON,
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    marginLeft: 20,
   },
 });

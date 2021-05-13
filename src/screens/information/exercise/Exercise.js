@@ -2,18 +2,22 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import Text from '../../../component/text/Text';
 import { WheelPicker } from 'react-native-wheel-picker-android';
-import Icon from '../../../component/Icons/Icon';
 import Heading from '../../../component/heading/Heading';
 import styles from './Exercise.style';
 import ExerciseSVG from '../../../../assets/images/exercise.svg';
 import { COLOR } from '../../../global/styles';
+import { setExercise } from '../../../store/actions/person';
+import { useDispatch, useSelector } from 'react-redux';
+import Footer from '../../../component/information/footer/Footer';
 
 const exerciseNumber = Array.from(Array(240), (_, index) =>
-  (++index).toString(),
+  (++index).toString().padStart(2, '0'),
 );
 
 const Exercise = props => {
-  const [exerciseMinutes, setExerciseMinutes] = useState(59);
+  let storeExercise = useSelector(state => state.person.exerciseMinutes);
+  const [exerciseMinutes, setExerciseMinutes] = useState(--storeExercise);
+  const dispatch = useDispatch();
 
   const exerciseHanlder = minutes => {
     if (exerciseMinutes !== minutes) {
@@ -26,13 +30,8 @@ const Exercise = props => {
   };
 
   const nextScreenHanlder = () => {
-    // dispatch(
-    //   setWeight({
-    //     weight: weightNumbers[weightSelected],
-    //     weightType: metricNumbers[metricSelected],
-    //   }),
-    // );
-    props.navigation.navigate('Exercise');
+    dispatch(setExercise(exerciseNumber[exerciseMinutes]));
+    props.navigation.navigate('Sleep');
   };
 
   return (
@@ -55,6 +54,7 @@ const Exercise = props => {
               onItemSelected={exerciseHanlder}
               selectedItemTextColor={COLOR.primary}
               selectedItemTextSize={20}
+              isCyclic={true}
             />
           </View>
           <View style={styles.pickerItem}>
@@ -62,19 +62,9 @@ const Exercise = props => {
           </View>
         </View>
       </View>
-      <Icon
-        name="chevron-back-outline"
-        size={35}
-        color={COLOR.background}
-        pressHandler={prevScreenHanlder}
-        style={styles.prev}
-      />
-      <Icon
-        name="arrow-forward-outline"
-        size={35}
-        color={COLOR.background}
-        pressHandler={nextScreenHanlder}
-        style={styles.next}
+      <Footer
+        prevScreenHanlder={prevScreenHanlder}
+        nextScreenHanlder={nextScreenHanlder}
       />
     </View>
   );
