@@ -1,4 +1,9 @@
-import { SET_QUITETIME } from '../actions/information';
+import {
+  SET_QUITETIME,
+  SET_NOTIFICATION,
+  SET_SETUP,
+  FETCH_INFORMATION,
+} from '../actions/information';
 
 const initialState = {
   quiteTime: {
@@ -14,18 +19,34 @@ const initialState = {
       diff: 7,
     },
   },
-  intervals: {},
+  NextNotification: '',
+  isSetupFinished: false,
 };
 
-const information = (state = initialState, { time, type }) => {
-  switch (type) {
+const information = (state = initialState, action) => {
+  switch (action.type) {
     case SET_QUITETIME:
       return {
         ...state,
         quiteTime: {
           ...state.quiteTime,
-          ...time,
+          ...action.time,
         },
+      };
+    case SET_NOTIFICATION:
+      return {
+        ...state,
+        NextNotification: action.NextNotification,
+      };
+    case SET_SETUP:
+      return {
+        ...state,
+        isSetupFinished: action.isSetupFinished,
+      };
+    case FETCH_INFORMATION:
+      return {
+        ...state,
+        ...action.information,
       };
     default:
       return state;

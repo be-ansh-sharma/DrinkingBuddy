@@ -4,11 +4,10 @@ import WakeSVG from '../../../../assets/images/wake.svg';
 import styles from './Wake.style';
 import Heading from '../../../component/heading/Heading';
 import { COLOR } from '../../../global/styles';
-import Icon from '../../../component/Icons/Icon';
 import { WheelPicker } from 'react-native-wheel-picker-android';
 import { useDispatch, useSelector } from 'react-redux';
 import { setWake } from '../../../store/actions/person';
-import IconButton from '../../../component/buttons/iconbutton/IconButton';
+import Footer from '../../../component/information/footer/Footer';
 
 const HOURS = Array.from(Array(24), (_, index) =>
   index.toString().padStart(2, '0'),
@@ -85,19 +84,12 @@ const Wake = props => {
           </View>
         </View>
       </View>
-      <Icon
-        name="chevron-back-outline"
-        size={35}
-        color={COLOR.background}
-        pressHandler={prevScreenHanlder}
-        style={styles.prev}
+      <Footer
+        prevScreenHanlder={prevScreenHanlder}
+        nextScreenHanlder={nextScreenHanlder}
+        nextIcon="save-outline"
+        nextIconSize={30}
       />
-      <IconButton
-        onPress={nextScreenHanlder}
-        buttonStyle={styles.submit}
-        icon="arrow-forward-circle-outline">
-        Set Me Up!
-      </IconButton>
     </View>
   );
 };

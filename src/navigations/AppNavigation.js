@@ -37,10 +37,10 @@ const defaultOptions = {
 };
 
 function AppNavigation() {
-  const person = useSelector(state => state.person);
+  const { isSetupFinished } = useSelector(state => state.information);
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      {!false ? (
+      {!isSetupFinished ? (
         <Fragment>
           <Stack.Screen
             name="Welcome"

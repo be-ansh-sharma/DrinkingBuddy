@@ -32,14 +32,4 @@ export default StyleSheet.create({
     justifyContent: 'center',
     overflow: 'hidden',
   },
-  prev: {
-    ...BUTTON,
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    marginLeft: 20,
-  },
-  submit: {
-    width: '50%',
-  },
 });

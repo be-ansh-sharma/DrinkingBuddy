@@ -4,22 +4,31 @@ import { useDispatch, useSelector } from 'react-redux';
 import Text from '../../../component/text/Text';
 import styles from './Finish.style';
 import { storePerson } from '../../../store/actions/person';
-import { setQuiteTime } from '../../../store/actions/information';
 import Icon from '../../../component/Icons/Icon';
 import { COLOR } from '../../../global/styles';
 import IconButton from '../../../component/buttons/iconbutton/IconButton';
+import {
+  setQuiteTime,
+  setNotification,
+  setSetupFinished,
+} from '../../../store/actions/information';
+import { useCallback } from 'react';
 
 const Finish = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(true);
   const person = useSelector(state => state.person);
   const dispatch = useDispatch();
 
-  const nextScreenHanlder = () => {
-    console.log('resd');
-  };
+  const nextScreenHanlder = useCallback(() => {
+    dispatch(setSetupFinished(true));
+  }, [dispatch]);
 
   useEffect(() => {
-    let timer = setTimeout(() => {
+    navigation.addListener('beforeRemove', e => {
+      e.preventDefault();
+    });
+
+    let dispatchTimer = setTimeout(() => {
       dispatch(
         storePerson(
           person.gender,
@@ -28,22 +37,30 @@ const Finish = ({ navigation }) => {
           person.exerciseMinutes,
         ),
       );
-      dispatch(
-        setQuiteTime({
-          0: {
-            start: person.sleep,
-            end: person.wake,
-          },
-        }),
-      );
+      (async () => {
+        dispatch(
+          setQuiteTime({
+            0: {
+              start: person.sleep,
+              end: person.wake,
+            },
+          }),
+        );
+        dispatch(setNotification());
+      })();
       setIsLoading(false);
     }, 1400);
 
+    const exitScreenTimer = setTimeout(nextScreenHanlder, 8000);
+
     return () => {
-      clearTimeout(timer);
+      clearTimeout(dispatchTimer);
+      clearTimeout(exitScreenTimer);
     };
   }, [
     dispatch,
+    navigation,
+    nextScreenHanlder,
     person.exerciseMinutes,
     person.gender,
     person.sleep,
@@ -52,7 +69,7 @@ const Finish = ({ navigation }) => {
     person.weightType,
   ]);
 
-  if (isLoading) {
+  if (isLoading && !person.dailyGoal) {
     return (
       <View style={styles.loaderContainer}>
         <Image

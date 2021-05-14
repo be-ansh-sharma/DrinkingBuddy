@@ -25,7 +25,7 @@ const initialState = {
     hour: 6,
     minute: 0,
   },
-  cup: null,
+  cup: 200,
 };
 
 const person = (state = initialState, action) => {
@@ -56,10 +56,21 @@ const person = (state = initialState, action) => {
         gender: action.gender,
       };
     case SET_WEIGHT:
+      let cup;
+      if (action.weightSystem.weightType !== state.weightType) {
+        if (action.weightSystem.weightType === 'lbs') {
+          cup = state.cup * 29.5;
+        } else {
+          cup = state.cup / 29.5;
+        }
+      } else {
+        cup = state.cup;
+      }
       return {
         ...state,
         weight: action.weightSystem.weight,
         weightType: action.weightSystem.weightType,
+        cup: cup,
       };
     case SET_EXERCISE:
       return {
