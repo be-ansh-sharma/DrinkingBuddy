@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useRef } from 'react';
-import { View, Animated, Dimensions } from 'react-native';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { View, Animated, Dimensions, Easing } from 'react-native';
 import Text from '../text/Text';
 import Svg, { G, Circle } from 'react-native-svg';
 import { COLOR } from '../../global/styles';
@@ -16,18 +16,18 @@ const Progress = ({ percentage }) => {
   const radius = size / 2 - strokeWidth / 2;
   const circumference = 2 * Math.PI * radius;
   const circleRef = useRef();
-  const animatedValue = useRef(new Animated.Value(1)).current;
+  //const animatedValue = useRef(new Animated.Value(1)).current;
+  const animatedValue = useState(new Animated.Value(1))[0];
 
-  const animation = useCallback(
-    toValue => {
-      return Animated.timing(animatedValue, {
-        toValue,
-        duration: 500,
-        useNativeDriver: true,
-      }).start();
-    },
-    [animatedValue],
-  );
+
+  const animation = toValue => {
+    return Animated.timing(animatedValue, {
+      toValue,
+      duration: 500,
+      useNativeDriver: false,
+      easing: Easing.out(Easing.ease),
+    }).start();
+  };
 
   useEffect(() => {
     animation(percentage);
@@ -39,7 +39,7 @@ const Progress = ({ percentage }) => {
         });
       }
     });
-  }, [animatedValue, animation, circumference, percentage]);
+  }, [animatedValue, circumference, percentage]);
 
   return (
     <View style={styles.container}>

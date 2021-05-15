@@ -33,7 +33,10 @@ const defaultTabOption = {
 
 export const HomeNavigation = () => {
   return (
-    <Tab.Navigator initialRouteName="Home" tabBarOptions={defaultTabOption}>
+    <Tab.Navigator
+      initialRouteName="Home"
+      tabBarOptions={defaultTabOption}
+      sceneContainerStyle={{ backgroundColor: 'transparent' }}>
       <Tab.Screen name="History" component={History} />
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Preferences" component={Preferences} />

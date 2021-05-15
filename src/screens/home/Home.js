@@ -7,7 +7,7 @@ import Progress from '../../component/progress/Progress';
 const Home = () => {
   return (
     <View style={styles.container}>
-      <Progress percentage={80} />
+      <Progress percentage={60} />
     </View>
   );
 };
