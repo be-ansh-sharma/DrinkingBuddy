@@ -1,5 +1,4 @@
-import React, { Fragment } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { COLOR } from '../global/styles';
@@ -17,16 +16,6 @@ import Finish from '../screens/information/finish/Finish';
 const Tab = createMaterialTopTabNavigator();
 const Stack = createStackNavigator();
 
-const HomeTab = () => {
-  return (
-    <Tab.Navigator initialRouteName="Home">
-      <Tab.Screen name="History" component={History} />
-      <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Preferences" component={Preferences} />
-    </Tab.Navigator>
-  );
-};
-
 const defaultOptions = {
   headerLeft: null,
   headerTitle: 'Drinking Buddy',
@@ -36,49 +25,40 @@ const defaultOptions = {
   headerTintColor: COLOR.background,
 };
 
-function AppNavigation() {
-  const { isSetupFinished } = useSelector(state => state.information);
+const defaultTabOption = {
+  indicatorStyle: {
+    backgroundColor: COLOR.primary,
+  },
+};
+
+export const HomeNavigation = () => {
+  return (
+    <Tab.Navigator initialRouteName="Home" tabBarOptions={defaultTabOption}>
+      <Tab.Screen name="History" component={History} />
+      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="Preferences" component={Preferences} />
+    </Tab.Navigator>
+  );
+};
+
+export const InformationNavigation = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      {!isSetupFinished ? (
-        <Fragment>
-          <Stack.Screen
-            name="Welcome"
-            component={Welcome}
-            options={defaultOptions}
-          />
-          <Stack.Screen
-            name="Gender"
-            component={Gender}
-            options={defaultOptions}
-          />
-          <Stack.Screen
-            name="Weight"
-            component={Weight}
-            options={defaultOptions}
-          />
-          <Stack.Screen
-            name="Exercise"
-            component={Exercise}
-            options={defaultOptions}
-          />
-          <Stack.Screen
-            name="Sleep"
-            component={Sleep}
-            options={defaultOptions}
-          />
-          <Stack.Screen name="Wake" component={Wake} options={defaultOptions} />
-          <Stack.Screen
-            name="Finish"
-            component={Finish}
-            options={defaultOptions}
-          />
-        </Fragment>
-      ) : (
-        <Stack.Screen name="HomeTab" component={HomeTab} />
-      )}
+      <Stack.Screen
+        name="Welcome"
+        component={Welcome}
+        options={defaultOptions}
+      />
+      <Stack.Screen name="Gender" component={Gender} options={defaultOptions} />
+      <Stack.Screen name="Weight" component={Weight} options={defaultOptions} />
+      <Stack.Screen
+        name="Exercise"
+        component={Exercise}
+        options={defaultOptions}
+      />
+      <Stack.Screen name="Sleep" component={Sleep} options={defaultOptions} />
+      <Stack.Screen name="Wake" component={Wake} options={defaultOptions} />
+      <Stack.Screen name="Finish" component={Finish} options={defaultOptions} />
     </Stack.Navigator>
   );
-}
-
-export default AppNavigation;
+};

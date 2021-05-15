@@ -1,19 +1,13 @@
 import React from 'react';
-import { Text, View, Button } from 'react-native';
+import { View } from 'react-native';
 import styles from './Home.style';
-import { useDispatch } from 'react-redux';
-import { removePerson } from '../../store/actions/person';
+import Text from '../../component/text/Text';
+import Progress from '../../component/progress/Progress';
 
 const Home = () => {
-  const dispatch = useDispatch();
-  const removePersonHandler = () => {
-    dispatch(removePerson());
-  };
-
   return (
     <View style={styles.container}>
-      <Text>Home Screen!</Text>
-      <Button title="Remove Person" onPress={removePersonHandler} />
+      <Progress percentage={80} />
     </View>
   );
 };
