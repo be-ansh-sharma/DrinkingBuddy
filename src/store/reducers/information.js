@@ -1,6 +1,6 @@
 import {
   SET_QUITETIME,
-  SET_NOTIFICATION,
+  SET_NOTIFICATIONS,
   SET_SETUP,
   FETCH_INFORMATION,
 } from '../actions/information';
@@ -19,7 +19,9 @@ const initialState = {
       diff: 7,
     },
   },
-  NextNotification: '',
+  nextNotification: '',
+  notifications: [],
+  completed: 0,
   isSetupFinished: false,
 };
 
@@ -33,10 +35,10 @@ const information = (state = initialState, action) => {
           ...action.time,
         },
       };
-    case SET_NOTIFICATION:
+    case SET_NOTIFICATIONS:
       return {
         ...state,
-        NextNotification: action.NextNotification,
+        ...action.notifications,
       };
     case SET_SETUP:
       return {

@@ -1,5 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import dayjs from './day';
+import {
+  fetchDBNotifications,
+  syncNotifications,
+} from '../global/database/Database.helper';
 
 export const getFromStorage = async key => {
   try {
@@ -32,9 +36,14 @@ export const getInterval = (dailyGoal, quiteTimes, cup) => {
   return +((27 - totalQuiteTime) / (dailyGoal / cup)).toFixed(1);
 };
 
-export const getNextNotification = (quiteTimes, minutes) => {
-  let current = dayjs();
-  while (current.isBefore(dayjs().add(1, 'day'))) {
+export const getTodayNotification = (
+  quiteTimes,
+  minutes,
+  current = dayjs().hour(0).minute(0).second(0),
+) => {
+  let notifications = [];
+  let endDate = current.add(1, 'day').hour(0).minute(0).second(0);
+  while (current.isBefore(endDate)) {
     current = current.add(minutes, 'minute');
     let hasConflict = false;
 
@@ -46,7 +55,7 @@ export const getNextNotification = (quiteTimes, minutes) => {
       let endTime = dayjs().hour(end.hour).minute(end.minute).second(0);
 
       if (start.hour > 12 && end.hour < 12) {
-        endTime = endTime.add(1, 'day');
+        startTime = startTime.subtract(1, 'day');
       }
 
       hasConflict = current.isBetween(startTime, endTime);
@@ -56,10 +65,47 @@ export const getNextNotification = (quiteTimes, minutes) => {
       }
     }
 
-    if (!hasConflict) {
+    if (!hasConflict && current.isBefore(endDate)) {
+      notifications.push(current.toDate());
+    }
+  }
+
+  return notifications;
+};
+
+export const getAllNotifications = (quiteTimes, minutes) => {
+  let current = dayjs();
+  let todayNotifications = fetchDBNotifications();
+  if (!todayNotifications.length) {
+    todayNotifications = getTodayNotification(quiteTimes, minutes);
+  }
+  let nextNotification = '';
+
+  for (let index = 0; index < todayNotifications.length; index++) {
+    const notification = dayjs(todayNotifications[index]);
+    if (notification && notification.isAfter(current)) {
+      nextNotification = notification.toDate();
       break;
     }
   }
 
-  return current.toDate();
+  if (!nextNotification) {
+    todayNotifications = getTodayNotification(
+      quiteTimes,
+      minutes,
+      current.add(1, 'day').hour(0).minute(0).second(0),
+    );
+    nextNotification = todayNotifications[0];
+    syncNotifications(todayNotifications);
+    return {
+      notifications: todayNotifications,
+      nextNotification,
+    };
+  }
+
+  syncNotifications(todayNotifications);
+  return {
+    notifications: todayNotifications,
+    nextNotification,
+  };
 };

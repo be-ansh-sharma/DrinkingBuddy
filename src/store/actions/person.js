@@ -14,7 +14,7 @@ export const SET_WAKE = 'SET_WAKE';
 export const fetchPerson = () => {
   return async dispatch => {
     try {
-      const storedPerson = getFromStorage('@person');
+      const storedPerson = await getFromStorage('@person');
       if (storedPerson) {
         dispatch({
           type: FETCH_PERSON,

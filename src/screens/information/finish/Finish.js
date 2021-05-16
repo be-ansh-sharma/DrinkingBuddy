@@ -9,7 +9,7 @@ import { COLOR } from '../../../global/styles';
 import IconButton from '../../../component/buttons/iconbutton/IconButton';
 import {
   setQuiteTime,
-  setNotification,
+  setNotifications,
   setSetupFinished,
 } from '../../../store/actions/information';
 import { useCallback } from 'react';
@@ -46,7 +46,7 @@ const Finish = ({ navigation }) => {
             },
           }),
         );
-        dispatch(setNotification());
+        dispatch(setNotifications());
       })();
       setIsLoading(false);
     }, 1400);

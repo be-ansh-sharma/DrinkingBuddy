@@ -10,6 +10,7 @@ import { getInformation } from './src/store/actions/information';
 import { StatusBar, LogBox } from 'react-native';
 import { COLOR } from './src/global/styles';
 import SplashScreen from './src/component/splash/Splash';
+import Database from './src/global/database/Database';
 
 LogBox.ignoreLogs(['Reanimated 2']);
 
@@ -22,6 +23,8 @@ const App = () => {
 
   useEffect(() => {
     (async () => {
+      // eslint-disable-next-line no-new
+      //new Database();
       await dispatch(fetchPerson());
       await dispatch(getInformation());
       setIsReady(true);
@@ -35,7 +38,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <StatusBar backgroundColor={COLOR.primary} />
-      {isSetupFinished ? <HomeNavigation /> : <InformationNavigation />}
+      {false ? <HomeNavigation /> : <InformationNavigation />}
     </NavigationContainer>
   );
 };
