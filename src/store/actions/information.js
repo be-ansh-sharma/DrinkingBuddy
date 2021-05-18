@@ -2,7 +2,6 @@ import dayjs from '../../global/day';
 import {
   getInterval,
   getAllNotifications,
-  setToStorage,
   getFromStorage,
 } from '../../global/helper';
 import { syncInformation } from '../../global/database/Database.helper';
@@ -11,6 +10,7 @@ export const SET_QUITETIME = 'SET_QUITETIME';
 export const SET_NOTIFICATIONS = 'SET_NOTIFICATION';
 export const SET_SETUP = 'SET_SETUP';
 export const FETCH_INFORMATION = 'FETCH_INFORMATION';
+export const SET_COMPLETED = 'SET_COMPLETED';
 
 export const setQuiteTime = time => {
   let key = Object.keys(time)[0];
@@ -54,8 +54,6 @@ export const setSetupFinished = value => {
     try {
       let information = getState().information;
       let person = getState().person;
-      information.isSetupFinished = value;
-      setToStorage('@information', information);
       syncInformation(information, person);
       dispatch({
         type: SET_SETUP,
@@ -78,5 +76,16 @@ export const getInformation = () => {
     } catch (err) {
       console.log('Something is wrong');
     }
+  };
+};
+
+export const setCompleted = () => {
+  return (dispatch, getState) => {
+    let { completed } = getState().information;
+    let { cup } = getState().person;
+    dispatch({
+      type: SET_COMPLETED,
+      completed: completed + cup,
+    });
   };
 };

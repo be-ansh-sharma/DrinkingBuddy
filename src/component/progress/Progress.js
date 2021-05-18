@@ -1,35 +1,42 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { View, Animated, Dimensions, Easing } from 'react-native';
 import Text from '../text/Text';
 import Svg, { G, Circle } from 'react-native-svg';
 import { COLOR } from '../../global/styles';
 import styles from './Progress.style';
+import { useSelector } from 'react-redux';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 const windowWidth = Dimensions.get('window').width;
+const size = windowWidth - (30 / 100) * windowWidth;
+const strokeWidth = 10;
+const center = size / 2;
+const radius = size / 2 - strokeWidth / 2;
+const circumference = 2 * Math.PI * radius;
 
-const Progress = ({ percentage }) => {
-  console.log(windowWidth);
-  const size = windowWidth - (20 / 100) * windowWidth;
-  const strokeWidth = 10;
-  const center = size / 2;
-  const radius = size / 2 - strokeWidth / 2;
-  const circumference = 2 * Math.PI * radius;
+const Progress = () => {
   const circleRef = useRef();
-  //const animatedValue = useRef(new Animated.Value(1)).current;
-  const animatedValue = useState(new Animated.Value(1))[0];
+  const animatedValue = useRef(new Animated.Value(0)).current;
+  const { dailyGoal, dailyGoalType } = useSelector(state => state.person);
+  const { completed } = useSelector(state => state.information);
 
-
-  const animation = toValue => {
-    return Animated.timing(animatedValue, {
-      toValue,
-      duration: 500,
-      useNativeDriver: false,
-      easing: Easing.out(Easing.ease),
-    }).start();
-  };
+  const animation = useCallback(
+    toValue => {
+      return Animated.timing(animatedValue, {
+        toValue,
+        duration: 500,
+        useNativeDriver: false,
+        easing: Easing.out(Easing.ease),
+      }).start();
+    },
+    [animatedValue],
+  );
 
   useEffect(() => {
+    let percentage = (completed / dailyGoal) * 100;
+    if (completed >= dailyGoal) {
+      percentage = 100;
+    }
     animation(percentage);
     animatedValue.addListener(v => {
       const strokeDashoffset = circumference - (circumference * v.value) / 100;
@@ -39,33 +46,47 @@ const Progress = ({ percentage }) => {
         });
       }
     });
-  }, [animatedValue, circumference, percentage]);
+    return () => {
+      animatedValue.removeAllListeners();
+    };
+  }, [animatedValue, animation, completed, dailyGoal]);
 
   return (
-    <View style={styles.container}>
-      <Svg width={size} height={size}>
-        <G rotation="-90" origin={center}>
-          <Circle
-            cx={center}
-            cy={center}
-            stroke="#E6E7E8"
-            strokeWidth={10}
-            r={radius}
-          />
-          <AnimatedCircle
-            ref={circleRef}
-            cx={center}
-            cy={center}
-            stroke={COLOR.primary}
-            strokeWidth={10}
-            r={radius}
-            strokeOpacity={0.5}
-            strokeDasharray={circumference}
-            strokeDashoffset={circumference - (circumference * 0) / 100}
-            strokeLinecap="round"
-          />
-        </G>
-      </Svg>
+    <View style={{ ...styles.container, height: size, width: size }}>
+      <View style={styles.progress}>
+        <Svg width={size} height={size}>
+          <G rotation="-90" origin={center} id="circle">
+            <Circle
+              cx={center}
+              cy={center}
+              stroke="#E6E7E8"
+              strokeWidth={10}
+              r={radius}
+            />
+            <AnimatedCircle
+              ref={circleRef}
+              cx={center}
+              cy={center}
+              stroke={COLOR.primary}
+              strokeWidth={10}
+              r={radius}
+              strokeOpacity={0.5}
+              strokeDasharray={circumference}
+              strokeDashoffset={circumference - (circumference * 0) / 100}
+              strokeLinecap="round"
+            />
+          </G>
+        </Svg>
+      </View>
+      <View>
+        <Text style={styles.heading}>Today's Goal</Text>
+        <View style={styles.progressWrapper}>
+          <Text style={{ ...styles.text, ...styles.pending }}>{completed}</Text>
+          <Text style={styles.text}>
+            / {dailyGoal} {dailyGoalType}
+          </Text>
+        </View>
+      </View>
     </View>
   );
 };

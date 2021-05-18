@@ -1,5 +1,5 @@
 import Person from '../../models/Person';
-import { setToStorage, getFromStorage } from '../../global/helper';
+import { getFromStorage } from '../../global/helper';
 
 export const FETCH_PERSON = 'FETCH_PERSON';
 export const STORE_PERSON = 'STORE_PERSON';
@@ -31,7 +31,6 @@ export const storePerson = (gender, weight, weightType, exerciseMinutes) => {
   return async dispatch => {
     try {
       const person = new Person(gender, weight, weightType, exerciseMinutes);
-      setToStorage('@person', person);
       dispatch({
         type: STORE_PERSON,
         person: person,
@@ -46,7 +45,6 @@ export const removePerson = () => {
   return async dispatch => {
     try {
       const person = new Person('', 0, 'metric', 0);
-      await setToStorage('@person', person);
       dispatch({
         type: REMOVE_PERSON,
         person: person,

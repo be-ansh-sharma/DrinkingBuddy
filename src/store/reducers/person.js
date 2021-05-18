@@ -9,6 +9,7 @@ import {
   SET_SLEEP,
   SET_WAKE,
 } from '../actions/person';
+import { setToStorage } from '../../global/helper';
 
 const initialState = {
   gender: '',
@@ -31,30 +32,35 @@ const initialState = {
 const person = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_PERSON:
-      return {
+      state = {
         ...state,
         ...action.person,
       };
+      break;
     case STORE_PERSON:
-      return {
+      state = {
         ...state,
         ...action.person,
       };
+      break;
     case REMOVE_PERSON:
-      return {
+      state = {
         ...state,
         ...action.person,
       };
+      break;
     case SET_CUP:
-      return {
+      state = {
         ...state,
-        cup: action.cup,
+        cup: +action.cup,
       };
+      break;
     case SET_GENDER:
-      return {
+      state = {
         ...state,
         gender: action.gender,
       };
+      break;
     case SET_WEIGHT:
       let cup;
       if (action.weightSystem.weightType !== state.weightType) {
@@ -66,30 +72,37 @@ const person = (state = initialState, action) => {
       } else {
         cup = state.cup;
       }
-      return {
+      state = {
         ...state,
         weight: action.weightSystem.weight,
         weightType: action.weightSystem.weightType,
         cup: cup,
       };
+      break;
     case SET_EXERCISE:
-      return {
+      state = {
         ...state,
         exerciseMinutes: action.exerciseMinutes,
       };
+      break;
     case SET_SLEEP:
-      return {
+      state = {
         ...state,
         sleep: action.sleep,
       };
+      break;
     case SET_WAKE:
-      return {
+      state = {
         ...state,
         wake: action.wake,
       };
+      break;
     default:
       return state;
   }
+
+  setToStorage('@person', state);
+  return state;
 };
 
 export default person;

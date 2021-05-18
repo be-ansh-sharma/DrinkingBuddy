@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import { Animated } from 'react-native';
-const AppAnimation = ({ animationEnd, children }) => {
+const Fade = ({ animationEnd, children }) => {
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
   const animationEndHanlder = useCallback(() => {
@@ -20,4 +20,4 @@ const AppAnimation = ({ animationEnd, children }) => {
   );
 };
 
-export default AppAnimation;
+export default Fade;

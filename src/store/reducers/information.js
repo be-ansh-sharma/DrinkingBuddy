@@ -3,7 +3,9 @@ import {
   SET_NOTIFICATIONS,
   SET_SETUP,
   FETCH_INFORMATION,
+  SET_COMPLETED,
 } from '../actions/information';
+import { setToStorage } from '../../global/helper';
 
 const initialState = {
   quiteTime: {
@@ -28,31 +30,44 @@ const initialState = {
 const information = (state = initialState, action) => {
   switch (action.type) {
     case SET_QUITETIME:
-      return {
+      state = {
         ...state,
         quiteTime: {
           ...state.quiteTime,
           ...action.time,
         },
       };
+      break;
     case SET_NOTIFICATIONS:
-      return {
+      state = {
         ...state,
         ...action.notifications,
       };
+      break;
     case SET_SETUP:
-      return {
+      state = {
         ...state,
         isSetupFinished: action.isSetupFinished,
       };
+      break;
     case FETCH_INFORMATION:
-      return {
+      state = {
         ...state,
         ...action.information,
       };
+      break;
+    case SET_COMPLETED:
+      state = {
+        ...state,
+        completed: action.completed,
+      };
+      break;
     default:
       return state;
   }
+
+  setToStorage('@information', state);
+  return state;
 };
 
 export default information;

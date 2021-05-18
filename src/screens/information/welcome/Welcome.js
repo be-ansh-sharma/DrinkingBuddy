@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Pressable, View } from 'react-native';
+import { View } from 'react-native';
 import Text from '../../../component/text/Text';
-import Animations from '../../../animations/Animations';
+import Fade from '../../../animations/Fade';
 import styles from './Welcome.style';
 import IconButton from '../../../component/buttons/iconbutton/IconButton';
 
@@ -18,14 +18,14 @@ const Welcome = props => {
 
   return (
     <View style={styles.container}>
-      <Animations animationEnd={animationEnd}>
+      <Fade animationEnd={animationEnd}>
         <Text style={styles.heading}>Hi,</Text>
         <Text style={styles.heading}>I'm you drinking buddy companion</Text>
         <Text style={styles.subText}>
           In order to provide you with the tailored advice. I would need some of
           your basic information. This will be secret between us!
         </Text>
-      </Animations>
+      </Fade>
       {!!showNext && (
         <IconButton
           onPress={nextScreenHanlder}

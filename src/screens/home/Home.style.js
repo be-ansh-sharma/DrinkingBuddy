@@ -5,7 +5,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: COLOR.background,
+    paddingHorizontal: '8%',
   },
 });
