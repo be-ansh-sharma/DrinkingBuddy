@@ -19,7 +19,7 @@ const Shake = ({ children, repeat, interval }) => {
         {
           translateX: animatedValue.interpolate({
             inputRange: [0, 0.25, 0.5, 0.75, 1],
-            outputRange: [10, 20, 10, 20, 10],
+            outputRange: [5, -5, 5, -5, 5],
           }),
         },
       ],

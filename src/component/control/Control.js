@@ -8,6 +8,7 @@ import { setCompleted } from '../../store/actions/information';
 import { useDispatch } from 'react-redux';
 import LottieView from 'lottie-react-native';
 import Shake from '../../animations/Shake';
+import Bounce from '../../animations/Bounce';
 
 const Control = props => {
   const dispatch = useDispatch();
@@ -30,9 +31,20 @@ const Control = props => {
         <LottieView
           ref={addref}
           loop={false}
-          source={require('../../../assets/animation/add.json')}
+          source={require('../../../assets/animation/water.json')}
         />
       </Pressable>
+      <View style={styles.infoContainer}>
+        <Bounce repeat={true} interval={20 * 1000}>
+          <Icon
+            name="caret-up-outline"
+            size={20}
+            color={COLOR.primary}
+            android_disableSound={true}
+          />
+        </Bounce>
+        <Text style={styles.infoText}>Confirm that you drunk the water</Text>
+      </View>
       <View style={styles.change}>
         <Text>
           <Icon name="cafe-outline" size={40} color={COLOR.primary} />
