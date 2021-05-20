@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import styles from './Home.style';
 import Text from '../../component/text/Text';
 import Progress from '../../component/progress/Progress';
@@ -8,10 +8,16 @@ import Records from '../../component/records/Records';
 
 const Home = () => {
   return (
-    <View style={styles.container}>
-      <Progress />
-      <Control />
-      <Records />
+    <View>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}>
+        <View style={styles.container}>
+          <Progress />
+          <Control />
+          <Records />
+        </View>
+      </ScrollView>
     </View>
   );
 };

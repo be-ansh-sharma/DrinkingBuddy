@@ -5,6 +5,7 @@ import Icon from '../Icons/Icon';
 import { COLOR } from '../../global/styles';
 import Text from '../text/Text';
 import { setCompleted } from '../../store/actions/information';
+import { addRecord } from '../../store/actions/slug';
 import { useDispatch } from 'react-redux';
 import LottieView from 'lottie-react-native';
 import Shake from '../../animations/Shake';
@@ -17,6 +18,7 @@ const Control = props => {
   const addHandler = () => {
     addref.current.play();
     dispatch(setCompleted());
+    dispatch(addRecord());
   };
 
   return (

@@ -14,10 +14,11 @@ export default StyleSheet.create({
     marginRight: 4,
   },
   recordBox: {
-    borderWidth: 1,
+    //borderWidth: 1,
     width: '80%',
     alignContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
+    marginBottom: 8,
   },
 });

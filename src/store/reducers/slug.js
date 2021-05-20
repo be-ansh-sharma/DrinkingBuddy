@@ -7,11 +7,12 @@ const initialState = {
 };
 
 const slug = (state = initialState, action) => {
+  console.log(state);
   switch (action.type) {
     case ADD_RECORD:
       state = {
         ...state,
-        records: state.records.push(action.record),
+        records: [action.record, ...state.records],
       };
       break;
     default:

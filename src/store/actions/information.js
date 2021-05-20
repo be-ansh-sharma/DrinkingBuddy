@@ -66,12 +66,19 @@ export const setSetupFinished = value => {
 };
 
 export const getInformation = () => {
-  return async dispatch => {
+  return async (dispatch, getState) => {
     try {
       let information = await getFromStorage('@information');
+      let { quiteTime } = information;
+      let { cup, dailyGoal } = getState().person;
+      let intervalInMinutes = getInterval(dailyGoal, quiteTime, cup) * 60;
+      let notifications = getAllNotifications(quiteTime, intervalInMinutes);
       dispatch({
         type: FETCH_INFORMATION,
-        information: information,
+        information: {
+          ...information,
+          ...notifications,
+        },
       });
     } catch (err) {
       console.log('Something is wrong');
