@@ -16,10 +16,10 @@ const Control = props => {
   const addref = useRef();
 
   const addHandler = () => {
-    addref.current.play();
     dispatch(setCompleted());
     dispatch(addRecord());
   };
+
 
   return (
     <View style={styles.container}>
@@ -29,10 +29,14 @@ const Control = props => {
           <Text style={styles.adsText}>ADS</Text>
         </View>
       </Shake>
-      <Pressable style={styles.add} android_ripple={true} onPress={addHandler}>
+      <Pressable
+        style={styles.add}
+        android_ripple={true}
+        onPress={() => addref.current.play()}>
         <LottieView
           ref={addref}
           loop={false}
+          onAnimationFinish={addHandler}
           source={require('../../../assets/animation/water.json')}
         />
       </Pressable>

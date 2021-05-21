@@ -2,7 +2,7 @@ apply plugin: "com.android.application"
 apply from: '../../node_modules/react-native-unimodules/gradle.groovy'
 
 project.ext.vectoricons = [
-    iconFontNames: [ 'Ionicons.ttf' ]
+    iconFontNames: [ 'Ionicons.ttf', 'MaterialCommunityIcons.ttf' ]
 ]
 
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"

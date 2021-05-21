@@ -1,7 +1,6 @@
 import React from 'react';
 import { ScrollView, View } from 'react-native';
 import styles from './Home.style';
-import Text from '../../component/text/Text';
 import Progress from '../../component/progress/Progress';
 import Control from '../../component/control/Control';
 import Records from '../../component/records/Records';

@@ -7,6 +7,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPerson } from './src/store/actions/person';
 import { getInformation } from './src/store/actions/information';
+import { fetchSlug } from './src/store/actions/slug';
 import { StatusBar, LogBox } from 'react-native';
 import { COLOR } from './src/global/styles';
 import SplashScreen from './src/component/splash/Splash';
@@ -24,6 +25,7 @@ const App = () => {
     (async () => {
       await dispatch(fetchPerson());
       await dispatch(getInformation());
+      dispatch(fetchSlug());
       setIsReady(true);
     })();
   }, [dispatch]);

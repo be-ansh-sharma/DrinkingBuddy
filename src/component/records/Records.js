@@ -43,6 +43,7 @@ const Records = props => {
                 key={index}
                 time={record.time}
                 cup={record.cup}
+                index={index}
                 dailyGoalType={record.dailyGoalType}
               />
             );

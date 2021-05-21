@@ -9,12 +9,22 @@ import informationReducer from './src/store/reducers/information';
 import slugReducer from './src/store/reducers/slug';
 import ReduxThunk from 'redux-thunk';
 import { Provider } from 'react-redux';
+import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+import { COLOR } from './src/global/styles';
 
 const rootReducer = combineReducers({
   person: personReducer,
   information: informationReducer,
   slug: slugReducer,
 });
+
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: COLOR.primary,
+  },
+};
 
 const store = createStore(
   rootReducer,
@@ -29,7 +39,9 @@ const store = createStore(
 const AppStore = () => {
   return (
     <Provider store={store}>
-      <App />
+      <PaperProvider theme={theme}>
+        <App />
+      </PaperProvider>
     </Provider>
   );
 };

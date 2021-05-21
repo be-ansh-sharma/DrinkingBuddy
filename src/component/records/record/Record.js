@@ -3,8 +3,21 @@ import { View } from 'react-native';
 import Text from '../../text/Text';
 import styles from './Record.style';
 import Icon from '../../Icons/Icon';
+import { Menu } from 'react-native-paper';
+import { deleteRecord } from '../../../store/actions/slug';
+import { useDispatch } from 'react-redux';
 
-const Record = ({ next, time, cup, dailyGoalType }) => {
+const Record = ({ index, next, time, cup, dailyGoalType }) => {
+  const [visible, setVisible] = React.useState(false);
+  const dispatch = useDispatch();
+  const openMenu = () => setVisible(true);
+  const closeMenu = () => setVisible(false);
+
+  const removeRecordHandler = () => {
+    dispatch(deleteRecord(index, cup));
+    setVisible(false);
+  };
+
   if (next) {
     return (
       <View style={styles.container}>
@@ -27,6 +40,8 @@ const Record = ({ next, time, cup, dailyGoalType }) => {
     );
   }
 
+  console.log(index);
+
   return (
     <View style={styles.container}>
       <Icon name="water-outline" size={20} color="white" />
@@ -35,7 +50,22 @@ const Record = ({ next, time, cup, dailyGoalType }) => {
         {cup} {dailyGoalType}
       </Text>
       <View>
-        <Icon name="ellipsis-vertical-outline" size={20} color="white" />
+        <View>
+          <Menu
+            visible={visible}
+            onDismiss={closeMenu}
+            anchor={
+              <Icon
+                name="ellipsis-vertical-outline"
+                size={20}
+                color="white"
+                pressHandler={openMenu}
+              />
+            }>
+            <Menu.Item onPress={() => { }} title="Edit" />
+            <Menu.Item onPress={removeRecordHandler} title="Delete" />
+          </Menu>
+        </View>
       </View>
     </View>
   );
