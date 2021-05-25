@@ -5,7 +5,7 @@ import { WheelPicker } from 'react-native-wheel-picker-android';
 import { COLOR } from '../../../global/styles';
 import styles from './Weight.style';
 import WeightSVG from '../../../../assets/images/weight.svg';
-import { changeMetric } from '../../../global/helper';
+import { changeMetric } from '../../../global/helpers/helper';
 import { useDispatch, useSelector } from 'react-redux';
 import { setWeight } from '../../../store/actions/person';
 import Footer from '../../../component/information/footer/Footer';

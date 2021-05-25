@@ -11,8 +11,18 @@ import { fetchSlug } from './src/store/actions/slug';
 import { StatusBar, LogBox } from 'react-native';
 import { COLOR } from './src/global/styles';
 import SplashScreen from './src/component/splash/Splash';
+import * as Notifications from 'expo-notifications';
 
-LogBox.ignoreLogs(['Reanimated 2']);
+LogBox.ignoreLogs(['Reanimated 2', 'Constants']);
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => {
+    return {
+      shouldShowAlert: true,
+      shouldPlaySound: true,
+    };
+  },
+});
 
 const App = () => {
   const [isReady, setIsReady] = useState(false);

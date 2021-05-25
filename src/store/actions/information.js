@@ -3,8 +3,9 @@ import {
   getInterval,
   getAllNotifications,
   getFromStorage,
-} from '../../global/helper';
+} from '../../global/helpers/helper';
 import { syncInformation } from '../../global/database/Database.helper';
+import { checkAndScheduleNotification } from '../../global/helpers/notification';
 
 export const SET_QUITETIME = 'SET_QUITETIME';
 export const SET_NOTIFICATIONS = 'SET_NOTIFICATION';
@@ -37,15 +38,24 @@ export const setQuiteTime = time => {
 };
 
 export const setNotifications = () => {
-  return (dispatch, getState) => {
-    const { quiteTime } = getState().information;
-    const { cup, dailyGoal } = getState().person;
-    let intervalInMinutes = getInterval(dailyGoal, quiteTime, cup) * 60;
-    let notifications = getAllNotifications(quiteTime, intervalInMinutes);
-    dispatch({
-      type: SET_NOTIFICATIONS,
-      notifications: notifications,
-    });
+  return async (dispatch, getState) => {
+    try {
+      const { quiteTime, notificationToken } = getState().information;
+      const { cup, dailyGoal } = getState().person;
+      let intervalInMinutes = getInterval(dailyGoal, quiteTime, cup) * 60;
+      let notifications = getAllNotifications(quiteTime, intervalInMinutes);
+      let currentToken = await checkAndScheduleNotification(
+        notifications,
+        notificationToken,
+      );
+      dispatch({
+        type: SET_NOTIFICATIONS,
+        notifications,
+        notificationToken: currentToken,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 };
 
@@ -60,28 +70,21 @@ export const setSetupFinished = value => {
         isSetupFinished: value,
       });
     } catch (err) {
-      console.log('Something is wrong');
+      console.log(err);
     }
   };
 };
 
 export const getInformation = () => {
-  return async (dispatch, getState) => {
+  return async dispatch => {
     try {
       let information = await getFromStorage('@information');
-      let { quiteTime } = information;
-      let { cup, dailyGoal } = getState().person;
-      let intervalInMinutes = getInterval(dailyGoal, quiteTime, cup) * 60;
-      let notifications = getAllNotifications(quiteTime, intervalInMinutes);
       dispatch({
         type: FETCH_INFORMATION,
-        information: {
-          ...information,
-          ...notifications,
-        },
+        information: information,
       });
     } catch (err) {
-      console.log('Something is wrong');
+      console.log(err);
     }
   };
 };

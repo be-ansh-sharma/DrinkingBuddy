@@ -213,7 +213,6 @@ dependencies {
         'unimodules-app-loader',
         'expo-image-loader',
         'expo-file-system',
-        'expo-constants',
     ]])
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {

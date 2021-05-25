@@ -1,9 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import dayjs from './day';
+import dayjs from '../day';
 import {
   fetchDBNotifications,
   syncNotifications,
-} from '../global/database/Database.helper';
+} from '../database/Database.helper';
 
 export const getFromStorage = async key => {
   try {
@@ -75,10 +75,7 @@ export const getTodayNotification = (
 
 export const getAllNotifications = (quiteTimes, minutes) => {
   let current = dayjs();
-  let todayNotifications = fetchDBNotifications();
-  if (!todayNotifications.length) {
-    todayNotifications = getTodayNotification(quiteTimes, minutes);
-  }
+  let todayNotifications = getTodayNotification(quiteTimes, minutes);
   let nextNotification = '';
 
   for (let index = 0; index < todayNotifications.length; index++) {

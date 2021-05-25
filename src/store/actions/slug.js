@@ -1,5 +1,5 @@
 import dayjs from '../../global/day';
-import { getFromStorage } from '../../global/helper';
+import { getFromStorage } from '../../global/helpers/helper';
 
 export const ADD_RECORD = 'ADD_RECORD';
 export const FETCH_SLUG = 'FETCH_SLUG';

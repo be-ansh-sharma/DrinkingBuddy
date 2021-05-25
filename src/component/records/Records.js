@@ -10,13 +10,10 @@ import dayjs from '../../global/day';
 
 const Records = props => {
   let records = useSelector(state => state.slug.records);
-  //console.log(records);
   let nextNotification = useSelector(
     state => state.information.nextNotification,
   );
   let { cup, dailyGoalType } = useSelector(state => state.person);
-
-  console.log(!!records.length);
 
   return (
     <View style={styles.container}>

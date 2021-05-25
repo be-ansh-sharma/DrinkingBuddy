@@ -9,7 +9,7 @@ import {
   SET_SLEEP,
   SET_WAKE,
 } from '../actions/person';
-import { setToStorage } from '../../global/helper';
+import { setToStorage } from '../../global/helpers/helper';
 
 const initialState = {
   gender: '',

@@ -11,16 +11,14 @@ export const syncNotifications = async notifications => {
     );
 
     if (!result?.rows?._array.length) {
-      let tt = await _db.executeSql(
+      await _db.executeSql(
         'insert into info(date, notifications) VALUES (?,?)',
         [today, notifications.toString()],
       );
-      console.log(tt);
     } else {
-      let rr = await _db.executeSql(
+      await _db.executeSql(
         `update info SET notifications='${notifications.toString()}' where date='${today}'`,
       );
-      console.log(rr);
     }
   } catch (err) {
     console.log(err);
@@ -33,11 +31,8 @@ export const fetchDBNotifications = async () => {
     let result = await _db.executeSql(
       `SELECT * from info where date = '${today}'`,
     );
-    console.log('ff');
-    console.log(result);
     if (result?.rows?._array.length) {
       let { notifications } = result?.rows?._array[0];
-      console.log(notifications);
       return notifications.split(',');
     }
     return [];

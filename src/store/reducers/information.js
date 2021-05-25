@@ -6,7 +6,7 @@ import {
   SET_COMPLETED,
 } from '../actions/information';
 import { DELETE_RECORD } from '../actions/slug';
-import { setToStorage } from '../../global/helper';
+import { setToStorage } from '../../global/helpers/helper';
 
 const initialState = {
   quiteTime: {
@@ -24,6 +24,7 @@ const initialState = {
   },
   nextNotification: '',
   notifications: [],
+  notificationToken: '',
   completed: 0,
   isSetupFinished: false,
 };
@@ -49,6 +50,7 @@ const information = (state = initialState, action) => {
       state = {
         ...state,
         isSetupFinished: action.isSetupFinished,
+        notificationToken: action.notificationToken,
       };
       break;
     case FETCH_INFORMATION:

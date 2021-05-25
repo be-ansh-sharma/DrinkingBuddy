@@ -1,5 +1,5 @@
 import { ADD_RECORD, FETCH_SLUG, DELETE_RECORD } from '../actions/slug';
-import { setToStorage } from '../../global/helper';
+import { setToStorage } from '../../global/helpers/helper';
 
 const initialState = {
   hasCompleted: false,
@@ -7,7 +7,6 @@ const initialState = {
 };
 
 const slug = (state = initialState, action) => {
-  console.log(state);
   switch (action.type) {
     case ADD_RECORD:
       state = {

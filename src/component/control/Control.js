@@ -20,7 +20,6 @@ const Control = props => {
     dispatch(addRecord());
   };
 
-
   return (
     <View style={styles.container}>
       <Shake repeat={true} interval={60 * 1000}>

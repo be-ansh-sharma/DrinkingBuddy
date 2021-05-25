@@ -40,8 +40,6 @@ const Record = ({ index, next, time, cup, dailyGoalType }) => {
     );
   }
 
-  console.log(index);
-
   return (
     <View style={styles.container}>
       <Icon name="water-outline" size={20} color="white" />
