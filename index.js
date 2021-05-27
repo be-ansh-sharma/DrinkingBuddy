@@ -9,8 +9,13 @@ import informationReducer from './src/store/reducers/information';
 import slugReducer from './src/store/reducers/slug';
 import ReduxThunk from 'redux-thunk';
 import { Provider } from 'react-redux';
-import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+import {
+  configureFonts,
+  DefaultTheme,
+  Provider as PaperProvider,
+} from 'react-native-paper';
 import { COLOR } from './src/global/styles';
+import { fontConfig } from './src/global/CONSTANTS';
 
 const rootReducer = combineReducers({
   person: personReducer,
@@ -20,6 +25,7 @@ const rootReducer = combineReducers({
 
 const theme = {
   ...DefaultTheme,
+  fonts: configureFonts(fontConfig),
   colors: {
     ...DefaultTheme.colors,
     primary: COLOR.primary,

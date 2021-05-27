@@ -26,6 +26,7 @@ const initialState = {
   notifications: [],
   notificationToken: '',
   completed: 0,
+  today: '',
   isSetupFinished: false,
 };
 

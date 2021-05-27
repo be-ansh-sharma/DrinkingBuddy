@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
 import Text from '../../text/Text';
 import styles from './Record.style';
@@ -7,8 +7,15 @@ import { Menu } from 'react-native-paper';
 import { deleteRecord } from '../../../store/actions/slug';
 import { useDispatch } from 'react-redux';
 
-const Record = ({ index, next, time, cup, dailyGoalType }) => {
-  const [visible, setVisible] = React.useState(false);
+const Record = ({
+  index,
+  next,
+  time,
+  cup,
+  dailyGoalType,
+  openDialogHandler,
+}) => {
+  const [visible, setVisible] = useState(false);
   const dispatch = useDispatch();
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
@@ -16,6 +23,11 @@ const Record = ({ index, next, time, cup, dailyGoalType }) => {
   const removeRecordHandler = () => {
     dispatch(deleteRecord(index, cup));
     setVisible(false);
+  };
+
+  const editHandler = () => {
+    setVisible(false);
+    openDialogHandler();
   };
 
   if (next) {
@@ -60,7 +72,7 @@ const Record = ({ index, next, time, cup, dailyGoalType }) => {
                 pressHandler={openMenu}
               />
             }>
-            <Menu.Item onPress={() => { }} title="Edit" />
+            <Menu.Item onPress={editHandler} title="Edit" />
             <Menu.Item onPress={removeRecordHandler} title="Delete" />
           </Menu>
         </View>

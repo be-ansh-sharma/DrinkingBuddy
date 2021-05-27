@@ -3,6 +3,7 @@ import {
   getInterval,
   getAllNotifications,
   getFromStorage,
+  validateInformation,
 } from '../../global/helpers/helper';
 import { syncInformation } from '../../global/database/Database.helper';
 import { checkAndScheduleNotification } from '../../global/helpers/notification';
@@ -79,6 +80,7 @@ export const getInformation = () => {
   return async dispatch => {
     try {
       let information = await getFromStorage('@information');
+      information = validateInformation(information);
       dispatch({
         type: FETCH_INFORMATION,
         information: information,

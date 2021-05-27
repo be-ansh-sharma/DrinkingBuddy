@@ -97,6 +97,7 @@ export const getAllNotifications = (quiteTimes, minutes) => {
     return {
       notifications: todayNotifications,
       nextNotification,
+      today: dayjs().toDate(),
     };
   }
 
@@ -104,5 +105,22 @@ export const getAllNotifications = (quiteTimes, minutes) => {
   return {
     notifications: todayNotifications,
     nextNotification,
+    today: dayjs().toDate(),
   };
+};
+
+export const validateInformation = information => {
+  const { today } = information;
+  if (dayjs().get('day') !== dayjs(today).get('day')) {
+    return {
+      ...information,
+      today: dayjs().toDate(),
+      nextNotification: '',
+      notifications: [],
+      notificationToken: '',
+      completed: 0,
+    };
+  }
+
+  return information;
 };

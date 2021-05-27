@@ -20,9 +20,7 @@ export const registerForLocalNotificationsAsync = async nextNotification => {
       title: 'It is time to drink water',
       body: 'Tap here to confirm',
     },
-    trigger: {
-      seconds: 10,
-    },
+    trigger,
   });
 
   console.log('token is ' + token);

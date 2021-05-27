@@ -77,7 +77,7 @@ export const PROFILE = {
   },
 };
 
-const fontConfig = {
+export const fontConfig = {
   web: {
     regular: {
       fontFamily: 'OpenSans',
