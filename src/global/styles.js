@@ -7,6 +7,8 @@ export const COLOR = {
   primary: '#00B0FF',
   background: 'white',
   error: '#B00020',
+  accent: '#459dfc',
+  danger: 'red',
 };
 
 export const BUTTON = {

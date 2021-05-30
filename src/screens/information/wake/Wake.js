@@ -4,7 +4,7 @@ import WakeSVG from '../../../../assets/images/wake.svg';
 import styles from './Wake.style';
 import Heading from '../../../component/heading/Heading';
 import { COLOR } from '../../../global/styles';
-import { WheelPicker } from 'react-native-wheel-picker-android';
+import Picker from '../../../component/picker/Picker';
 import { useDispatch, useSelector } from 'react-redux';
 import { setWake } from '../../../store/actions/person';
 import Footer from '../../../component/information/footer/Footer';
@@ -63,7 +63,7 @@ const Wake = props => {
         </View>
         <View style={styles.picker}>
           <View style={styles.pickerItem}>
-            <WheelPicker
+            <Picker
               selectedItem={hours}
               data={HOURS}
               isCyclic={true}
@@ -73,7 +73,7 @@ const Wake = props => {
             />
           </View>
           <View style={styles.pickerItem}>
-            <WheelPicker
+            <Picker
               selectedItem={minutes}
               data={MINUTES}
               isCyclic={true}

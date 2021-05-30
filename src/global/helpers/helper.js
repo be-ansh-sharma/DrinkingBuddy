@@ -124,3 +124,17 @@ export const validateInformation = information => {
 
   return information;
 };
+
+export const validateSlug = slug => {
+  const { today } = slug;
+  if (dayjs().get('day') !== dayjs(today).get('day')) {
+    return {
+      ...slug,
+      today: dayjs().toDate(),
+      hasCompleted: false,
+      records: [],
+    };
+  }
+
+  return slug;
+};

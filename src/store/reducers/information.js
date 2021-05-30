@@ -5,7 +5,7 @@ import {
   FETCH_INFORMATION,
   SET_COMPLETED,
 } from '../actions/information';
-import { DELETE_RECORD } from '../actions/slug';
+import { DELETE_RECORD, EDIT_RECORD } from '../actions/slug';
 import { setToStorage } from '../../global/helpers/helper';
 
 const initialState = {
@@ -67,9 +67,18 @@ const information = (state = initialState, action) => {
       };
       break;
     case DELETE_RECORD:
+      if (state.completed - action.cup < 0) {
+        break;
+      }
       state = {
         ...state,
         completed: state.completed - action.cup,
+      };
+      break;
+    case EDIT_RECORD:
+      state = {
+        ...state,
+        completed: action.completed,
       };
       break;
     default:

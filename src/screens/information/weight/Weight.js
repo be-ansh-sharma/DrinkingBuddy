@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import Heading from '../../../component/heading/Heading';
-import { WheelPicker } from 'react-native-wheel-picker-android';
+import Picker from '../../../component/picker/Picker';
 import { COLOR } from '../../../global/styles';
 import styles from './Weight.style';
 import WeightSVG from '../../../../assets/images/weight.svg';
@@ -66,7 +66,7 @@ const Weight = props => {
         </View>
         <View style={styles.picker}>
           <View style={styles.pickerItem}>
-            <WheelPicker
+            <Picker
               selectedItem={weightSelected}
               data={weightNumbers}
               onItemSelected={weightHanlder}
@@ -75,7 +75,7 @@ const Weight = props => {
             />
           </View>
           <View style={styles.pickerItem}>
-            <WheelPicker
+            <Picker
               selectedItem={metricSelected}
               data={metricNumbers}
               onItemSelected={metricHanlder}

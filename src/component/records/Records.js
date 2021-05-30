@@ -1,28 +1,36 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Text from '../text/Text';
 import styles from './Records.style';
 import Icon from '../Icons/Icon';
 import Record from './record/Record';
 import { COLOR } from '../../global/styles';
 import dayjs from '../../global/day';
-import RecordDialog from '../dialogs/RecordDialog';
+import AddRecordDialog from '../dialog/AddRecordDialog';
+import { addRecord } from '../../store/actions/slug';
+import { setCompleted } from '../../store/actions/information';
 
-const Records = props => {
+const Records = () => {
   const [openDialog, setOpenDialog] = useState(false);
+  const dispatch = useDispatch();
   let records = useSelector(state => state.slug.records);
   let nextNotification = useSelector(
     state => state.information.nextNotification,
   );
   let { cup, dailyGoalType } = useSelector(state => state.person);
-
-  const openDialogHandler = () => {
+  const addRecordHandler = () => {
     setOpenDialog(true);
   };
 
-  const closeDialogHandler = () => {
-    setOpenDialog(false);
+  const closeDialogHandler = (time, quantity) => {
+    if (time && quantity) {
+      dispatch(setCompleted(quantity));
+      dispatch(addRecord(time, quantity));
+      setOpenDialog(false);
+    } else {
+      setOpenDialog(false);
+    }
   };
 
   return (
@@ -35,6 +43,7 @@ const Records = props => {
             size={20}
             color={COLOR.primary}
             android_disableSound={true}
+            pressHandler={addRecordHandler}
           />
         </View>
         <View style={styles.recordBox}>
@@ -52,14 +61,15 @@ const Records = props => {
                   time={record.time}
                   cup={record.cup}
                   index={index}
-                  openDialogHandler={openDialogHandler}
                   dailyGoalType={record.dailyGoalType}
                 />
               );
             })}
         </View>
       </View>
-      {!!openDialog && <RecordDialog closeDialogHandler={closeDialogHandler} title="Update"/>}
+      {!!openDialog && (
+        <AddRecordDialog closeDialogHandler={closeDialogHandler} />
+      )}
     </>
   );
 };

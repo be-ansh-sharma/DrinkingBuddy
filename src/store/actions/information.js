@@ -91,10 +91,11 @@ export const getInformation = () => {
   };
 };
 
-export const setCompleted = () => {
+export const setCompleted = customCup => {
   return (dispatch, getState) => {
     let { completed } = getState().information;
     let { cup } = getState().person;
+    cup = customCup || cup;
     dispatch({
       type: SET_COMPLETED,
       completed: completed + cup,

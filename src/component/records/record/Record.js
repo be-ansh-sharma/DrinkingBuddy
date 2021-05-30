@@ -4,21 +4,25 @@ import Text from '../../text/Text';
 import styles from './Record.style';
 import Icon from '../../Icons/Icon';
 import { Menu } from 'react-native-paper';
-import { deleteRecord } from '../../../store/actions/slug';
+import { deleteRecord, editRecord } from '../../../store/actions/slug';
 import { useDispatch } from 'react-redux';
+import EditRecordDialog from '../../dialog/EditRecordDialog';
 
-const Record = ({
-  index,
-  next,
-  time,
-  cup,
-  dailyGoalType,
-  openDialogHandler,
-}) => {
+const Record = ({ index, next, time, cup, dailyGoalType }) => {
   const [visible, setVisible] = useState(false);
+  const [openDialog, setOpenDialog] = useState(false);
   const dispatch = useDispatch();
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
+
+  const openDialogHandler = () => {
+    setOpenDialog(true);
+  };
+
+  const closeDialogHandler = newCup => {
+    dispatch(editRecord(index, cup, newCup));
+    setOpenDialog(false);
+  };
 
   const removeRecordHandler = () => {
     dispatch(deleteRecord(index, cup));
@@ -53,31 +57,45 @@ const Record = ({
   }
 
   return (
-    <View style={styles.container}>
-      <Icon name="water-outline" size={20} color="white" />
-      <Text style={styles.time}>{time}</Text>
-      <Text style={styles.amount}>
-        {cup} {dailyGoalType}
-      </Text>
-      <View>
+    <>
+      <View style={styles.container}>
+        <Icon name="water-outline" size={20} color="white" />
+        <Text style={styles.time}>{time}</Text>
+        <Text style={styles.amount}>
+          {cup} {dailyGoalType}
+        </Text>
         <View>
-          <Menu
-            visible={visible}
-            onDismiss={closeMenu}
-            anchor={
-              <Icon
-                name="ellipsis-vertical-outline"
-                size={20}
-                color="white"
-                pressHandler={openMenu}
-              />
-            }>
-            <Menu.Item onPress={editHandler} title="Edit" />
-            <Menu.Item onPress={removeRecordHandler} title="Delete" />
-          </Menu>
+          <View>
+            <Menu
+              visible={visible}
+              onDismiss={closeMenu}
+              anchor={
+                <Icon
+                  name="ellipsis-vertical-outline"
+                  size={20}
+                  color="white"
+                  pressHandler={openMenu}
+                />
+              }>
+              <Menu.Item onPress={editHandler} title="Edit" />
+              <Menu.Item onPress={removeRecordHandler} title="Delete" />
+            </Menu>
+          </View>
         </View>
       </View>
-    </View>
+      {!!openDialog && (
+        <EditRecordDialog
+          closeDialogHandler={closeDialogHandler}
+          title={
+            <Text>
+              Consumption at <Text style={styles.dialogText}>{time}</Text>
+            </Text>
+          }
+          cup={cup}
+          dailyGoalType={dailyGoalType}
+        />
+      )}
+    </>
   );
 };
 

@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { COLOR } from '../../../global/styles';
 
 export default StyleSheet.create({
   container: {
@@ -11,22 +12,25 @@ export default StyleSheet.create({
     justifyContent: 'space-around',
     //alignContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#459dfc',
+    backgroundColor: COLOR.accent,
     borderRadius: 5,
     elevation: 6,
     marginTop: 8,
   },
   time: {
-    color: 'white',
+    color: COLOR.background,
   },
   icon: {
-    color: 'white',
+    color: COLOR.background,
   },
   amount: {
-    color: 'white',
+    color: COLOR.background,
   },
   subText: {
-    color: 'white',
+    color: COLOR.background,
     fontSize: 10,
-  }
+  },
+  dialogText: {
+    color: COLOR.accent,
+  },
 });

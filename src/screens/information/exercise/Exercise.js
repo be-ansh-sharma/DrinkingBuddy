@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import Text from '../../../component/text/Text';
-import { WheelPicker } from 'react-native-wheel-picker-android';
+import Picker from '../../../component/picker/Picker';
 import Heading from '../../../component/heading/Heading';
 import styles from './Exercise.style';
 import ExerciseSVG from '../../../../assets/images/exercise.svg';
@@ -48,7 +48,7 @@ const Exercise = props => {
         </View>
         <View style={styles.picker}>
           <View style={styles.pickerItem}>
-            <WheelPicker
+            <Picker
               selectedItem={exerciseMinutes}
               data={exerciseNumber}
               onItemSelected={exerciseHanlder}
