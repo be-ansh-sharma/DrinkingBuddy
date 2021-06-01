@@ -1,3 +1,4 @@
+import dayjs from '../day';
 import * as Notifications from 'expo-notifications';
 
 export const registerForLocalNotificationsAsync = async nextNotification => {
@@ -11,9 +12,7 @@ export const registerForLocalNotificationsAsync = async nextNotification => {
     return;
   }
 
-  let trigger = new Date(nextNotification);
-
-  console.log(nextNotification);
+  let trigger = dayjs(nextNotification).toDate();
 
   let token = await Notifications.scheduleNotificationAsync({
     content: {
@@ -27,27 +26,21 @@ export const registerForLocalNotificationsAsync = async nextNotification => {
   return token;
 };
 
-export const checkAndScheduleNotification = async (
-  notifications,
-  notificationToken,
-) => {
-  let { nextNotification } = notifications;
+export const checkAndScheduleNotification = async notifications => {
   let scheduledNotifications = await Notifications.getAllScheduledNotificationsAsync();
-  if (scheduledNotifications.length > 1) {
-    await Notifications.cancelAllScheduledNotificationsAsync();
-  }
 
-  if (!scheduledNotifications.length) {
-    return await registerForLocalNotificationsAsync(nextNotification);
-  }
+  let timeList = [];
 
-  console.log(scheduledNotifications);
-  let { identifier } = scheduledNotifications;
-  if (identifier === notificationToken) {
-    return identifier;
-  } else if (scheduledNotifications.length) {
-    await Notifications.cancelAllScheduledNotificationsAsync();
-  }
+  scheduledNotifications.forEach(({ trigger }) => {
+    timeList.push(dayjs(trigger.value).format());
+  });
 
-  return await registerForLocalNotificationsAsync(nextNotification);
+  notifications.forEach(notification => {
+    if (
+      dayjs(notification).isAfter(dayjs()) &&
+      !timeList.includes(dayjs(notification).format())
+    ) {
+      registerForLocalNotificationsAsync(notification);
+    }
+  });
 };

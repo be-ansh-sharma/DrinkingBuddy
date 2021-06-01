@@ -35,7 +35,7 @@ export const fetchSlug = () => {
         slug: slug,
       });
     } catch (err) {
-      console.log('error');
+      console.log(err);
     }
   };
 };

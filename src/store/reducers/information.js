@@ -24,7 +24,6 @@ const initialState = {
   },
   nextNotification: '',
   notifications: [],
-  notificationToken: '',
   completed: 0,
   today: '',
   isSetupFinished: false,
@@ -51,7 +50,6 @@ const information = (state = initialState, action) => {
       state = {
         ...state,
         isSetupFinished: action.isSetupFinished,
-        notificationToken: action.notificationToken,
       };
       break;
     case FETCH_INFORMATION:

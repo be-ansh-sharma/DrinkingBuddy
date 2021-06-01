@@ -51,11 +51,21 @@ export const getTodayNotification = (
       let time = quiteTimes[key];
       let start = time.start;
       let end = time.end;
-      let startTime = dayjs().hour(start.hour).minute(start.minute).second(0);
-      let endTime = dayjs().hour(end.hour).minute(end.minute).second(0);
+      let startTime = current.hour(start.hour).minute(start.minute).second(0);
+      let endTime = current.hour(end.hour).minute(end.minute).second(0);
 
-      if (start.hour > 12 && end.hour < 12) {
-        startTime = startTime.subtract(1, 'day');
+      if (start.hour > end.hour) {
+        let previousDayStartTiem = startTime.subtract(1, 'day');
+        hasConflict =
+          current.isBetween(previousDayStartTiem, endTime) ||
+          current.isBetween(
+            startTime,
+            current.add(1, 'day').hour(0).minute(0).second(0),
+          );
+        if (hasConflict) {
+          break;
+        }
+        continue;
       }
 
       hasConflict = current.isBetween(startTime, endTime);
@@ -75,8 +85,9 @@ export const getTodayNotification = (
 
 export const getAllNotifications = (quiteTimes, minutes) => {
   let current = dayjs();
+  let today = current.hour(0).minute(0).second(0);
   let todayNotifications = getTodayNotification(quiteTimes, minutes);
-  let nextNotification = '';
+  let nextNotification;
 
   for (let index = 0; index < todayNotifications.length; index++) {
     const notification = dayjs(todayNotifications[index]);
@@ -93,7 +104,7 @@ export const getAllNotifications = (quiteTimes, minutes) => {
       current.add(1, 'day').hour(0).minute(0).second(0),
     );
     nextNotification = todayNotifications[0];
-    syncNotifications(todayNotifications);
+    //syncNotifications(todayNotifications);
     return {
       notifications: todayNotifications,
       nextNotification,
@@ -101,40 +112,49 @@ export const getAllNotifications = (quiteTimes, minutes) => {
     };
   }
 
-  syncNotifications(todayNotifications);
+  //syncNotifications(todayNotifications);
   return {
     notifications: todayNotifications,
     nextNotification,
-    today: dayjs().toDate(),
+    today: today.toDate(),
   };
 };
 
 export const validateInformation = information => {
-  const { today } = information;
-  if (dayjs().get('day') !== dayjs(today).get('day')) {
-    return {
-      ...information,
-      today: dayjs().toDate(),
-      nextNotification: '',
-      notifications: [],
-      notificationToken: '',
-      completed: 0,
-    };
+  if (information) {
+    const { today } = information;
+    if (dayjs().get('day') !== dayjs(today).get('day')) {
+      return {
+        ...information,
+        today: dayjs().toDate(),
+        nextNotification: '',
+        notifications: [],
+        completed: 0,
+      };
+    }
+    return information;
   }
 
-  return information;
+  return {
+    today: dayjs().toDate(),
+  };
 };
 
 export const validateSlug = slug => {
-  const { today } = slug;
-  if (dayjs().get('day') !== dayjs(today).get('day')) {
-    return {
-      ...slug,
-      today: dayjs().toDate(),
-      hasCompleted: false,
-      records: [],
-    };
+  if (slug) {
+    const { today } = slug;
+    if (dayjs().get('day') !== dayjs(today).get('day')) {
+      return {
+        ...slug,
+        today: dayjs().toDate(),
+        hasCompleted: false,
+        records: [],
+      };
+    }
+    return slug;
   }
 
-  return slug;
+  return {
+    today: dayjs().toDate(),
+  };
 };

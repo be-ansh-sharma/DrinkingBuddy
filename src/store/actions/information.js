@@ -41,18 +41,14 @@ export const setQuiteTime = time => {
 export const setNotifications = () => {
   return async (dispatch, getState) => {
     try {
-      const { quiteTime, notificationToken } = getState().information;
+      const { quiteTime } = getState().information;
       const { cup, dailyGoal } = getState().person;
       let intervalInMinutes = getInterval(dailyGoal, quiteTime, cup) * 60;
       let notifications = getAllNotifications(quiteTime, intervalInMinutes);
-      let currentToken = await checkAndScheduleNotification(
-        notifications,
-        notificationToken,
-      );
+      checkAndScheduleNotification(notifications.notifications);
       dispatch({
         type: SET_NOTIFICATIONS,
         notifications,
-        notificationToken: currentToken,
       });
     } catch (err) {
       console.log(err);
