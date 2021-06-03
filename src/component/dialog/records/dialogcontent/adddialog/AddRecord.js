@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
-import Picker from '../../../picker/Picker';
-import dayjs from '../../../../global/day';
-import { COLOR } from '../../../../global/styles';
+import Picker from '../../../../picker/Picker';
+import dayjs from '../../../../../global/day';
+import { COLOR } from '../../../../../global/styles';
 import styles from './AddRecord.style';
-import Text from '../../../text/Text';
+import Text from '../../../../text/Text';
 import { TextInput } from 'react-native-paper';
 import { useSelector } from 'react-redux';
-import Icon from '../../../Icons/Icon';
 
 const HOURS = Array.from(Array(+dayjs().get('hour') + 1), (_, index) =>
   index.toString().padStart(2, '0'),

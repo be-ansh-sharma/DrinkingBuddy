@@ -39,7 +39,7 @@ const Home = () => {
   });
 
   return (
-    <View>
+    <View style={styles.homeContainer}>
       <ScrollView
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}>

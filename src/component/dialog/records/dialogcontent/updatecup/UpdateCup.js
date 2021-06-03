@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
-import { Pressable, View } from 'react-native';
-import Text from '../../../text/Text';
+import { View } from 'react-native';
+import Pressable from '../../../../pressable/Pressable';
+import Text from '../../../../text/Text';
 import LottieView from 'lottie-react-native';
 import styles from './UpdateCup.style';
 import { Badge } from 'react-native-paper';
@@ -41,17 +42,14 @@ const UpdateCup = ({ cup, dailyGoalType, cupChangeHandler }) => {
         <LottieView
           ref={cupRef}
           loop={false}
-          source={require('../../../../../assets/animation/water.json')}
+          source={require('../../../../../../assets/animation/water.json')}
         />
       </View>
       <View style={styles.cupWrapper}>
         {Object.keys(cupSize).map(key => {
           let { label, value } = cupSize[key];
           return (
-            <Pressable
-              onPress={() => cupPressHandler(key)}
-              android_ripple={true}
-              key={key}>
+            <Pressable onPress={() => cupPressHandler(key)} key={key}>
               <Badge
                 style={
                   cupSelected === +key

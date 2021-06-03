@@ -7,7 +7,7 @@ import Icon from '../Icons/Icon';
 import Record from './record/Record';
 import { COLOR } from '../../global/styles';
 import dayjs from '../../global/day';
-import AddRecordDialog from '../dialog/AddRecordDialog';
+import AddRecordDialog from '../dialog/records/AddRecordDialog';
 import { addRecord } from '../../store/actions/slug';
 import { setCompleted } from '../../store/actions/information';
 

@@ -6,7 +6,7 @@ import Icon from '../../Icons/Icon';
 import { Menu } from 'react-native-paper';
 import { deleteRecord, editRecord } from '../../../store/actions/slug';
 import { useDispatch } from 'react-redux';
-import EditRecordDialog from '../../dialog/EditRecordDialog';
+import EditRecordDialog from '../../dialog/records/EditRecordDialog';
 
 const Record = ({ index, next, time, cup, dailyGoalType }) => {
   const [visible, setVisible] = useState(false);

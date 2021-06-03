@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
-import { Pressable, View } from 'react-native';
+import { View } from 'react-native';
+import Pressable from '../pressable/Pressable';
 import styles from './Control.style';
 import Icon from '../Icons/Icon';
 import { COLOR } from '../../global/styles';
@@ -28,10 +29,7 @@ const Control = props => {
           <Text style={styles.adsText}>ADS</Text>
         </View>
       </Shake>
-      <Pressable
-        style={styles.add}
-        android_ripple={true}
-        onPress={() => addref.current.play()}>
+      <Pressable style={styles.add} onPress={() => addref.current.play()}>
         <LottieView
           ref={addref}
           loop={false}
