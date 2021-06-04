@@ -4,6 +4,7 @@ import {
   SET_SETUP,
   FETCH_INFORMATION,
   SET_COMPLETED,
+  SET_DARKMODE,
 } from '../actions/information';
 import { DELETE_RECORD, EDIT_RECORD } from '../actions/slug';
 import { setToStorage } from '../../global/helpers/helper';
@@ -27,6 +28,7 @@ const initialState = {
   completed: 0,
   today: '',
   isSetupFinished: false,
+  darkMode: false,
 };
 
 const information = (state = initialState, action) => {
@@ -77,6 +79,12 @@ const information = (state = initialState, action) => {
       state = {
         ...state,
         completed: action.completed,
+      };
+      break;
+    case SET_DARKMODE:
+      state = {
+        ...state,
+        darkMode: action.darkMode,
       };
       break;
     default:

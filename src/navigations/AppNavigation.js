@@ -12,6 +12,7 @@ import Exercise from '../screens/information/exercise/Exercise';
 import Sleep from '../screens/information/sleep/Sleep';
 import Wake from '../screens/information/wake/Wake';
 import Finish from '../screens/information/finish/Finish';
+import { Dimensions } from 'react-native';
 
 const Tab = createMaterialTopTabNavigator();
 const Stack = createStackNavigator();
@@ -36,8 +37,9 @@ export const HomeNavigation = () => {
     <Tab.Navigator
       initialRouteName="Home"
       tabBarOptions={defaultTabOption}
-      sceneContainerStyle={{ backgroundColor: 'transparent' }}>
-      <Tab.Screen name="History" component={History} />
+      initialLayout={{ width: Dimensions.get('window').width }}
+      sceneContainerStyle={{}}>
+      <Tab.Screen name="History" component={History}/>
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Preferences" component={Preferences} />
     </Tab.Navigator>

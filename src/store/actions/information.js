@@ -13,6 +13,7 @@ export const SET_NOTIFICATIONS = 'SET_NOTIFICATION';
 export const SET_SETUP = 'SET_SETUP';
 export const FETCH_INFORMATION = 'FETCH_INFORMATION';
 export const SET_COMPLETED = 'SET_COMPLETED';
+export const SET_DARKMODE = 'SET_DARKMODE';
 
 export const setQuiteTime = time => {
   let key = Object.keys(time)[0];
@@ -96,5 +97,12 @@ export const setCompleted = customCup => {
       type: SET_COMPLETED,
       completed: completed + cup,
     });
+  };
+};
+
+export const setDarkMode = mode => {
+  return {
+    type: SET_DARKMODE,
+    darkMode: mode,
   };
 };

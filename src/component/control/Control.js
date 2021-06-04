@@ -29,7 +29,10 @@ const Control = props => {
           <Text style={styles.adsText}>ADS</Text>
         </View>
       </Shake>
-      <Pressable style={styles.add} onPress={() => addref.current.play()}>
+      <Pressable
+        android_ripple={{}}
+        style={styles.add}
+        onPress={() => addref.current.play()}>
         <LottieView
           ref={addref}
           loop={false}
