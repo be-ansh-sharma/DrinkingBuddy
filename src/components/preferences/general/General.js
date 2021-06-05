@@ -1,9 +1,9 @@
 import React from 'react';
 import { View } from 'react-native';
 import { List } from 'react-native-paper';
-import Text from '../../text/Text';
+import Text from 'components/text/Text';
 import styles from './General.style';
-import DarkMode from '../../../animations/darkmode/DarkMode';
+import DarkMode from 'animations/darkmode/DarkMode';
 
 const General = props => {
   return (

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import WakeSVG from '../../../../assets/images/wake.svg';
+import WakeSVG from 'assets/images/wake.svg';
 import styles from './Wake.style';
-import Heading from '../../../component/heading/Heading';
-import { COLOR } from '../../../global/styles';
-import Picker from '../../../component/picker/Picker';
+import Heading from 'components/heading/Heading';
+import { COLOR } from 'global/styles';
+import Picker from 'components/picker/Picker';
 import { useDispatch, useSelector } from 'react-redux';
-import { setWake } from '../../../store/actions/person';
-import Footer from '../../../component/information/footer/Footer';
+import { setWake } from 'store/actions/person';
+import Footer from 'components/information/footer/Footer';
 
 const HOURS = Array.from(Array(24), (_, index) =>
   index.toString().padStart(2, '0'),

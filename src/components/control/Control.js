@@ -1,16 +1,16 @@
 import React, { useRef } from 'react';
 import { View } from 'react-native';
-import Pressable from '../pressable/Pressable';
+import Pressable from 'components/pressable/Pressable';
 import styles from './Control.style';
-import Icon from '../Icons/Icon';
-import { COLOR } from '../../global/styles';
-import Text from '../text/Text';
-import { setCompleted } from '../../store/actions/information';
-import { addRecord } from '../../store/actions/slug';
+import Icon from 'components/Icons/Icon';
+import { COLOR } from 'global/styles';
+import Text from 'components/text/Text';
+import { setCompleted } from 'store/actions/information';
+import { addRecord } from 'store/actions/slug';
 import { useDispatch } from 'react-redux';
 import LottieView from 'lottie-react-native';
-import Shake from '../../animations/Shake';
-import Bounce from '../../animations/Bounce';
+import Shake from 'animations/Shake';
+import Bounce from 'animations/Bounce';
 
 const Control = props => {
   const dispatch = useDispatch();
@@ -37,7 +37,7 @@ const Control = props => {
           ref={addref}
           loop={false}
           onAnimationFinish={addHandler}
-          source={require('../../../assets/animation/water.json')}
+          source={require('assets/animation/water.json')}
         />
       </Pressable>
       <View style={styles.infoContainer}>

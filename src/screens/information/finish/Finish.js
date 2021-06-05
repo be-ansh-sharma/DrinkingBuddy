@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { View, Image } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import Text from '../../../component/text/Text';
+import Text from 'components/text/Text';
 import styles from './Finish.style';
-import { storePerson } from '../../../store/actions/person';
-import Icon from '../../../component/Icons/Icon';
-import { COLOR } from '../../../global/styles';
-import IconButton from '../../../component/buttons/iconbutton/IconButton';
+import { storePerson } from 'store/actions/person';
+import Icon from 'components/Icons/Icon';
+import { COLOR } from 'global/styles';
+import IconButton from 'components/buttons/iconbutton/IconButton';
 import {
   setQuiteTime,
   setNotifications,
   setSetupFinished,
-} from '../../../store/actions/information';
+} from 'store/actions/information';
 import { useCallback } from 'react';
 
 const Finish = ({ navigation }) => {
@@ -74,7 +74,7 @@ const Finish = ({ navigation }) => {
       <View style={styles.loaderContainer}>
         <Image
           style={styles.loader}
-          source={require('../../../../assets/images/loading.gif')}
+          source={require('assets/images/loading.gif')}
         />
       </View>
     );

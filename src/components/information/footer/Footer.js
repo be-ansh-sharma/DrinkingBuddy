@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
-import Icon from '../../Icons/Icon';
-import { COLOR } from '../../../global/styles';
+import Icon from 'components/Icons/Icon';
+import { COLOR } from 'global/styles';
 import styles from './Footer.style';
 
 const Footer = props => {

@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import Text from '../text/Text';
+import Text from 'components/text/Text';
 import styles from './Records.style';
-import Icon from '../Icons/Icon';
+import Icon from 'components/Icons/Icon';
 import Record from './record/Record';
-import { COLOR } from '../../global/styles';
-import dayjs from '../../global/day';
-import AddRecordDialog from '../dialog/records/AddRecordDialog';
-import { addRecord } from '../../store/actions/slug';
-import { setCompleted } from '../../store/actions/information';
+import { COLOR } from 'global/styles';
+import dayjs from 'global/day';
+import AddRecordDialog from 'components/dialog/records/AddRecordDialog';
+import { addRecord } from 'store/actions/slug';
+import { setCompleted } from 'store/actions/information';
 
 const Records = () => {
   const [openDialog, setOpenDialog] = useState(false);

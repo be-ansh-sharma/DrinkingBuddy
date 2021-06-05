@@ -1,16 +1,13 @@
 import React, { useEffect } from 'react';
 import { ScrollView, View } from 'react-native';
 import styles from './Home.style';
-import Progress from '../../component/progress/Progress';
-import Control from '../../component/control/Control';
-import Records from '../../component/records/Records';
+import Progress from 'components/progress/Progress';
+import Control from 'components/control/Control';
+import Records from 'components/records/Records';
 import * as Notifications from 'expo-notifications';
 import { useDispatch, useSelector } from 'react-redux';
-import { addRecord } from '../../store/actions/slug';
-import {
-  setCompleted,
-  setNotifications,
-} from '../../store/actions/information';
+import { addRecord } from 'store/actions/slug';
+import { setCompleted, setNotifications } from 'store/actions/information';
 
 const Home = () => {
   const dispatch = useDispatch();

@@ -1,5 +1,5 @@
 import React from 'react';
-import Text from '../text/Text';
+import Text from 'components/text/Text';
 import styles from './Heading.style';
 
 const Heading = ({ children, style }) => {

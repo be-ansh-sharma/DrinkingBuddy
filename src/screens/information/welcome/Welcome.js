@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import Text from '../../../component/text/Text';
-import Fade from '../../../animations/Fade';
+import Text from 'components/text/Text';
+import Fade from 'animations/Fade';
 import styles from './Welcome.style';
-import IconButton from '../../../component/buttons/iconbutton/IconButton';
+import IconButton from 'components/buttons/iconbutton/IconButton';
 
 const Welcome = props => {
   const [showNext, setShowNext] = useState(false);

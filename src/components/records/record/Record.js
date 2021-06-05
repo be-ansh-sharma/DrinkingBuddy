@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import Text from '../../text/Text';
+import Text from 'components/text/Text';
 import styles from './Record.style';
-import Icon from '../../Icons/Icon';
+import Icon from 'components/Icons/Icon';
 import { Menu } from 'react-native-paper';
-import { deleteRecord, editRecord } from '../../../store/actions/slug';
+import { deleteRecord, editRecord } from 'store/actions/slug';
 import { useDispatch } from 'react-redux';
-import EditRecordDialog from '../../dialog/records/EditRecordDialog';
+import EditRecordDialog from 'components/dialog/records/EditRecordDialog';
 
 const Record = ({ index, next, time, cup, dailyGoalType }) => {
   const [visible, setVisible] = useState(false);

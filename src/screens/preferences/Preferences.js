@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, ScrollView } from 'react-native';
 import styles from './Preferences.style';
-import General from '../../component/preferences/general/General';
-import Personal from '../../component/preferences/personal/Personal';
+import General from 'components/preferences/general/General';
+import Personal from 'components/preferences/personal/Personal';
 
 const Preferences = () => {
   return (

@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { Pressable } from 'react-native';
 import LottieView from 'lottie-react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { setGender } from '../../store/actions/person';
+import { setGender } from 'store/actions/person';
 
 const Gender = () => {
   const genderRef = useRef();
@@ -32,7 +32,7 @@ const Gender = () => {
         speed={1.5}
         style={{height: 35, left: 4}}
         onAnimationFinish={genderHandler}
-        source={require('../../../assets/animation/gender.json')}
+        source={require('assets/animation/gender.json')}
         progress={gender === 'male' ? 1 : 0}
       />
     </Pressable>

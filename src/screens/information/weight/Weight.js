@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import Heading from '../../../component/heading/Heading';
-import Picker from '../../../component/picker/Picker';
-import { COLOR } from '../../../global/styles';
+import Heading from 'components/heading/Heading';
+import Picker from 'components/picker/Picker';
+import { COLOR } from 'global/styles';
 import styles from './Weight.style';
-import WeightSVG from '../../../../assets/images/weight.svg';
-import { changeMetric } from '../../../global/helpers/helper';
+import WeightSVG from 'assets/images/weight.svg';
+import { changeMetric } from 'global/helpers/helper';
 import { useDispatch, useSelector } from 'react-redux';
-import { setWeight } from '../../../store/actions/person';
-import Footer from '../../../component/information/footer/Footer';
+import { setWeight } from 'store/actions/person';
+import Footer from 'components/information/footer/Footer';
 
 const weightNumbers = Array.from(Array(881), (_, index) =>
   (++index).toString().padStart(2, '0'),

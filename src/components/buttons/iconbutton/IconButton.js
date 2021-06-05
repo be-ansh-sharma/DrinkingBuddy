@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Pressable } from 'react-native';
-import Icon from '../../Icons/Icon';
-import Text from '../../text/Text';
+import Icon from 'components/Icons/Icon';
+import Text from 'components/text/Text';
 import styles from './IconButton.style';
 
 const IconButton = props => {

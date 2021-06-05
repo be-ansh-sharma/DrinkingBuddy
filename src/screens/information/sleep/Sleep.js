@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import SleepSVG from '../../../../assets/images/sleep.svg';
+import SleepSVG from 'assets/images/sleep.svg';
 import styles from './Sleep.style';
-import Heading from '../../../component/heading/Heading';
-import { COLOR } from '../../../global/styles';
-import Footer from '../../../component/information/footer/Footer';
-import Picker from '../../../component/picker/Picker';
+import Heading from 'components/heading/Heading';
+import { COLOR } from 'global/styles';
+import Footer from 'components/information/footer/Footer';
+import Picker from 'components/picker/Picker';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSleep } from '../../../store/actions/person';
+import { setSleep } from 'store/actions/person';
 
 const HOURS = Array.from(Array(24), (_, index) =>
   index.toString().padStart(2, '0'),

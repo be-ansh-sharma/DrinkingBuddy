@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { Dialog, Button, Portal } from 'react-native-paper';
 import AddRecord from './dialogcontent/adddialog/AddRecord';
-import dayjs from '../../../global/day';
+import dayjs from 'global/day';
 
 const AddRecordDialog = ({ closeDialogHandler }) => {
   const [visible] = useState(true);

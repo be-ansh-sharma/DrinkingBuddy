@@ -1,9 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import dayjs from '../day';
+import dayjs from 'global/day';
 import {
   fetchDBNotifications,
   syncNotifications,
-} from '../database/Database.helper';
+} from 'global/database/Database.helper';
 
 export const getFromStorage = async key => {
   try {

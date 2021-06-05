@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import { View, Animated, Dimensions, Easing } from 'react-native';
-import Text from '../text/Text';
+import Text from 'components/text/Text';
 import Svg, { G, Circle } from 'react-native-svg';
-import { COLOR } from '../../global/styles';
+import { COLOR } from 'global/styles';
 import styles from './Progress.style';
 import { useSelector } from 'react-redux';
 

@@ -14,7 +14,7 @@ import { getInformation } from './src/store/actions/information';
 import { fetchSlug } from './src/store/actions/slug';
 import { StatusBar, LogBox } from 'react-native';
 import { COLOR, changeMode } from './src/global/styles';
-import SplashScreen from './src/component/splash/Splash';
+import SplashScreen from './src/components/splash/Splash';
 import * as Notifications from 'expo-notifications';
 import {
   DarkTheme as PaperDarkTheme,

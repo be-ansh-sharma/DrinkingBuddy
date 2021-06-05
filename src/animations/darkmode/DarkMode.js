@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import LottieView from 'lottie-react-native';
 import { Pressable } from 'react-native';
-import { setDarkMode } from '../../store/actions/information';
+import { setDarkMode } from 'store/actions/information';
 import { useDispatch, useSelector } from 'react-redux';
 
 const DarkMode = () => {
@@ -29,7 +29,7 @@ const DarkMode = () => {
         speed={5}
         //style={{height: 40}}
         onAnimationFinish={darkModeHandler}
-        source={require('../../../assets/animation/dark.json')}
+        source={require('assets/animation/dark.json')}
         progress={darkMode ? 1 : 0}
       />
     </Pressable>

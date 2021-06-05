@@ -1,5 +1,10 @@
-import { ADD_RECORD, FETCH_SLUG, DELETE_RECORD, EDIT_RECORD } from '../actions/slug';
-import { setToStorage } from '../../global/helpers/helper';
+import {
+  ADD_RECORD,
+  FETCH_SLUG,
+  DELETE_RECORD,
+  EDIT_RECORD,
+} from 'store/actions/slug';
+import { setToStorage } from 'global/helpers/helper';
 
 const initialState = {
   hasCompleted: false,

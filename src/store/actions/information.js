@@ -1,12 +1,12 @@
-import dayjs from '../../global/day';
+import dayjs from 'global/day';
 import {
   getInterval,
   getAllNotifications,
   getFromStorage,
   validateInformation,
-} from '../../global/helpers/helper';
-import { syncInformation } from '../../global/database/Database.helper';
-import { checkAndScheduleNotification } from '../../global/helpers/notification';
+} from 'global/helpers/helper';
+import { syncInformation } from 'global/database/Database.helper';
+import { checkAndScheduleNotification } from 'global/helpers/notification';
 
 export const SET_QUITETIME = 'SET_QUITETIME';
 export const SET_NOTIFICATIONS = 'SET_NOTIFICATION';

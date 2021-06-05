@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Pressable, View } from 'react-native';
 import styles from './Gender.style';
-import Male from '../../../../assets/images/male.svg';
-import Female from '../../../../assets/images/female.svg';
-import { COLOR } from '../../../global/styles';
+import Male from 'assets/images/male.svg';
+import Female from 'assets/images/female.svg';
+import { COLOR } from 'global/styles';
 import { useDispatch, useSelector } from 'react-redux';
-import { setGender } from '../../../store/actions/person';
-import Icon from '../../../component/Icons/Icon';
-import Heading from '../../../component/heading/Heading';
+import { setGender } from 'store/actions/person';
+import Icon from 'components/Icons/Icon';
+import Heading from 'components/heading/Heading';
 
 const Gender = props => {
   const selectedGender = useSelector(state => state.person.gender);

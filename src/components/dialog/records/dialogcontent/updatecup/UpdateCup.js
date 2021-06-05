@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { View } from 'react-native';
-import Pressable from '../../../../pressable/Pressable';
-import Text from '../../../../text/Text';
+import Pressable from 'components/pressable/Pressable';
+import Text from 'components/text/Text';
 import LottieView from 'lottie-react-native';
 import styles from './UpdateCup.style';
 import { Badge } from 'react-native-paper';
@@ -42,7 +42,7 @@ const UpdateCup = ({ cup, dailyGoalType, cupChangeHandler }) => {
         <LottieView
           ref={cupRef}
           loop={false}
-          source={require('../../../../../../assets/animation/water.json')}
+          source={require('assets/animation/water.json')}
         />
       </View>
       <View style={styles.cupWrapper}>

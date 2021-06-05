@@ -9,8 +9,8 @@ import {
   SET_SLEEP,
   SET_WAKE,
   UPDATE_PERSON,
-} from '../actions/person';
-import { setToStorage } from '../../global/helpers/helper';
+} from 'store/actions/person';
+import { setToStorage } from 'global/helpers/helper';
 
 const initialState = {
   gender: '',

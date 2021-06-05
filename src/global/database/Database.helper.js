@@ -1,5 +1,5 @@
 import Database from './Database';
-import dayjs from '../day';
+import dayjs from 'global/day';
 
 const _db = new Database();
 

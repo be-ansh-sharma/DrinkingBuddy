@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { Dialog, Button, Portal } from 'react-native-paper';
 import { View } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import Picker from '../../../picker/Picker';
+import Picker from 'components/picker/Picker';
 import styles from './Wake.style';
-import { COLOR } from '../../../../global/styles';
-import { setWake } from '../../../../store/actions/person';
-import { setQuiteTime } from '../../../../store/actions/information';
-import { removeAllNotification } from '../../../../global/helpers/notification';
+import { COLOR } from 'global/styles';
+import { setWake } from 'store/actions/person';
+import { setQuiteTime } from 'store/actions/information';
+import { removeAllNotification } from 'global/helpers/notification';
 
 const HOURS = Array.from(Array(24), (_, index) =>
   index.toString().padStart(2, '0'),

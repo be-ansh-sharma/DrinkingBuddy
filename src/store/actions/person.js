@@ -1,5 +1,5 @@
-import Person from '../../models/Person';
-import { getFromStorage } from '../../global/helpers/helper';
+import Person from 'models/Person';
+import { getFromStorage } from 'global/helpers/helper';
 
 export const FETCH_PERSON = 'FETCH_PERSON';
 export const STORE_PERSON = 'STORE_PERSON';

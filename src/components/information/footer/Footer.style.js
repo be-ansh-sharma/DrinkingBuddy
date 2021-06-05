@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { BUTTON } from '../../../global/styles';
+import { BUTTON } from 'global/styles';
 
 export default StyleSheet.create({
   next: {

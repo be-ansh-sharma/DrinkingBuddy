@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import Text from '../../../component/text/Text';
-import Picker from '../../../component/picker/Picker';
-import Heading from '../../../component/heading/Heading';
+import Text from 'components/text/Text';
+import Picker from 'components/picker/Picker';
+import Heading from 'components/heading/Heading';
 import styles from './Exercise.style';
-import ExerciseSVG from '../../../../assets/images/exercise.svg';
-import { COLOR } from '../../../global/styles';
-import { setExercise } from '../../../store/actions/person';
+import ExerciseSVG from 'assets/images/exercise.svg';
+import { COLOR } from 'global/styles';
+import { setExercise } from 'store/actions/person';
 import { useDispatch, useSelector } from 'react-redux';
-import Footer from '../../../component/information/footer/Footer';
+import Footer from 'components/information/footer/Footer';
 
 const exerciseNumber = Array.from(Array(240), (_, index) =>
   (++index).toString().padStart(2, '0'),

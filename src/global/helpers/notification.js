@@ -1,4 +1,4 @@
-import dayjs from '../day';
+import dayjs from 'global/day';
 import * as Notifications from 'expo-notifications';
 
 export const registerForLocalNotificationsAsync = async nextNotification => {

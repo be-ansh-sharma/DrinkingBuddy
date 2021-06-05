@@ -5,9 +5,9 @@ import {
   FETCH_INFORMATION,
   SET_COMPLETED,
   SET_DARKMODE,
-} from '../actions/information';
-import { DELETE_RECORD, EDIT_RECORD } from '../actions/slug';
-import { setToStorage } from '../../global/helpers/helper';
+} from 'store/actions/information';
+import { DELETE_RECORD, EDIT_RECORD } from 'store/actions/slug';
+import { setToStorage } from 'global/helpers/helper';
 
 const initialState = {
   quiteTime: {

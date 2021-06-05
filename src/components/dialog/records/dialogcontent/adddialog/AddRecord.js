@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
-import Picker from '../../../../picker/Picker';
-import dayjs from '../../../../../global/day';
-import { COLOR } from '../../../../../global/styles';
+import Picker from 'components/picker/Picker';
+import dayjs from 'global/day';
+import { COLOR } from 'global/styles';
 import styles from './AddRecord.style';
-import Text from '../../../../text/Text';
+import Text from 'components/text/Text';
 import { TextInput } from 'react-native-paper';
 import { useSelector } from 'react-redux';
 
