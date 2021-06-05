@@ -8,6 +8,7 @@ import {
   SET_EXERCISE,
   SET_SLEEP,
   SET_WAKE,
+  UPDATE_PERSON,
 } from '../actions/person';
 import { setToStorage } from '../../global/helpers/helper';
 
@@ -95,6 +96,12 @@ const person = (state = initialState, action) => {
       state = {
         ...state,
         wake: action.wake,
+      };
+      break;
+    case UPDATE_PERSON:
+      state = {
+        ...state,
+        ...action.person,
       };
       break;
     default:

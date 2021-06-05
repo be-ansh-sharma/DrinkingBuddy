@@ -19,7 +19,7 @@ const metricNumbers = ['Kg', 'lbs'];
 const Weight = props => {
   let storeWeight = useSelector(state => state.person.weight);
   const [weightSelected, setWeightSelected] = useState(--storeWeight);
-  const [metricSelected, setMetricSelected] = useState(0);
+  const [metricSelected, setMetricSelected] = useState(0); // @todo
   const dispatch = useDispatch();
 
   const weightHanlder = item => {

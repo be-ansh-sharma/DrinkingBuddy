@@ -19,7 +19,7 @@ const Exercise = props => {
   const [exerciseMinutes, setExerciseMinutes] = useState(--storeExercise);
   const dispatch = useDispatch();
 
-  const exerciseHanlder = minutes => {
+  const exerciseHandler = minutes => {
     if (exerciseMinutes !== minutes) {
       setExerciseMinutes(minutes);
     }
@@ -29,7 +29,7 @@ const Exercise = props => {
     props.navigation.pop();
   };
 
-  const nextScreenHanlder = () => {
+  const nextScreenHandler = () => {
     dispatch(setExercise(exerciseNumber[exerciseMinutes]));
     props.navigation.navigate('Sleep');
   };
@@ -51,7 +51,7 @@ const Exercise = props => {
             <Picker
               selectedItem={exerciseMinutes}
               data={exerciseNumber}
-              onItemSelected={exerciseHanlder}
+              onItemSelected={exerciseHandler}
               selectedItemTextColor={COLOR.primary}
               selectedItemTextSize={20}
               isCyclic={true}
@@ -64,7 +64,7 @@ const Exercise = props => {
       </View>
       <Footer
         prevScreenHanlder={prevScreenHanlder}
-        nextScreenHanlder={nextScreenHanlder}
+        nextScreenHanlder={nextScreenHandler}
       />
     </View>
   );

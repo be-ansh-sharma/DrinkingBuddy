@@ -34,6 +34,7 @@ const CombinedDefaultTheme = {
     ...NavigationDefaultTheme.colors,
     ...PaperDefaultTheme.colors,
     text: 'black',
+    primary: COLOR.primary,
     background: COLOR.background,
   },
 };

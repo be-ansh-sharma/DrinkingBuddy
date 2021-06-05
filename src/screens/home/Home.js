@@ -5,7 +5,7 @@ import Progress from '../../component/progress/Progress';
 import Control from '../../component/control/Control';
 import Records from '../../component/records/Records';
 import * as Notifications from 'expo-notifications';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addRecord } from '../../store/actions/slug';
 import {
   setCompleted,
@@ -14,8 +14,11 @@ import {
 
 const Home = () => {
   const dispatch = useDispatch();
+  const { weight, weightType, exerciseMinutes, sleep, wake } = useSelector(
+    state => state.person,
+  );
   useEffect(() => {
-    dispatch(setNotifications());
+    //dispatch(setNotifications());
     const responseSubscription = Notifications.addNotificationResponseReceivedListener(
       () => {
         console.log('clicker');
@@ -38,18 +41,21 @@ const Home = () => {
     };
   });
 
+  useEffect(() => {
+    console.log('key changed');
+    dispatch(setNotifications());
+  }, [weight, weightType, exerciseMinutes, sleep, wake, dispatch]);
+
   return (
-    <View style={styles.homeContainer}>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}>
-        <View style={styles.container}>
-          <Progress />
-          <Control />
-          <Records />
-        </View>
-      </ScrollView>
-    </View>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      showsHorizontalScrollIndicator={false}>
+      <View style={styles.container}>
+        <Progress />
+        <Control />
+        <Records />
+      </View>
+    </ScrollView>
   );
 };
 

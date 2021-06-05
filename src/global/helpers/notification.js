@@ -22,7 +22,6 @@ export const registerForLocalNotificationsAsync = async nextNotification => {
     trigger,
   });
 
-  console.log('token is ' + token);
   return token;
 };
 
@@ -43,4 +42,8 @@ export const checkAndScheduleNotification = async notifications => {
       registerForLocalNotificationsAsync(notification);
     }
   });
+};
+
+export const removeAllNotification = async () => {
+  await Notifications.cancelAllScheduledNotificationsAsync();
 };

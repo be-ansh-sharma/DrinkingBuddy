@@ -4,6 +4,7 @@ import { getFromStorage } from '../../global/helpers/helper';
 export const FETCH_PERSON = 'FETCH_PERSON';
 export const STORE_PERSON = 'STORE_PERSON';
 export const REMOVE_PERSON = 'REMOVE_PERSON';
+export const UPDATE_PERSON = 'UPDATE_PERSON';
 export const SET_CUP = 'SET_CUP';
 export const SET_GENDER = 'SET_GENDER';
 export const SET_WEIGHT = 'SET_WEIGHT';
@@ -94,5 +95,27 @@ export const setWake = wake => {
   return {
     type: SET_WAKE,
     wake: wake,
+  };
+};
+
+export const updatePerson = (key, updatedValue) => {
+  return (dispatch, getState) => {
+    const { gender, weight, weightType, exerciseMinutes } = getState().person;
+    let person;
+    switch (key) {
+      case 'weight':
+        person = new Person(gender, updatedValue, weightType, exerciseMinutes);
+        break;
+      case 'exercise':
+        person = new Person(gender, weight, weightType, updatedValue);
+        break;
+      default:
+        person = new Person(gender, weight, weightType, exerciseMinutes);
+    }
+
+    dispatch({
+      type: UPDATE_PERSON,
+      person,
+    });
   };
 };

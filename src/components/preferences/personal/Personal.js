@@ -6,7 +6,7 @@ import Text from '../../text/Text';
 import styles from './Personal.style';
 import dayjs from '../../../global/day';
 import Pressable from '../../pressable/Pressable';
-import DialogWorker from '../../dialog/personal/DialogWorker';
+import DialogWorker from '../../dialog/DialogWorker';
 import Gender from '../../../animations/gender/Gender';
 
 const Personal = props => {
@@ -22,7 +22,11 @@ const Personal = props => {
   const [dialog, setDialog] = useState(false);
 
   const openDialog = name => {
-    //setDialog(name);
+    setDialog(name);
+  };
+
+  const closeDialogHandler = () => {
+    setDialog(false);
   };
 
   return (
@@ -30,7 +34,7 @@ const Personal = props => {
       <List.Section>
         <List.Subheader style={styles.subHeader}>Personal</List.Subheader>
         <List.Item title="Gender" right={() => <Gender />} />
-        <Pressable onPress={openDialog('Weight')}>
+        <Pressable onPress={() => openDialog('weight')}>
           <List.Item
             title="Weight"
             right={() => (
@@ -40,7 +44,7 @@ const Personal = props => {
             )}
           />
         </Pressable>
-        <Pressable onPress={openDialog('Sleep')}>
+        <Pressable onPress={() => openDialog('sleep')}>
           <List.Item
             title="Sleep Time"
             right={() => (
@@ -54,7 +58,7 @@ const Personal = props => {
             )}
           />
         </Pressable>
-        <Pressable onPress={openDialog('Wake')}>
+        <Pressable onPress={() => openDialog('wake')}>
           <List.Item
             title="Wakeup Time"
             right={() => (
@@ -68,7 +72,7 @@ const Personal = props => {
             )}
           />
         </Pressable>
-        <Pressable onPress={openDialog('Exercise')}>
+        <Pressable onPress={() => openDialog('exercise')}>
           <List.Item
             title="Exercise"
             right={() => (
@@ -76,18 +80,18 @@ const Personal = props => {
             )}
           />
         </Pressable>
-        <Pressable onPress={openDialog('Goal')}>
-          <List.Item
-            title="Daily Goal"
-            right={() => (
-              <Text style={styles.text}>
-                {dailyGoal} {dailyGoalType}
-              </Text>
-            )}
-          />
-        </Pressable>
+        <List.Item
+          title="Daily Goal"
+          right={() => (
+            <Text style={styles.text}>
+              {dailyGoal} {dailyGoalType}
+            </Text>
+          )}
+        />
       </List.Section>
-      {!!dialog && <DialogWorker name={dialog} />}
+      {!!dialog && (
+        <DialogWorker Name={dialog} closeDialogHandler={closeDialogHandler} />
+      )}
     </View>
   );
 };
