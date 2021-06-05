@@ -12,6 +12,7 @@ export const SET_QUITETIME = 'SET_QUITETIME';
 export const SET_NOTIFICATIONS = 'SET_NOTIFICATION';
 export const SET_SETUP = 'SET_SETUP';
 export const FETCH_INFORMATION = 'FETCH_INFORMATION';
+export const REMOVE_INFORMATION = 'REMOVE_INFORMATION';
 export const SET_COMPLETED = 'SET_COMPLETED';
 export const SET_DARKMODE = 'SET_DARKMODE';
 
@@ -105,5 +106,11 @@ export const setDarkMode = mode => {
   return {
     type: SET_DARKMODE,
     darkMode: mode,
+  };
+};
+
+export const removeInformation = () => {
+  return {
+    type: REMOVE_INFORMATION,
   };
 };

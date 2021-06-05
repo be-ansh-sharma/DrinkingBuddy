@@ -45,10 +45,7 @@ const person = (state = initialState, action) => {
       };
       break;
     case REMOVE_PERSON:
-      state = {
-        ...state,
-        ...action.person,
-      };
+      state = initialState;
       break;
     case SET_CUP:
       state = {

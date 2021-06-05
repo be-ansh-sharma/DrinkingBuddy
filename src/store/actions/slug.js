@@ -5,6 +5,7 @@ export const ADD_RECORD = 'ADD_RECORD';
 export const FETCH_SLUG = 'FETCH_SLUG';
 export const DELETE_RECORD = 'DELETE_RECORD';
 export const EDIT_RECORD = 'EDIT_RECORD';
+export const REMOVE_SLUG = 'REMOVE_SLUG';
 
 export const addRecord = (customTime, customCup) => {
   return (dispatch, getState) => {
@@ -57,5 +58,11 @@ export const editRecord = (index, cup, newCup) => {
       cup: newCup,
       completed: completed - cup + newCup,
     });
+  };
+};
+
+export const removeSlug = () => {
+  return {
+    type: REMOVE_SLUG,
   };
 };

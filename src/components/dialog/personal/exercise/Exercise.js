@@ -56,7 +56,9 @@ const Exercise = ({ closeDialogHandler }) => {
             </View>
           </Dialog.Content>
           <Dialog.Actions>
-            <Button onPress={() => hideDialog(false)}>Cancel</Button>
+            <Button color={COLOR.danger} onPress={() => hideDialog(false)}>
+              Cancel
+            </Button>
             <Button onPress={hideDialog}>Update</Button>
           </Dialog.Actions>
         </Dialog>

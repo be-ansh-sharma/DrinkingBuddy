@@ -5,6 +5,7 @@ import {
   FETCH_INFORMATION,
   SET_COMPLETED,
   SET_DARKMODE,
+  REMOVE_INFORMATION,
 } from 'store/actions/information';
 import { DELETE_RECORD, EDIT_RECORD } from 'store/actions/slug';
 import { setToStorage } from 'global/helpers/helper';
@@ -86,6 +87,9 @@ const information = (state = initialState, action) => {
         ...state,
         darkMode: action.darkMode,
       };
+      break;
+    case REMOVE_INFORMATION:
+      state = initialState;
       break;
     default:
       return state;

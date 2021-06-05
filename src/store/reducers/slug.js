@@ -3,6 +3,7 @@ import {
   FETCH_SLUG,
   DELETE_RECORD,
   EDIT_RECORD,
+  REMOVE_SLUG
 } from 'store/actions/slug';
 import { setToStorage } from 'global/helpers/helper';
 
@@ -42,6 +43,9 @@ const slug = (state = initialState, action) => {
         ...state,
         records: [...newArray],
       };
+      break;
+    case REMOVE_SLUG:
+      state = initialState;
       break;
     default:
       return state;

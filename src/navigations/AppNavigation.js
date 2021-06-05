@@ -12,6 +12,7 @@ import Exercise from 'screens/information/exercise/Exercise';
 import Sleep from 'screens/information/sleep/Sleep';
 import Wake from 'screens/information/wake/Wake';
 import Finish from 'screens/information/finish/Finish';
+import About from 'screens/preferences/about/About';
 import { Dimensions } from 'react-native';
 
 const Tab = createMaterialTopTabNavigator();
@@ -32,17 +33,32 @@ const defaultTabOption = {
   },
 };
 
-export const HomeNavigation = () => {
+const HomeStack = () => {
   return (
     <Tab.Navigator
       initialRouteName="Home"
       tabBarOptions={defaultTabOption}
       initialLayout={{ width: Dimensions.get('window').width }}
       sceneContainerStyle={{}}>
-      <Tab.Screen name="History" component={History}/>
+      <Tab.Screen name="History" component={History} />
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Preferences" component={Preferences} />
     </Tab.Navigator>
+  );
+};
+
+export const HomeNavigation = () => {
+  return (
+    <Stack.Navigator
+      initialRouteName="HomeStack"
+      screenOptions={{ headerShown: false }}>
+      <Stack.Screen
+        name="HomeStack"
+        component={HomeStack}
+        options={defaultOptions}
+      />
+      <Stack.Screen name="About" component={About} options={defaultOptions} />
+    </Stack.Navigator>
   );
 };
 

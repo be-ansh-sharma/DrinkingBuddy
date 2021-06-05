@@ -43,16 +43,8 @@ export const storePerson = (gender, weight, weightType, exerciseMinutes) => {
 };
 
 export const removePerson = () => {
-  return async dispatch => {
-    try {
-      const person = new Person('', 0, 'metric', 0);
-      dispatch({
-        type: REMOVE_PERSON,
-        person: person,
-      });
-    } catch (err) {
-      console.log('There is an error!!!');
-    }
+  return {
+    type: REMOVE_PERSON,
   };
 };
 

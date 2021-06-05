@@ -22,6 +22,14 @@ export const setToStorage = async (key, value) => {
   }
 };
 
+export const clearStorage = async () => {
+  try {
+    await AsyncStorage.clear();
+  } catch (err) {
+    throw err;
+  }
+};
+
 export const changeMetric = (value, system) => {
   if (system === 'Kg') {
     return Math.ceil(+value / 2.205);
