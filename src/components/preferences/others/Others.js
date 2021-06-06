@@ -12,7 +12,10 @@ const Others = props => {
   const navigation = useNavigation();
   const [dialog, setDialog] = useState(false);
   const aboutHandler = () => {
-    navigation.navigate('About');
+    navigation.navigate('Modal', {
+      type: 'about',
+      title: 'About',
+    });
   };
 
   const openDialog = name => {

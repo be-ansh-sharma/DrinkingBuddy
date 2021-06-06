@@ -1,7 +1,7 @@
 import React from 'react';
-import { Pressable } from 'react-native';
+import { Pressable as AppPressable } from 'react-native';
 
-const AppPressable = ({
+const Pressable = ({
   children,
   onPress,
   android_disableSound = true,
@@ -9,14 +9,14 @@ const AppPressable = ({
   style,
 }) => {
   return (
-    <Pressable
+    <AppPressable
       onPress={onPress}
       android_disableSound={android_disableSound}
       android_ripple={android_ripple}
       style={style}>
       {children}
-    </Pressable>
+    </AppPressable>
   );
 };
 
-export default AppPressable;
+export default Pressable;

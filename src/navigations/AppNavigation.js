@@ -12,7 +12,7 @@ import Exercise from 'screens/information/exercise/Exercise';
 import Sleep from 'screens/information/sleep/Sleep';
 import Wake from 'screens/information/wake/Wake';
 import Finish from 'screens/information/finish/Finish';
-import About from 'screens/preferences/about/About';
+import Modal from 'screens/modal/Modal';
 import { Dimensions } from 'react-native';
 
 const Tab = createMaterialTopTabNavigator();
@@ -58,14 +58,17 @@ export const HomeNavigation = () => {
         options={defaultOptions}
       />
       <Stack.Screen
-        name="About"
-        component={About}
-        options={{
-          headerShown: true,
-          headerTintColor: 'white',
-          headerStyle: {
-            backgroundColor: COLOR.primary,
-          },
+        name="Modal"
+        component={Modal}
+        options={({ route }) => {
+          return {
+            headerShown: true,
+            headerTintColor: 'white',
+            headerStyle: {
+              backgroundColor: COLOR.primary,
+            },
+            title: route?.params?.title || 'Drinking Buddy',
+          };
         }}
       />
     </Stack.Navigator>
