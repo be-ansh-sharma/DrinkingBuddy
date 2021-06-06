@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import Text from 'components/text/Text';
+import { Text } from 'react-native-paper';
 import styles from './Records.style';
 import Icon from 'components/Icons/Icon';
 import Record from './record/Record';

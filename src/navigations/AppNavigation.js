@@ -57,7 +57,17 @@ export const HomeNavigation = () => {
         component={HomeStack}
         options={defaultOptions}
       />
-      <Stack.Screen name="About" component={About} options={defaultOptions} />
+      <Stack.Screen
+        name="About"
+        component={About}
+        options={{
+          headerShown: true,
+          headerTintColor: 'white',
+          headerStyle: {
+            backgroundColor: COLOR.primary,
+          },
+        }}
+      />
     </Stack.Navigator>
   );
 };

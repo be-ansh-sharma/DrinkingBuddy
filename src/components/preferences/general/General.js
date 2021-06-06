@@ -1,7 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import { List } from 'react-native-paper';
-import Text from 'components/text/Text';
+import { List, Text } from 'react-native-paper';
 import styles from './General.style';
 import DarkMode from 'animations/darkmode/DarkMode';
 

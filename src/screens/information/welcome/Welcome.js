@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import Text from 'components/text/Text';
+import { Text } from 'react-native-paper';
 import Fade from 'animations/Fade';
 import styles from './Welcome.style';
 import IconButton from 'components/buttons/iconbutton/IconButton';

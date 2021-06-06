@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import Text from 'components/text/Text';
+import { Text } from 'react-native-paper';
 import Picker from 'components/picker/Picker';
 import Heading from 'components/heading/Heading';
 import styles from './Exercise.style';

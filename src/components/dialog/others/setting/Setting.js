@@ -1,7 +1,6 @@
 import React from 'react';
-import { Dialog, Button, Portal } from 'react-native-paper';
+import { Dialog, Button, Portal, Text } from 'react-native-paper';
 import { View, Linking } from 'react-native';
-import Text from 'components/text/Text';
 import { COLOR } from 'global/styles';
 
 const Setting = ({ closeDialogHandler }) => {

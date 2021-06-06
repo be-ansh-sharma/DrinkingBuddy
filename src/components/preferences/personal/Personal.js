@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import { List } from 'react-native-paper';
+import { List, Text } from 'react-native-paper';
 import { useSelector } from 'react-redux';
-import Text from 'components/text/Text';
 import styles from './Personal.style';
 import dayjs from 'global/day';
 import Pressable from 'components/pressable/Pressable';

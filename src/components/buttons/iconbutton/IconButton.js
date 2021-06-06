@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Pressable } from 'react-native';
 import Icon from 'components/Icons/Icon';
-import Text from 'components/text/Text';
+import { Text } from 'react-native-paper';
 import styles from './IconButton.style';
 
 const IconButton = props => {

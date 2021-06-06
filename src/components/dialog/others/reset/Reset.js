@@ -1,7 +1,6 @@
 import React from 'react';
-import { Dialog, Button, Portal } from 'react-native-paper';
+import { Dialog, Button, Portal, Text } from 'react-native-paper';
 import { View } from 'react-native';
-import Text from 'components/text/Text';
 import { removeAllNotification } from 'global/helpers/notification';
 import { COLOR } from 'global/styles';
 import { removeInformation } from 'store/actions/information';

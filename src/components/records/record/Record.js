@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import Text from 'components/text/Text';
 import styles from './Record.style';
 import Icon from 'components/Icons/Icon';
-import { Menu } from 'react-native-paper';
+import { Menu, Text } from 'react-native-paper';
 import { deleteRecord, editRecord } from 'store/actions/slug';
 import { useDispatch } from 'react-redux';
 import EditRecordDialog from 'components/dialog/records/EditRecordDialog';

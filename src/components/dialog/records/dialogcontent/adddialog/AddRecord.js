@@ -4,8 +4,7 @@ import Picker from 'components/picker/Picker';
 import dayjs from 'global/day';
 import { COLOR } from 'global/styles';
 import styles from './AddRecord.style';
-import Text from 'components/text/Text';
-import { TextInput } from 'react-native-paper';
+import { TextInput, Text } from 'react-native-paper';
 import { useSelector } from 'react-redux';
 
 const HOURS = Array.from(Array(+dayjs().get('hour') + 1), (_, index) =>

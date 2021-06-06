@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import { Dialog, Button, Portal } from 'react-native-paper';
+import { Dialog, Button, Portal, Text } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 import Picker from 'components/picker/Picker';
 import { COLOR } from 'global/styles';
-import Text from 'components/text/Text';
 import styles from './Weight.style';
 import { updatePerson } from 'store/actions/person';
 import { removeAllNotification } from 'global/helpers/notification';

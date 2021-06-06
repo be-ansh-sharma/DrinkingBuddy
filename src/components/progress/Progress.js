@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import { View, Animated, Dimensions, Easing } from 'react-native';
-import Text from 'components/text/Text';
+import { Text } from 'react-native-paper';
 import Svg, { G, Circle } from 'react-native-svg';
 import { COLOR } from 'global/styles';
 import styles from './Progress.style';

@@ -1,10 +1,9 @@
 import React, { useRef, useState } from 'react';
 import { View } from 'react-native';
 import Pressable from 'components/pressable/Pressable';
-import Text from 'components/text/Text';
 import LottieView from 'lottie-react-native';
 import styles from './UpdateCup.style';
-import { Badge } from 'react-native-paper';
+import { Badge, Text } from 'react-native-paper';
 
 const cupSize = {
   1: {

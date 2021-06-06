@@ -4,7 +4,7 @@ import Pressable from 'components/pressable/Pressable';
 import styles from './Control.style';
 import Icon from 'components/Icons/Icon';
 import { COLOR } from 'global/styles';
-import Text from 'components/text/Text';
+import { Text } from 'react-native-paper';
 import { setCompleted } from 'store/actions/information';
 import { addRecord } from 'store/actions/slug';
 import { useDispatch } from 'react-redux';
