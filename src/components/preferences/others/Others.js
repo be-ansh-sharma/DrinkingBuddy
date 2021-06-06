@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { View } from 'react-native';
+import { Linking, View } from 'react-native';
 import { List } from 'react-native-paper';
 import styles from './Others.style';
 import Pressable from 'components/pressable/Pressable';
 import { useNavigation } from '@react-navigation/native';
 import DialogWorker from 'components/dialog/DialogWorker';
+import Icon from 'components/Icons/Icon';
+import { COLOR } from 'global/styles';
 
 const Others = props => {
   const navigation = useNavigation();
@@ -21,13 +23,53 @@ const Others = props => {
     setDialog(false);
   };
 
+  const donationHandler = () => {
+    Linking.openURL('https://www.buymeacoffee.com/be.ansh').catch(err =>
+      console.error('An error occurred', err),
+    );
+  };
+
+  const feedbackHandler = () => {
+    Linking.openURL(
+      'mailto:be.ansh.sharma@gmail.com?subject=Drinking Buddy App Feedback',
+    ).catch(err => console.error('An error occurred', err));
+  };
+
   return (
-    <View style={styles.container}>
+    <View>
       <List.Section>
         <List.Subheader style={styles.subHeader}>Others</List.Subheader>
-        <List.Item title="Why don't I get the notification?" />
+        <Pressable onPress={() => openDialog('setting')}>
+          <List.Item title="Why don't I get the notification?" />
+        </Pressable>
         <Pressable onPress={() => openDialog('reset')}>
           <List.Item title="Wipe Data" />
+        </Pressable>
+        <Pressable onPress={feedbackHandler}>
+          <List.Item
+            title="Feedback"
+            right={() => (
+              <Icon
+                name="mail-outline"
+                size={20}
+                style={styles.icon}
+                color={COLOR.primary}
+              />
+            )}
+          />
+        </Pressable>
+        <Pressable onPress={donationHandler}>
+          <List.Item
+            title="Buy me a Pizza"
+            right={() => (
+              <Icon
+                name="pizza-outline"
+                size={20}
+                style={styles.icon}
+                color={COLOR.primary}
+              />
+            )}
+          />
         </Pressable>
         <Pressable onPress={aboutHandler}>
           <List.Item title="About" />

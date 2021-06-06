@@ -9,6 +9,7 @@ export const COLOR = {
   error: '#B00020',
   accent: '#459dfc',
   danger: 'red',
+  faded: 'gray',
 };
 
 export const BUTTON = {
