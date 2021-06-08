@@ -1,20 +1,29 @@
 import React from 'react';
-import { Text, View, Image } from 'react-native';
+import { View, Image } from 'react-native';
+import { Text } from 'react-native-paper';
 import Constants from 'expo-constants';
 import styles from './About.style';
 import Pressable from 'components/pressable/Pressable';
+import { useNavigation } from '@react-navigation/core';
 
 const About = () => {
+  const navigation = useNavigation();
   const privacyPolicyHandler = () => {
-    console.log('policy');
+    navigation.push('Modal', {
+      type: 'privacy',
+      title: 'Privacy Policy',
+    });
   };
 
   const attributionsHandler = () => {
-    console.log('attributionsHandler');
+    navigation.push('Modal', {
+      type: 'attribution',
+      title: 'Attributions',
+    });
   };
 
   const rateUsHandler = () => {
-    console.log('rateUsHandler');
+    console.log('rate');
   };
 
   return (

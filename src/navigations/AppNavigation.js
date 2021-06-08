@@ -61,13 +61,14 @@ export const HomeNavigation = () => {
         name="Modal"
         component={Modal}
         options={({ route }) => {
+          let { title, headerShown } = route?.params;
           return {
-            headerShown: true,
+            headerShown: headerShown || true,
             headerTintColor: 'white',
             headerStyle: {
               backgroundColor: COLOR.primary,
             },
-            title: route?.params?.title || 'Drinking Buddy',
+            title: title || 'Drinking Buddy',
           };
         }}
       />

@@ -52,9 +52,7 @@ const Weight = ({ closeDialogHandler }) => {
             </View>
           </Dialog.Content>
           <Dialog.Actions>
-            <Button color={COLOR.danger} onPress={() => hideDialog(false)}>
-              Cancel
-            </Button>
+            <Button onPress={() => hideDialog(false)}>Cancel</Button>
             <Button onPress={hideDialog}>Update</Button>
           </Dialog.Actions>
         </Dialog>

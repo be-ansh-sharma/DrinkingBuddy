@@ -80,7 +80,7 @@ const App = () => {
   return (
     <PaperProvider theme={darkMode ? CombinedDarkTheme : CombinedDefaultTheme}>
       <NavigationContainer theme={darkMode ? CombinedDarkTheme : CombinedDefaultTheme}>
-        <StatusBar backgroundColor={COLOR.primary} />
+        <StatusBar backgroundColor={darkMode ? COLOR.dark : COLOR.primary} />
         {isSetupFinished ? <HomeNavigation /> : <InformationNavigation />}
       </NavigationContainer>
     </PaperProvider>

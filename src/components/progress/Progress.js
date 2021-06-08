@@ -18,14 +18,14 @@ const Progress = () => {
   const circleRef = useRef();
   const animatedValue = useRef(new Animated.Value(0)).current;
   const { dailyGoal, dailyGoalType } = useSelector(state => state.person);
-  const { completed } = useSelector(state => state.information);
+  const { completed, darkMode } = useSelector(state => state.information);
 
   const animation = useCallback(
     toValue => {
       return Animated.timing(animatedValue, {
         toValue,
         duration: 500,
-        useNativeDriver: false,
+        useNativeDriver: true,
         easing: Easing.out(Easing.ease),
       }).start();
     },
@@ -59,7 +59,7 @@ const Progress = () => {
             <Circle
               cx={center}
               cy={center}
-              stroke="#E6E7E8"
+              stroke={darkMode ? 'white' : '#E6E7E8'}
               strokeWidth={10}
               r={radius}
             />
@@ -70,7 +70,7 @@ const Progress = () => {
               stroke={COLOR.primary}
               strokeWidth={10}
               r={radius}
-              strokeOpacity={0.5}
+              strokeOpacity={0.8}
               strokeDasharray={circumference}
               strokeDashoffset={circumference - (circumference * 0) / 100}
               strokeLinecap="round"

@@ -48,7 +48,10 @@ const UpdateCup = ({ cup, dailyGoalType, cupChangeHandler }) => {
         {Object.keys(cupSize).map(key => {
           let { label, value } = cupSize[key];
           return (
-            <Pressable onPress={() => cupPressHandler(key)} key={key}>
+            <Pressable
+              android_ripple={null}
+              onPress={() => cupPressHandler(key)}
+              key={key}>
               <Badge
                 style={
                   cupSelected === +key

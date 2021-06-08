@@ -10,6 +10,7 @@ export const COLOR = {
   accent: '#459dfc',
   danger: 'red',
   faded: 'gray',
+  dark: 'black',
 };
 
 export const BUTTON = {
