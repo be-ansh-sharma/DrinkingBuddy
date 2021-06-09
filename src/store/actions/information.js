@@ -92,12 +92,21 @@ export const getInformation = () => {
 
 export const setCompleted = customCup => {
   return (dispatch, getState) => {
-    let { completed } = getState().information;
-    let { cup } = getState().person;
-    cup = customCup || cup;
+    let { completed, goalCompleted } = getState().information;
+    let { cup, dailyGoal } = getState().person;
+    cup = customCup || customCup >= 0 ? customCup : cup;
+    let newCompleted = completed + cup;
+
+    if (completed >= dailyGoal) {
+      goalCompleted = 'completed';
+    } else if (newCompleted >= dailyGoal && goalCompleted !== 'completed') {
+      goalCompleted = 'ready';
+    }
+
     dispatch({
       type: SET_COMPLETED,
       completed: completed + cup,
+      goalCompleted: goalCompleted,
     });
   };
 };

@@ -137,6 +137,7 @@ export const validateInformation = information => {
         today: dayjs().toDate(),
         nextNotification: '',
         notifications: [],
+        goalCompleted: false,
         completed: 0,
       };
     }
@@ -155,7 +156,6 @@ export const validateSlug = slug => {
       return {
         ...slug,
         today: dayjs().toDate(),
-        hasCompleted: false,
         records: [],
       };
     }

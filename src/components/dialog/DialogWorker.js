@@ -5,6 +5,7 @@ import Wake from './personal/wake/Wake';
 import Exercise from './personal/exercise/Exercise';
 import Reset from './others/reset/Reset';
 import Setting from './others/setting/Setting';
+import Metric from './personal/metric/Metric';
 
 const DialogWorker = ({ Name, closeDialogHandler }) => {
   if (!Name) {
@@ -29,6 +30,9 @@ const DialogWorker = ({ Name, closeDialogHandler }) => {
       break;
     case 'setting':
       Name = Setting;
+      break;
+    case 'metric':
+      Name = Metric;
       break;
   }
 

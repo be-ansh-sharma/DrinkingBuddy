@@ -79,6 +79,16 @@ const Personal = props => {
             )}
           />
         </Pressable>
+        <Pressable onPress={() => openDialog('metric')}>
+          <List.Item
+            title="Weight System"
+            right={() => (
+              <Text style={styles.text}>
+                {weightType === 'Kg' ? 'Metric' : 'imperial'}
+              </Text>
+            )}
+          />
+        </Pressable>
         <List.Item
           title="Daily Goal"
           right={() => (

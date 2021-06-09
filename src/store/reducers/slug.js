@@ -3,12 +3,11 @@ import {
   FETCH_SLUG,
   DELETE_RECORD,
   EDIT_RECORD,
-  REMOVE_SLUG
+  REMOVE_SLUG,
 } from 'store/actions/slug';
 import { setToStorage } from 'global/helpers/helper';
 
 const initialState = {
-  hasCompleted: false,
   records: [],
   today: '',
 };

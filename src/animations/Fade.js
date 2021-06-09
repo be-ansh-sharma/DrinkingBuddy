@@ -3,8 +3,11 @@ import { Animated } from 'react-native';
 const Fade = ({ animationEnd, children }) => {
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
+
   const animationEndHanlder = useCallback(() => {
-    animationEnd();
+    if (animationEnd) {
+      animationEnd();
+    }
   }, [animationEnd]);
 
   useEffect(() => {

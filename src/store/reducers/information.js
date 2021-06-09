@@ -26,6 +26,7 @@ const initialState = {
   },
   nextNotification: '',
   notifications: [],
+  goalCompleted: false,
   completed: 0,
   today: '',
   isSetupFinished: false,
@@ -65,6 +66,7 @@ const information = (state = initialState, action) => {
       state = {
         ...state,
         completed: action.completed,
+        goalCompleted: action.goalCompleted,
       };
       break;
     case DELETE_RECORD:

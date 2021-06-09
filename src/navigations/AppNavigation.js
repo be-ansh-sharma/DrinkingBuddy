@@ -63,7 +63,7 @@ export const HomeNavigation = () => {
         options={({ route }) => {
           let { title, headerShown } = route?.params;
           return {
-            headerShown: headerShown || true,
+            headerShown: headerShown === false ? false : true,
             headerTintColor: 'white',
             headerStyle: {
               backgroundColor: COLOR.primary,

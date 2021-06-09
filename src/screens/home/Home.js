@@ -9,11 +9,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addRecord } from 'store/actions/slug';
 import { setCompleted, setNotifications } from 'store/actions/information';
 
-const Home = () => {
+const Home = ({ navigation }) => {
   const dispatch = useDispatch();
   const { weight, weightType, exerciseMinutes, sleep, wake } = useSelector(
     state => state.person,
   );
+  const goalCompleted = useSelector(state => state.information.goalCompleted);
   useEffect(() => {
     //dispatch(setNotifications());
     const responseSubscription = Notifications.addNotificationResponseReceivedListener(
@@ -27,7 +28,6 @@ const Home = () => {
 
     const NotificationSubscription = Notifications.addNotificationReceivedListener(
       notification => {
-        console.log('shown');
         console.log(notification);
       },
     );
@@ -39,9 +39,18 @@ const Home = () => {
   });
 
   useEffect(() => {
-    console.log('key changed');
     dispatch(setNotifications());
   }, [weight, weightType, exerciseMinutes, sleep, wake, dispatch]);
+
+  useEffect(() => {
+    if (goalCompleted === 'ready') {
+      dispatch(setCompleted(0));
+      navigation.push('Modal', {
+        type: 'celebration',
+        headerShown: false,
+      });
+    }
+  }, [dispatch, goalCompleted, navigation]);
 
   return (
     <ScrollView
