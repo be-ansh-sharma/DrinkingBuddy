@@ -8,7 +8,7 @@ class Person {
     switch (weightType) {
       case 'Kg':
         this.dailyGoal =
-          this.weight * (2 / 3) + (this.exerciseMinutes / 30) * 12;
+          this.weight * 2.205 * (2 / 3) + (this.exerciseMinutes / 30) * 12;
         this.dailyGoal = Math.ceil(this.dailyGoal * 29.57);
         this.dailyGoalType = 'ml';
         break;

@@ -46,6 +46,7 @@ const CombinedDarkTheme = {
     ...PaperDarkTheme.colors,
     ...NavigationDarkTheme.colors,
     primary: COLOR.primary,
+    background: COLOR.dark,
   },
 };
 

@@ -29,7 +29,7 @@ const Exercise = ({ closeDialogHandler }) => {
     ) {
       return;
     }
-    dispatch(updateMetric(metricSelected === 0 ? 'Kg' : 'lbg'));
+    dispatch(updateMetric(metricSelected === 0 ? 'Kg' : 'lbs'));
     closeDialogHandler();
   };
 

@@ -30,11 +30,19 @@ export const clearStorage = async () => {
   }
 };
 
-export const changeMetric = (value, system) => {
+export const changeWeightSystem = (value, system) => {
   if (system === 'Kg') {
     return Math.ceil(+value / 2.205);
   } else {
     return Math.floor(+value * 2.205);
+  }
+};
+
+export const changeWaterSystem = (value, system) => {
+  if (system === 'Kg') {
+    return value * 29.574;
+  } else {
+    return value / 29.574;
   }
 };
 

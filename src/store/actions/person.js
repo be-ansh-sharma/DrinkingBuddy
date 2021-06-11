@@ -1,5 +1,9 @@
 import Person from 'models/Person';
-import { getFromStorage, changeMetric } from 'global/helpers/helper';
+import {
+  getFromStorage,
+  changeWeightSystem,
+  changeWaterSystem,
+} from 'global/helpers/helper';
 
 export const FETCH_PERSON = 'FETCH_PERSON';
 export const STORE_PERSON = 'STORE_PERSON';
@@ -32,10 +36,14 @@ export const fetchPerson = () => {
 export const storePerson = (gender, weight, weightType, exerciseMinutes) => {
   return async dispatch => {
     try {
+      let cup = weightType === 'Kg' ? 200 : 6.7;
       const person = new Person(gender, weight, weightType, exerciseMinutes);
       dispatch({
         type: STORE_PERSON,
-        person: person,
+        person: {
+          ...person,
+          cup: cup,
+        },
       });
     } catch (err) {
       console.log('There is an error!!!');
@@ -115,8 +123,20 @@ export const updatePerson = (key, updatedValue) => {
 
 export const updateMetric = metric => {
   return (dispatch, getState) => {
-    const { gender, weight, weightType, exerciseMinutes } = getState().person;
-    const newWeight = changeMetric(weight, metric);
+    const { gender, weight, exerciseMinutes, cup } = getState().person;
+    const { completed } = getState().information;
+    const newWeight = changeWeightSystem(weight, metric);
+    const person = new Person(gender, newWeight, metric, exerciseMinutes);
+    const newCup = changeWaterSystem(cup, metric);
+    const newCompleted = changeWaterSystem(completed, metric);
+
+    dispatch({
+      type: UPDATE_METRIC,
+      person: {
+        ...person,
+        cup: newCup,
+      },
+      completed: newCompleted,
+    });
   };
 };
-

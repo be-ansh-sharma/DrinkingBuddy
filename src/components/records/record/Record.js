@@ -42,7 +42,7 @@ const Record = ({ index, next, time, cup, dailyGoalType }) => {
           <Text style={styles.subText}>Upcoming</Text>
         </View>
         <Text style={styles.amount}>
-          {cup} {dailyGoalType}
+          {Math.ceil(cup)} {dailyGoalType}
         </Text>
         <View>
           <Icon
@@ -61,7 +61,7 @@ const Record = ({ index, next, time, cup, dailyGoalType }) => {
         <Icon name="water-outline" size={20} color="white" />
         <Text style={styles.time}>{time}</Text>
         <Text style={styles.amount}>
-          {cup} {dailyGoalType}
+          {Math.ceil(cup)} {dailyGoalType}
         </Text>
         <View>
           <View>

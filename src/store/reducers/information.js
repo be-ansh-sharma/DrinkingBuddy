@@ -7,6 +7,7 @@ import {
   SET_DARKMODE,
   REMOVE_INFORMATION,
 } from 'store/actions/information';
+import { UPDATE_METRIC } from 'store/actions/person';
 import { DELETE_RECORD, EDIT_RECORD } from 'store/actions/slug';
 import { setToStorage } from 'global/helpers/helper';
 
@@ -92,6 +93,12 @@ const information = (state = initialState, action) => {
       break;
     case REMOVE_INFORMATION:
       state = initialState;
+      break;
+    case UPDATE_METRIC:
+      state = {
+        ...state,
+        completed: action.completed,
+      };
       break;
     default:
       return state;

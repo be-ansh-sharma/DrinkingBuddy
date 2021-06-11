@@ -5,7 +5,7 @@ import Picker from 'components/picker/Picker';
 import { COLOR } from 'global/styles';
 import styles from './Weight.style';
 import WeightSVG from 'assets/images/weight.svg';
-import { changeMetric } from 'global/helpers/helper';
+import { changeWeightSystem } from 'global/helpers/helper';
 import { useDispatch, useSelector } from 'react-redux';
 import { setWeight } from 'store/actions/person';
 import Footer from 'components/information/footer/Footer';
@@ -31,7 +31,7 @@ const Weight = props => {
 
   const metricHanlder = item => {
     if (metricSelected !== item) {
-      let newWeight = changeMetric(
+      let newWeight = changeWeightSystem(
         weightNumbers[weightSelected],
         metricNumbers[item],
       );
