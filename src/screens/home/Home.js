@@ -26,15 +26,8 @@ const Home = ({ navigation }) => {
       },
     );
 
-    const NotificationSubscription = Notifications.addNotificationReceivedListener(
-      notification => {
-        console.log(notification);
-      },
-    );
-
     return () => {
       responseSubscription.remove();
-      NotificationSubscription.remove();
     };
   });
 
@@ -52,6 +45,7 @@ const Home = ({ navigation }) => {
     }
   }, [dispatch, goalCompleted, navigation]);
 
+  console.log('home');
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}

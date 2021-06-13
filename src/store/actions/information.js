@@ -48,7 +48,6 @@ export const setNotifications = () => {
       let intervalInMinutes = getInterval(dailyGoal, quiteTime, cup) * 60;
       let notifications = getAllNotifications(quiteTime, intervalInMinutes);
       checkAndScheduleNotification(notifications.notifications);
-      console.log(notifications.notifications);
       dispatch({
         type: SET_NOTIFICATIONS,
         notifications,

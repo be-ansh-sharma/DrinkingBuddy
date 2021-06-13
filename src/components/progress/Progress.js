@@ -82,7 +82,7 @@ const Progress = () => {
         <Text style={styles.heading}>Today's Goal</Text>
         <View style={styles.progressWrapper}>
           <Text style={{ ...styles.text, ...styles.pending }}>
-            {completed}{' '}
+            {Math.round(completed)}{' '}
           </Text>
           <Text style={styles.text}>
             / {dailyGoal} {dailyGoalType}

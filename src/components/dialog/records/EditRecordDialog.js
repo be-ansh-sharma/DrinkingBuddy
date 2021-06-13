@@ -7,7 +7,6 @@ const RecordDialog = ({ closeDialogHandler, title, cup, dailyGoalType }) => {
   const [visible] = useState(true);
   const [cupSize, setCupSize] = useState(cup);
   const hideDialog = () => {
-    console.log('ddddd');
     closeDialogHandler(cupSize);
   };
   const cupChangeHandler = newCup => {

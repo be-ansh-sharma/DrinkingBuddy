@@ -12,6 +12,7 @@ import {
   UPDATE_METRIC,
 } from 'store/actions/person';
 import { setToStorage } from 'global/helpers/helper';
+import { syncPerson } from 'global/database/Database.helper';
 
 const initialState = {
   gender: '',
@@ -108,6 +109,7 @@ const person = (state = initialState, action) => {
   }
 
   setToStorage('@person', state);
+  syncPerson(state);
   return state;
 };
 

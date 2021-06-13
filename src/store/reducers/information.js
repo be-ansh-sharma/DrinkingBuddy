@@ -10,6 +10,7 @@ import {
 import { UPDATE_METRIC } from 'store/actions/person';
 import { DELETE_RECORD, EDIT_RECORD } from 'store/actions/slug';
 import { setToStorage } from 'global/helpers/helper';
+import { syncInformation } from 'global/database/Database.helper';
 
 const initialState = {
   quiteTime: {
@@ -105,6 +106,7 @@ const information = (state = initialState, action) => {
   }
 
   setToStorage('@information', state);
+  syncInformation(state);
   return state;
 };
 

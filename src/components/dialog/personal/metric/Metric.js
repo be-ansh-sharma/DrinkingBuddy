@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Dialog, Button, Portal, Text } from 'react-native-paper';
+import { Dialog, Button, Portal } from 'react-native-paper';
 import { View } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import Picker from 'components/picker/Picker';
 import { COLOR } from 'global/styles';
 import { updateMetric } from 'store/actions/person';
+import { transformRecords } from 'store/actions/slug';
 
 const metricNumbers = ['Metric (Kg, ml)', 'Imperial (lbs, oz.)'];
 
@@ -29,7 +30,9 @@ const Exercise = ({ closeDialogHandler }) => {
     ) {
       return;
     }
-    dispatch(updateMetric(metricSelected === 0 ? 'Kg' : 'lbs'));
+    let currentMetric = metricSelected === 0 ? 'Kg' : 'lbs';
+    dispatch(updateMetric(currentMetric));
+    dispatch(transformRecords(currentMetric));
     closeDialogHandler();
   };
 
@@ -41,7 +44,7 @@ const Exercise = ({ closeDialogHandler }) => {
             Weight System
           </Dialog.Title>
           <Dialog.Content>
-            <View style={{alignSelf: 'center'}}>
+            <View style={{ alignSelf: 'center' }}>
               <Picker
                 selectedItem={metricSelected}
                 data={metricNumbers}
@@ -52,7 +55,9 @@ const Exercise = ({ closeDialogHandler }) => {
             </View>
           </Dialog.Content>
           <Dialog.Actions>
-            <Button color={COLOR.faded} onPress={() => hideDialog(false)}>Cancel</Button>
+            <Button color={COLOR.faded} onPress={() => hideDialog(false)}>
+              Cancel
+            </Button>
             <Button onPress={hideDialog}>Update</Button>
           </Dialog.Actions>
         </Dialog>

@@ -14,7 +14,6 @@ const AddRecordDialog = ({ closeDialogHandler }) => {
     if (dayjs(time).isBefore(dayjs()) && quantity !== 0) {
       closeDialogHandler(time, quantity);
     } else {
-      console.log('ttt');
       quantity === 0
         ? setError("Oh No! Quantity can't be zero")
         : setError('Oh No! The time is in future!');

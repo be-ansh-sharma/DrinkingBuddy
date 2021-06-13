@@ -1,10 +1,15 @@
 import dayjs from 'global/day';
-import { getFromStorage, validateSlug } from 'global/helpers/helper';
+import {
+  changeWaterSystem,
+  getFromStorage,
+  validateSlug,
+} from 'global/helpers/helper';
 
 export const ADD_RECORD = 'ADD_RECORD';
 export const FETCH_SLUG = 'FETCH_SLUG';
 export const DELETE_RECORD = 'DELETE_RECORD';
 export const EDIT_RECORD = 'EDIT_RECORD';
+export const TRANSFORM_RECORDS = 'TRANSFORM_RECORDS';
 export const REMOVE_SLUG = 'REMOVE_SLUG';
 
 export const addRecord = (customTime, customCup) => {
@@ -64,5 +69,27 @@ export const editRecord = (index, cup, newCup) => {
 export const removeSlug = () => {
   return {
     type: REMOVE_SLUG,
+  };
+};
+
+export const transformRecords = metric => {
+  return (dispatch, getState) => {
+    let records = getState().slug.records;
+    records = records.map(record => {
+      let transformedValue = changeWaterSystem(record.cup, metric);
+      if (transformedValue && transformedValue !== 0) {
+        return {
+          ...record,
+          cup: changeWaterSystem(record.cup, metric),
+          dailyGoalType: metric === 'Kg' ? 'ml' : 'oz.',
+        };
+      }
+      return record;
+    });
+
+    dispatch({
+      type: TRANSFORM_RECORDS,
+      records,
+    });
   };
 };

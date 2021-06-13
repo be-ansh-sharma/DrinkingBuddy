@@ -5,7 +5,7 @@ export default class Database {
     this.db = SQLite.openDatabase('drinkingBuddy');
     this.db.transaction(tx => {
       tx.executeSql(
-        'CREATE TABLE IF NOT EXISTS info (date TEXT PRIMARY KEY, notifications TEXT, dailyGoal INT, completed INT, weightType TEXT, gender Text, weight INT, exerciseMinutes INT, dailyGoalType TEXT, cup TEXT)'
+        'CREATE TABLE IF NOT EXISTS info (date TEXT PRIMARY KEY, dailyGoal INT, completed INT, weightType TEXT, gender Text, weight INT, exerciseMinutes INT, dailyGoalType TEXT, cup TEXT, UNIQUE(date))'
       );
     });
   }

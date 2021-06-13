@@ -3,49 +3,23 @@ import dayjs from 'global/day';
 
 const _db = new Database();
 
-export const syncNotifications = async notifications => {
+const createRow = async today => {
   try {
-    let today = dayjs().format('DD/MM/YYYY');
     let result = await _db.executeSql(
       `SELECT * from info where date = '${today}'`,
     );
-
-    if (!result?.rows?._array.length) {
-      await _db.executeSql(
-        'insert into info(date, notifications) VALUES (?,?)',
-        [today, notifications.toString()],
-      );
-    } else {
-      await _db.executeSql(
-        `update info SET notifications='${notifications.toString()}' where date='${today}'`,
-      );
+    if (!result?.rows?._array?.length) {
+      await _db.executeSql(`REPLACE INTO info(date) VALUES ('${today}')`);
     }
   } catch (err) {
     console.log(err);
   }
 };
 
-export const fetchDBNotifications = async () => {
+export const syncPerson = async person => {
   try {
-    let today = dayjs().format('DD/MM/YYYY');
-    let result = await _db.executeSql(
-      `SELECT * from info where date = '${today}'`,
-    );
-    if (result?.rows?._array.length) {
-      let { notifications } = result?.rows?._array[0];
-      return notifications.split(',');
-    }
-    return [];
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-export const syncInformation = async (information, person) => {
-  try {
-    let today = dayjs().format('DD/MM/YYYY');
+    let today = dayjs().format('YYYY-MM-DD');
     let query;
-    let { notifications, completed } = information;
     let {
       dailyGoal,
       weightType,
@@ -56,31 +30,49 @@ export const syncInformation = async (information, person) => {
       cup,
     } = person;
 
-    if (await rowExist(today)) {
-      query = `UPDATE info SET 
-        notifications='${notifications}',
-        dailyGoal='${dailyGoal}',
-        completed='${completed}',
-        weightType='${weightType}',
-        weight='${weight}',
-        exerciseMinutes='${exerciseMinutes}',
-        gender='${gender}',
-        cup='${cup}',
-        dailyGoalType='${dailyGoalType}'
-        WHERE date='${today}'`;
-    } else {
-      query = `insert INTO info(date, notifications, dailyGoal, completed, weightType, gender, weight, exerciseMinutes, dailyGoalType, cup) VALUES 
-        ('${today}', '${notifications}', ${dailyGoal}, ${completed}, '${weightType}', '${gender}', ${weight}, ${exerciseMinutes}, '${dailyGoalType}', ${cup})`;
-    }
-    _db.executeSql(query);
+    await createRow(today);
+    query = `UPDATE info SET
+    dailyGoal='${dailyGoal}',
+    weightType='${weightType}',
+    weight='${weight}',
+    exerciseMinutes='${exerciseMinutes}',
+    gender='${gender}',
+    cup='${cup}',
+    dailyGoalType='${dailyGoalType}'
+    WHERE date='${today}'`;
+    await _db.executeSql(query);
   } catch (err) {
     console.log(err);
   }
 };
 
-const rowExist = async today => {
-  let result = await _db.executeSql(
-    `SELECT * from info where date = '${today}'`,
-  );
-  return !!result?.rows?._array.length;
+export const syncInformation = async information => {
+  try {
+    let today = dayjs().format('YYYY-MM-DD');
+    let query;
+    let { completed } = information;
+
+    await createRow(today);
+    query = `UPDATE info SET
+      completed='${completed}'
+      WHERE date='${today}'`;
+    await _db.executeSql(query);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const getTableData = async (startDate, endDate, coloums) => {
+  try {
+    let query;
+    query = `SELECT ${coloums.join(',')} from info WHERE date BETWEEN "${startDate}" AND "${endDate}"`;
+    let result = await _db.executeSql(query);
+    return result?.rows?._array;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const dropTable = async () => {
+  await _db.executeSql('drop table info');
 };

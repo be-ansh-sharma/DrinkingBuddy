@@ -28,7 +28,7 @@ export const fetchPerson = () => {
         });
       }
     } catch (err) {
-      console.log('There is an error!!!');
+      console.log(err);
     }
   };
 };
@@ -46,7 +46,7 @@ export const storePerson = (gender, weight, weightType, exerciseMinutes) => {
         },
       });
     } catch (err) {
-      console.log('There is an error!!!');
+      console.log(err);
     }
   };
 };
