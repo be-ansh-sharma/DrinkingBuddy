@@ -5,12 +5,12 @@ export const FONTS = {
 
 export const COLOR = {
   primary: '#00B0FF',
-  background: 'white',
+  background: '#FAFAFA',
   error: '#B00020',
   accent: '#459dfc',
   danger: 'red',
   faded: 'gray',
-  dark: '#121212',
+  dark: '#161b22',
 };
 
 export const BUTTON = {

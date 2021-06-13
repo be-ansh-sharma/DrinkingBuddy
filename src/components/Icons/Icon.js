@@ -22,8 +22,7 @@ const AppIcons = props => {
     <Pressable
       onPress={iconPressHanlder}
       style={{ ...style }}
-      android_disableSound={android_disableSound}
-      android_ripple={true}>
+      android_disableSound={android_disableSound}>
       <Icon name={name} size={size} color={color} />
     </Pressable>
   );

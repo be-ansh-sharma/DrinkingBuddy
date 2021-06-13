@@ -9,4 +9,7 @@ export default StyleSheet.create({
     borderRadius: 16,
     elevation: 7,
   },
+  darkChart: {
+    transform: [{ translateX: -10 }],
+  },
 });
