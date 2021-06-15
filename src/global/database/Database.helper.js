@@ -66,7 +66,9 @@ export const getTableData = async (startDate, endDate, coloums) => {
   try {
     let query;
     query = `SELECT ${coloums.join(',')} from info WHERE date BETWEEN "${startDate}" AND "${endDate}"`;
+    console.log(query);
     let result = await _db.executeSql(query);
+    console.log(result);
     return result?.rows?._array;
   } catch (err) {
     console.log(err);

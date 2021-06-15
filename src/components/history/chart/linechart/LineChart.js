@@ -101,7 +101,7 @@ const LineChart = ({ rows, storedWeightType }) => {
           backgroundGradientTo: darkMode ? COLOR.dark : COLOR.accent,
           decimalPlaces: 0,
           color: () =>
-            darkMode ? 'rgb(0, 176, 255, 0.4)' : 'rgba(255, 255, 255, 0.4)',
+            darkMode ? 'rgb(0, 176, 255, 0.4)' : 'rgba(255, 255, 255, 0.8)',
           labelColor: () => 'rgba(255, 255, 255, 1)',
         }}
         bezier

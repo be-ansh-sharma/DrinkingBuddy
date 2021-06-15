@@ -3,7 +3,8 @@ import { View } from 'react-native';
 import ChartControl from 'components/history/chartcontrol/ChartControl';
 import { getTableData, dropTable } from 'global/database/Database.helper';
 import { useSelector } from 'react-redux';
-import LineChart from './barchart/LineChart';
+import LineChart from './linechart/LineChart';
+import ChartMode from 'components/history/chartmode/ChartMode';
 import dayjs from 'global/day';
 import { useNavigation } from '@react-navigation/native';
 import styles from './Chart.style';
@@ -15,11 +16,23 @@ const Chart = () => {
     dayjs().date(1).format('YYYY-MM-DD'),
   );
   const [endDate, setEndDate] = useState(
-    dayjs(dayjs().daysInMonth()).format('YYYY-MM-DD'),
+    dayjs().date(dayjs().daysInMonth()).format('YYYY-MM-DD'),
   );
-  const [display, setDisplay] = useState(dayjs().format('MMMM'));
   const [rows, setRows] = useState([]);
   const navigation = useNavigation();
+
+  const nextControlHandler = () => {
+    let end = dayjs(startDate).subtract(1, 'day');
+    setEndDate(end.format('YYYY-MM-DD'));
+    setStartDate(end.date(1).format('YYYY-MM-DD'));
+  };
+
+  const previousControlHandler = () => {
+    let end;
+    end = dayjs(endDate).add(1, 'day');
+    setEndDate(end.date(dayjs(end.daysInMonth())).format('YYYY-MM-DD'));
+    setStartDate(end.format('YYYY-MM-DD'));
+  };
 
   const captureData = useCallback(async () => {
     let resultRows = await getTableData(startDate, endDate, [
@@ -28,6 +41,7 @@ const Chart = () => {
       'date',
       'weightType',
     ]);
+    console.log(resultRows);
     if (resultRows.length) {
       setRows(resultRows);
     } else {
@@ -46,7 +60,11 @@ const Chart = () => {
 
   return (
     <View>
-      <ChartControl display={display} />
+      <ChartControl
+        display={dayjs(startDate)}
+        nextControlHandler={nextControlHandler}
+        previousControlHandler={previousControlHandler}
+      />
       <LineChart rows={rows} storedWeightType={storedWeightType} />
     </View>
   );
