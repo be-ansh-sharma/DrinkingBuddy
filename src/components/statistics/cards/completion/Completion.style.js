@@ -4,17 +4,12 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   container: {
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
   },
-  text: {
-    alignSelf: 'center',
-    fontSize: 16,
+  row: {
+    width: '49%',
   },
-  switch: {
-    height: 50,
-    width: 100,
-  },
-  selected: {
-    color: COLOR.primary,
+  rightSub: {
+    borderWidth: 1,
   },
 });

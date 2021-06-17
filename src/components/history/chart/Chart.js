@@ -4,7 +4,6 @@ import ChartControl from 'components/history/chartcontrol/ChartControl';
 import { getTableData, dropTable } from 'global/database/Database.helper';
 import { useSelector } from 'react-redux';
 import LineChart from './linechart/LineChart';
-import ChartMode from 'components/history/chartmode/ChartMode';
 import dayjs from 'global/day';
 import { useNavigation } from '@react-navigation/native';
 import styles from './Chart.style';
@@ -41,7 +40,6 @@ const Chart = () => {
       'date',
       'weightType',
     ]);
-    console.log(resultRows);
     if (resultRows.length) {
       setRows(resultRows);
     } else {

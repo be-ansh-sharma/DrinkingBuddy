@@ -1,15 +1,19 @@
 import React from 'react';
-import { View } from 'react-native';
+import { ScrollView } from 'react-native';
 import styles from './History.style';
 import Chart from 'components/history/chart/Chart';
+import Statistics from 'components/statistics/Statistics';
 
 const History = () => {
   return (
-    <View style={styles.container}>
-      <View>
-        <Chart />
-      </View>
-    </View>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      showsHorizontalScrollIndicator={false}
+      contentContainerStyle={{ alignItems: 'center', flexGrow: 1 }}
+      style={styles.container}>
+      <Chart />
+      <Statistics />
+    </ScrollView>
   );
 };
 

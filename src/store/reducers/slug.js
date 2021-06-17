@@ -7,6 +7,7 @@ import {
   TRANSFORM_RECORDS,
 } from 'store/actions/slug';
 import { setToStorage } from 'global/helpers/helper';
+import { syncSlug } from 'global/database/Database.helper';
 
 const initialState = {
   records: [],
@@ -58,6 +59,7 @@ const slug = (state = initialState, action) => {
   }
 
   setToStorage('@slug', state);
+  syncSlug(state);
   return state;
 };
 

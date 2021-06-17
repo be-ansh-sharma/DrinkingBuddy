@@ -19,7 +19,6 @@ const Home = ({ navigation }) => {
     //dispatch(setNotifications());
     const responseSubscription = Notifications.addNotificationResponseReceivedListener(
       () => {
-        console.log('clicker');
         dispatch(addRecord());
         dispatch(setCompleted());
         dispatch(setNotifications());
@@ -45,7 +44,6 @@ const Home = ({ navigation }) => {
     }
   }, [dispatch, goalCompleted, navigation]);
 
-  console.log('home');
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}

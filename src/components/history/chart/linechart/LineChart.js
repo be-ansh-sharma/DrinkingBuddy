@@ -96,9 +96,9 @@ const LineChart = ({ rows, storedWeightType }) => {
         yAxisSuffix="%"
         withVerticalLines={false}
         chartConfig={{
-          backgroundColor: darkMode ? COLOR.dark : COLOR.background,
+          backgroundColor: darkMode ? COLOR.dark : COLOR.primary,
           backgroundGradientFrom: darkMode ? COLOR.dark : COLOR.primary,
-          backgroundGradientTo: darkMode ? COLOR.dark : COLOR.accent,
+          backgroundGradientTo: darkMode ? COLOR.dark : COLOR.primary,
           decimalPlaces: 0,
           color: () =>
             darkMode ? 'rgb(0, 176, 255, 0.4)' : 'rgba(255, 255, 255, 0.8)',

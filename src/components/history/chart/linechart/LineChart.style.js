@@ -5,9 +5,9 @@ export default StyleSheet.create({
     flex: 1,
   },
   chart: {
-    marginVertical: 8,
+    marginTop: 8,
     borderRadius: 16,
-    elevation: 7,
+    elevation: 10,
   },
   darkChart: {
     transform: [{ translateX: -10 }],
