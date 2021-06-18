@@ -6,6 +6,7 @@ import Exercise from './personal/exercise/Exercise';
 import Reset from './others/reset/Reset';
 import Setting from './others/setting/Setting';
 import Metric from './personal/metric/Metric';
+import NotificationMode from './general/notificationmode/NotificationMode';
 
 const DialogWorker = ({ Name, closeDialogHandler }) => {
   if (!Name) {
@@ -33,6 +34,9 @@ const DialogWorker = ({ Name, closeDialogHandler }) => {
       break;
     case 'metric':
       Name = Metric;
+      break;
+    case 'notificationmode':
+      Name = NotificationMode;
       break;
   }
 

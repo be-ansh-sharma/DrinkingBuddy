@@ -27,7 +27,6 @@ const DarkMode = () => {
         ref={darkRef}
         loop={false}
         speed={5}
-        //style={{height: 40}}
         onAnimationFinish={darkModeHandler}
         source={require('assets/animation/dark.json')}
         progress={darkMode ? 1 : 0}

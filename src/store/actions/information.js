@@ -15,6 +15,7 @@ export const FETCH_INFORMATION = 'FETCH_INFORMATION';
 export const REMOVE_INFORMATION = 'REMOVE_INFORMATION';
 export const SET_COMPLETED = 'SET_COMPLETED';
 export const SET_DARKMODE = 'SET_DARKMODE';
+export const SET_CHANNEL_ID = 'SET_CHANNEL_ID';
 
 export const setQuiteTime = time => {
   let key = Object.keys(time)[0];
@@ -43,11 +44,14 @@ export const setQuiteTime = time => {
 export const setNotifications = () => {
   return async (dispatch, getState) => {
     try {
-      const { quiteTime } = getState().information;
+      const { quiteTime, notificationChannelID } = getState().information;
       const { cup, dailyGoal } = getState().person;
       let intervalInMinutes = getInterval(dailyGoal, quiteTime, cup) * 60;
       let notifications = getAllNotifications(quiteTime, intervalInMinutes);
-      checkAndScheduleNotification(notifications.notifications);
+      checkAndScheduleNotification(
+        notifications.notifications,
+        notificationChannelID,
+      );
       dispatch({
         type: SET_NOTIFICATIONS,
         notifications,
@@ -114,6 +118,13 @@ export const setDarkMode = mode => {
   return {
     type: SET_DARKMODE,
     darkMode: mode,
+  };
+};
+
+export const setChannelID = id => {
+  return {
+    type: SET_CHANNEL_ID,
+    notificationChannelID: id,
   };
 };
 

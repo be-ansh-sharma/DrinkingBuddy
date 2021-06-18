@@ -5,7 +5,6 @@ import Card from 'components/statistics/cards/Card';
 import { getTableCount } from 'global/database/Database.helper';
 
 const Times = () => {
-  const { completed } = useSelector(state => state.information);
   const navigation = useNavigation();
   const [times, setTimes] = useState(0);
 
@@ -15,13 +14,6 @@ const Times = () => {
   }, []);
 
   useEffect(() => {
-    getTableCount(null, null, [
-      'COUNT(times) AS count',
-      'SUM(times) AS sum',
-    ]).then(rows => {
-      CalculateTimes(rows);
-    });
-
     const unsubscribe = navigation.addListener('focus', () => {
       getTableCount(null, null, [
         'COUNT(times) AS count',
@@ -31,7 +23,16 @@ const Times = () => {
       });
     });
     return unsubscribe;
-  }, [completed, navigation, CalculateTimes]);
+  }, [navigation, CalculateTimes]);
+
+  useEffect(() => {
+    getTableCount(null, null, [
+      'COUNT(times) AS count',
+      'SUM(times) AS sum',
+    ]).then(rows => {
+      CalculateTimes(rows);
+    });
+  }, [CalculateTimes]);
 
   return (
     <Card

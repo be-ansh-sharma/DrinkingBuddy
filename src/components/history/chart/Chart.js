@@ -9,7 +9,6 @@ import { useNavigation } from '@react-navigation/native';
 import styles from './Chart.style';
 
 const Chart = () => {
-  const storedCompleted = useSelector(state => state.information.completed);
   const storedWeightType = useSelector(state => state.person.weightType);
   const [startDate, setStartDate] = useState(
     dayjs().date(1).format('YYYY-MM-DD'),
@@ -48,13 +47,16 @@ const Chart = () => {
   }, [endDate, startDate]);
 
   useEffect(() => {
-    captureData(storedWeightType);
     const unsubscribe = navigation.addListener('focus', () => {
       captureData(storedWeightType);
     });
 
     return unsubscribe;
-  }, [captureData, storedCompleted, navigation, storedWeightType]);
+  }, [captureData, navigation, storedWeightType]);
+
+  useEffect(() => {
+    captureData(storedWeightType);
+  }, [captureData, storedWeightType]);
 
   return (
     <View>

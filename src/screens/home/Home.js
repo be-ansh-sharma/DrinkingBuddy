@@ -14,7 +14,9 @@ const Home = ({ navigation }) => {
   const { weight, weightType, exerciseMinutes, sleep, wake } = useSelector(
     state => state.person,
   );
-  const goalCompleted = useSelector(state => state.information.goalCompleted);
+  const { goalCompleted, notificationChannelID } = useSelector(
+    state => state.information,
+  );
   useEffect(() => {
     //dispatch(setNotifications());
     const responseSubscription = Notifications.addNotificationResponseReceivedListener(
@@ -32,7 +34,15 @@ const Home = ({ navigation }) => {
 
   useEffect(() => {
     dispatch(setNotifications());
-  }, [weight, weightType, exerciseMinutes, sleep, wake, dispatch]);
+  }, [
+    weight,
+    weightType,
+    exerciseMinutes,
+    sleep,
+    wake,
+    notificationChannelID,
+    dispatch,
+  ]);
 
   useEffect(() => {
     if (goalCompleted === 'ready') {
@@ -47,6 +57,7 @@ const Home = ({ navigation }) => {
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
+      contentContainerStyle={{ flexGrow: 1 }}
       showsHorizontalScrollIndicator={false}>
       <View style={styles.container}>
         <Progress />

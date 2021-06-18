@@ -12,13 +12,13 @@ export default StyleSheet.create({
   headingText: {
     fontWeight: 'bold',
     marginRight: 4,
+    fontSize: 16,
   },
   recordBox: {
-    //borderWidth: 1,
     width: '80%',
     alignContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
-    marginBottom: 8,
+    marginVertical: 8,
   },
 });

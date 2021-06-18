@@ -11,33 +11,6 @@ export const weightSystem = {
   },
 };
 
-export const PROFILE = {
-  name: {
-    label: 'Name',
-    icon: 'person-outline',
-  },
-  weight: {
-    label: 'Weight',
-    icon: 'weight',
-  },
-  weightType: {
-    label: 'System',
-    icon: 'person-outline',
-  },
-  exerciseMinutes: {
-    label: 'Exercise',
-    icon: 'barbell-outline',
-  },
-  dailyGoal: {
-    label: 'Daily Goal',
-    icon: 'bullseye-arrow',
-  },
-  cup: {
-    label: 'Cup Size',
-    icon: 'beer',
-  },
-};
-
 export const fontConfig = {
   web: {
     regular: {
@@ -56,5 +29,24 @@ export const fontConfig = {
       fontFamily: 'OpenSans',
       fontWeight: 'normal',
     },
+  },
+};
+
+export const NotificationSetting = {
+  default: {
+    label: 'Sound and vibrate',
+    icon: 'cellphone-sound',
+  },
+  vibrate: {
+    label: 'Vibrate Only',
+    icon: 'vibrate',
+  },
+  sound: {
+    label: 'Sound Only',
+    icon: 'bell-outline',
+  },
+  silent: {
+    label: 'Silent',
+    icon: 'bell-off-outline',
   },
 };

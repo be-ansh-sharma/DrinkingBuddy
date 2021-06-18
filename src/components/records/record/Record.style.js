@@ -3,18 +3,14 @@ import { COLOR } from 'global/styles';
 
 export default StyleSheet.create({
   container: {
-    height: 40,
-    //borderWidth: 1,
+    height: 45,
     width: '100%',
-    //justifyContent: 'center',
     flexDirection: 'row',
-    //alignContent: 'space-between',
     justifyContent: 'space-around',
-    //alignContent: 'center',
     alignItems: 'center',
     backgroundColor: COLOR.accent,
     borderRadius: 5,
-    elevation: 6,
+    elevation: 7,
     marginTop: 8,
   },
   time: {

@@ -27,7 +27,7 @@ export default StyleSheet.create({
     color: COLOR.primary,
   },
   darkContainer: {
-    backgroundColor: null,
+    backgroundColor: COLOR.dark,
     borderColor: COLOR.primary,
     borderWidth: 1,
   },

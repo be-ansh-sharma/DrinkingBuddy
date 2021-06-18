@@ -50,15 +50,6 @@ const CombinedDarkTheme = {
   },
 };
 
-Notifications.setNotificationHandler({
-  handleNotification: async () => {
-    return {
-      shouldShowAlert: true,
-      shouldPlaySound: true,
-    };
-  },
-});
-
 const App = () => {
   const [isReady, setIsReady] = useState(false);
   const dispatch = useDispatch();

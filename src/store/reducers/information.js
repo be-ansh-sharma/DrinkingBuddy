@@ -6,6 +6,7 @@ import {
   SET_COMPLETED,
   SET_DARKMODE,
   REMOVE_INFORMATION,
+  SET_CHANNEL_ID,
 } from 'store/actions/information';
 import { UPDATE_METRIC } from 'store/actions/person';
 import { DELETE_RECORD, EDIT_RECORD } from 'store/actions/slug';
@@ -30,6 +31,7 @@ const initialState = {
   notifications: [],
   goalCompleted: false,
   completed: 0,
+  notificationChannelID: 'default',
   today: '',
   isSetupFinished: false,
   darkMode: false,
@@ -99,6 +101,12 @@ const information = (state = initialState, action) => {
       state = {
         ...state,
         completed: action.completed,
+      };
+      break;
+    case SET_CHANNEL_ID:
+      state = {
+        ...state,
+        notificationChannelID: action.notificationChannelID,
       };
       break;
     default:
