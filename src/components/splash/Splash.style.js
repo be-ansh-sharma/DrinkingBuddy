@@ -1,3 +1,4 @@
+import { COLOR } from 'global/styles';
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
@@ -5,6 +6,6 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: COLOR.background,
   },
 });

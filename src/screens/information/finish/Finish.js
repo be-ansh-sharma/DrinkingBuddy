@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { View, Image } from 'react-native';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
+import { View, StatusBar } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { Text } from 'react-native-paper';
 import styles from './Finish.style';
@@ -12,12 +12,13 @@ import {
   setNotifications,
   setSetupFinished,
 } from 'store/actions/information';
-import { useCallback } from 'react';
+import LottieView from 'lottie-react-native';
 
 const Finish = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(true);
   const person = useSelector(state => state.person);
   const dispatch = useDispatch();
+  const animationRef = useRef();
 
   const nextScreenHanlder = useCallback(() => {
     dispatch(setSetupFinished(true));
@@ -28,8 +29,8 @@ const Finish = ({ navigation }) => {
       e.preventDefault();
     });
 
-    let dispatchTimer = setTimeout(() => {
-      dispatch(
+    (async () => {
+      await dispatch(
         storePerson(
           person.gender,
           person.weight,
@@ -37,24 +38,21 @@ const Finish = ({ navigation }) => {
           person.exerciseMinutes,
         ),
       );
-      (async () => {
-        dispatch(
-          setQuiteTime({
-            0: {
-              start: person.sleep,
-              end: person.wake,
-            },
-          }),
-        );
-        dispatch(setNotifications());
-      })();
+      await dispatch(
+        setQuiteTime({
+          0: {
+            start: person.sleep,
+            end: person.wake,
+          },
+        }),
+      );
+      await dispatch(setNotifications());
       setIsLoading(false);
-    }, 1400);
+    })();
 
     const exitScreenTimer = setTimeout(nextScreenHanlder, 8000);
 
     return () => {
-      clearTimeout(dispatchTimer);
       clearTimeout(exitScreenTimer);
     };
   }, [
@@ -72,9 +70,12 @@ const Finish = ({ navigation }) => {
   if (isLoading && !person.dailyGoal) {
     return (
       <View style={styles.loaderContainer}>
-        <Image
-          style={styles.loader}
-          source={require('assets/images/loading.gif')}
+        <StatusBar backgroundColor={COLOR.background} />
+        <LottieView
+          ref={animationRef}
+          loop={true}
+          autoPlay={true}
+          source={require('assets/animation/water.json')}
         />
       </View>
     );
@@ -82,6 +83,7 @@ const Finish = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <StatusBar backgroundColor={COLOR.background} />
       <View style={styles.itemContainer}>
         <Icon name="water-outline" size={40} color={COLOR.primary} />
         <Text style={styles.text}>
