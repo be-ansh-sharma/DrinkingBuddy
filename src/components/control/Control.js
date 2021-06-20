@@ -11,6 +11,8 @@ import { useDispatch } from 'react-redux';
 import LottieView from 'lottie-react-native';
 import Shake from 'animations/Shake';
 import Bounce from 'animations/Bounce';
+import { AdMobInterstitial } from 'expo-ads-admob';
+import { getadUnitID } from 'global/CONSTANTS';
 
 const Control = props => {
   const dispatch = useDispatch();
@@ -21,14 +23,27 @@ const Control = props => {
     dispatch(addRecord());
   };
 
+  const adPressHandler = async () => {
+    await AdMobInterstitial.setAdUnitID(getadUnitID('fullScreen'));
+    await AdMobInterstitial.requestAdAsync({ servePersonalizedAds: true });
+    await AdMobInterstitial.showAdAsync();
+  };
+
   return (
     <View style={styles.container}>
-      <Shake repeat={true} interval={60 * 1000}>
-        <View style={styles.ads}>
-          <Icon name="gift-outline" size={40} color={COLOR.primary} />
-          <Text style={styles.adsText}>ADS</Text>
-        </View>
-      </Shake>
+      <View style={styles.ads}>
+        <Shake repeat={true} interval={6000}>
+          <Icon
+            name="gift-outline"
+            size={40}
+            color={COLOR.primary}
+            pressHandler={adPressHandler}
+          />
+          <Pressable onPress={adPressHandler} android_ripple={null}>
+            <Text style={styles.adsText}>ADS</Text>
+          </Pressable>
+        </Shake>
+      </View>
       <Pressable
         android_ripple={{}}
         style={styles.add}

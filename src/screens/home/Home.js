@@ -8,6 +8,7 @@ import * as Notifications from 'expo-notifications';
 import { useDispatch, useSelector } from 'react-redux';
 import { addRecord } from 'store/actions/slug';
 import { setCompleted, setNotifications } from 'store/actions/information';
+import SmartBanner from 'components/banners/SmartBanner';
 
 const Home = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -55,16 +56,19 @@ const Home = ({ navigation }) => {
   }, [dispatch, goalCompleted, navigation]);
 
   return (
-    <ScrollView
-      showsVerticalScrollIndicator={false}
-      contentContainerStyle={{ flexGrow: 1 }}
-      showsHorizontalScrollIndicator={false}>
-      <View style={styles.container}>
-        <Progress />
-        <Control />
-        <Records />
-      </View>
-    </ScrollView>
+    <>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ flexGrow: 1 }}
+        showsHorizontalScrollIndicator={false}>
+        <View style={styles.container}>
+          <Progress />
+          <Control />
+          <Records />
+        </View>
+      </ScrollView>
+      <SmartBanner />
+    </>
   );
 };
 

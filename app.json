@@ -1,15 +1,4 @@
 {
   "name": "DrinkingBuddy",
-  "displayName": "Drinking Buddy",
-  "expo": {
-    "plugins": [
-      [
-        "expo-notifications",
-        {
-          "icon": "./assets/images/ic_notification.png",
-          "color": "#00B0FF"
-        }
-      ]
-    ]
-  }
+  "displayName": "Drinking Buddy"
 }

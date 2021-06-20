@@ -95,7 +95,6 @@ export const getTableData = async (startDate, endDate, coloums) => {
       query = `SELECT ${coloums.join(',')} from info`;
     }
     let result = await _db.executeSql(query);
-    console.log(result);
     return result?.rows?._array;
   } catch (err) {
     console.log(err);
