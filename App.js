@@ -15,7 +15,6 @@ import { fetchSlug } from './src/store/actions/slug';
 import { StatusBar, LogBox } from 'react-native';
 import { COLOR } from './src/global/styles';
 import SplashScreen from './src/components/splash/Splash';
-import * as Notifications from 'expo-notifications';
 import {
   DarkTheme as PaperDarkTheme,
   DefaultTheme as PaperDefaultTheme,
@@ -60,7 +59,6 @@ const App = () => {
       await dispatch(fetchPerson());
       await dispatch(getInformation());
       dispatch(fetchSlug());
-      //changeMode(darkMode);
       setIsReady(true);
     })();
   }, [darkMode, dispatch]);

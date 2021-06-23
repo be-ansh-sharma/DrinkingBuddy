@@ -1,9 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import dayjs from 'global/day';
-import {
-  fetchDBNotifications,
-  syncNotifications,
-} from 'global/database/Database.helper';
 
 export const getFromStorage = async key => {
   try {
@@ -39,7 +35,7 @@ export const changeWeightSystem = (value, system) => {
 };
 
 export const changeWaterSystem = (value, system) => {
-  if (system === 'Kg') {
+  if (system === 'Kg' || system === 'ml') {
     return value * 29.574;
   } else {
     return value / 29.574;
@@ -120,7 +116,6 @@ export const getAllNotifications = (quiteTimes, minutes) => {
       current.add(1, 'day').hour(0).minute(0).second(0),
     );
     nextNotification = todayNotifications[0];
-    //syncNotifications(todayNotifications);
     return {
       notifications: todayNotifications,
       nextNotification,
@@ -128,7 +123,6 @@ export const getAllNotifications = (quiteTimes, minutes) => {
     };
   }
 
-  //syncNotifications(todayNotifications);
   return {
     notifications: todayNotifications,
     nextNotification,

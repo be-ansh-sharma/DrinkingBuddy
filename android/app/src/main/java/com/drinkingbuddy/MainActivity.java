@@ -1,4 +1,4 @@
-package com.drinkingbuddy;
+package com.epoch.drinkingbuddy;
 
 import com.facebook.react.ReactActivity;
 

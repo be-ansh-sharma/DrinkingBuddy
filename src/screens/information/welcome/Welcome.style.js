@@ -19,8 +19,6 @@ export default StyleSheet.create({
   button: {
     backgroundColor: COLOR.primary,
     alignSelf: 'center',
-    //position: 'absolute',
-    //bottom: 0,
     borderRadius: 30,
     marginVertical: 16,
     padding: 4,

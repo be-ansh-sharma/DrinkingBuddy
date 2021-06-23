@@ -7,6 +7,8 @@ import { getTableCount } from 'global/database/Database.helper';
 const Times = () => {
   const navigation = useNavigation();
   const [times, setTimes] = useState(0);
+  const newCompleted = useSelector(state => state.information.completed);
+  const [oldCompleted, setOldCompleted] = useState(0);
 
   const CalculateTimes = useCallback(row => {
     const { count, sum } = row[0];
@@ -15,24 +17,18 @@ const Times = () => {
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
-      getTableCount(null, null, [
-        'COUNT(times) AS count',
-        'SUM(times) AS sum',
-      ]).then(rows => {
-        CalculateTimes(rows);
-      });
+      if (oldCompleted !== newCompleted) {
+        getTableCount(null, null, [
+          'COUNT(times) AS count',
+          'SUM(times) AS sum',
+        ]).then(rows => {
+          CalculateTimes(rows);
+          setOldCompleted(newCompleted);
+        });
+      }
     });
     return unsubscribe;
-  }, [navigation, CalculateTimes]);
-
-  useEffect(() => {
-    getTableCount(null, null, [
-      'COUNT(times) AS count',
-      'SUM(times) AS sum',
-    ]).then(rows => {
-      CalculateTimes(rows);
-    });
-  }, [CalculateTimes]);
+  }, [navigation, CalculateTimes, oldCompleted, newCompleted]);
 
   return (
     <Card

@@ -52,7 +52,7 @@ const person = (state = initialState, action) => {
     case SET_CUP:
       state = {
         ...state,
-        cup: +action.cup,
+        cup: action.cup,
       };
       break;
     case SET_GENDER:

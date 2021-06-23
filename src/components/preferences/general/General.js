@@ -37,7 +37,6 @@ const General = props => {
             )}
           />
         </Pressable>
-        <List.Item title="Reminder Sound" />
         <List.Item title="Dark Mode" right={() => <DarkMode />} />
       </List.Section>
       {!!dialog && (

@@ -20,7 +20,6 @@ export default StyleSheet.create({
     width: '50%',
     flexGrow: 2,
     flexDirection: 'row',
-    //margin: 10,
     marginRight: '10%',
   },
   pickerItem: {

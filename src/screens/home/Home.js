@@ -12,14 +12,13 @@ import SmartBanner from 'components/banners/SmartBanner';
 
 const Home = ({ navigation }) => {
   const dispatch = useDispatch();
-  const { weight, weightType, exerciseMinutes, sleep, wake } = useSelector(
+  const { weight, weightType, exerciseMinutes, sleep, wake, cup } = useSelector(
     state => state.person,
   );
   const { goalCompleted, notificationChannelID } = useSelector(
     state => state.information,
   );
   useEffect(() => {
-    //dispatch(setNotifications());
     const responseSubscription = Notifications.addNotificationResponseReceivedListener(
       () => {
         dispatch(addRecord());
@@ -41,6 +40,7 @@ const Home = ({ navigation }) => {
     exerciseMinutes,
     sleep,
     wake,
+    cup,
     notificationChannelID,
     dispatch,
   ]);

@@ -1,15 +1,16 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { View } from 'react-native';
 import ChartControl from 'components/history/chartcontrol/ChartControl';
-import { getTableData, dropTable } from 'global/database/Database.helper';
+import { getTableData } from 'global/database/Database.helper';
 import { useSelector } from 'react-redux';
 import LineChart from './linechart/LineChart';
 import dayjs from 'global/day';
 import { useNavigation } from '@react-navigation/native';
-import styles from './Chart.style';
 
 const Chart = () => {
+  const newCompleted = useSelector(state => state.information.completed);
   const storedWeightType = useSelector(state => state.person.weightType);
+  const [oldCompleted, setOldCompleted] = useState(newCompleted);
   const [startDate, setStartDate] = useState(
     dayjs().date(1).format('YYYY-MM-DD'),
   );
@@ -48,11 +49,14 @@ const Chart = () => {
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
-      captureData(storedWeightType);
+      if (oldCompleted !== newCompleted) {
+        captureData(storedWeightType);
+        setOldCompleted(newCompleted);
+      }
     });
 
     return unsubscribe;
-  }, [captureData, navigation, storedWeightType]);
+  }, [captureData, newCompleted, navigation, oldCompleted, storedWeightType]);
 
   useEffect(() => {
     captureData(storedWeightType);

@@ -19,7 +19,6 @@ export default StyleSheet.create({
     width: 200,
   },
   itemContainer: {
-    //borderWidth: 1,
     marginTop: '15%',
     width: '100%',
     alignItems: 'center',

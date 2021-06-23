@@ -33,6 +33,45 @@ export const fontConfig = {
   },
 };
 
+export const CUPSIZE = {
+  100: {
+    label: '100',
+    value: 100,
+  },
+  125: {
+    label: '125',
+    value: 125,
+  },
+  150: {
+    label: '150',
+    value: 150,
+  },
+  175: {
+    label: '175',
+    value: 175,
+  },
+  200: {
+    label: '200',
+    value: 200,
+  },
+  300: {
+    label: '300',
+    value: 300,
+  },
+  400: {
+    label: '400',
+    value: 400,
+  },
+  500: {
+    label: '500',
+    value: 500,
+  },
+  1000: {
+    label: '1000',
+    value: 1000,
+  },
+};
+
 export const NotificationSetting = {
   default: {
     label: 'Sound and vibrate',

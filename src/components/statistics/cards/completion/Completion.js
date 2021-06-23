@@ -9,6 +9,8 @@ import { useNavigation } from '@react-navigation/core';
 import { changeWaterSystem } from 'global/helpers/helper';
 
 const Completion = () => {
+  const newCompleted = useSelector(state => state.information.completed);
+  const [oldCompleted, setOldCompleted] = useState(0);
   const { weightType, dailyGoalType } = useSelector(state => state.person);
   const [percentage, setPercentage] = useState(0);
   const [average, setAverage] = useState(0);
@@ -57,26 +59,19 @@ const Completion = () => {
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
-      getTableData(
-        dayjs().day(0).format('YYYY-MM-DD'),
-        dayjs().day(6).format('YYYY-MM-DD'),
-        ['completed', 'weightType', 'dailyGoal'],
-      ).then(rows => {
-        calculateCompletion(rows);
-      });
+      if (oldCompleted !== newCompleted) {
+        getTableData(
+          dayjs().day(0).format('YYYY-MM-DD'),
+          dayjs().day(6).format('YYYY-MM-DD'),
+          ['completed', 'weightType', 'dailyGoal'],
+        ).then(rows => {
+          calculateCompletion(rows);
+          setOldCompleted(newCompleted);
+        });
+      }
     });
     return unsubscribe;
-  }, [calculateCompletion, navigation]);
-
-  useEffect(() => {
-    getTableData(
-      dayjs().day(0).format('YYYY-MM-DD'),
-      dayjs().day(6).format('YYYY-MM-DD'),
-      ['completed', 'weightType', 'dailyGoal'],
-    ).then(rows => {
-      calculateCompletion(rows);
-    });
-  }, [calculateCompletion]);
+  }, [calculateCompletion, navigation, newCompleted, oldCompleted]);
 
   return (
     <View style={styles.container}>

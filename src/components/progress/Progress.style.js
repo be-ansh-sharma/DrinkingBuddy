@@ -19,15 +19,12 @@ export default StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
     marginVertical: 6,
-    //borderWidth: 1,
   },
   progressWrapper: {
     flexDirection: 'row',
     alignSelf: 'center',
-    //borderWidth: 1,
   },
   pending: {
     color: COLOR.primary,
-    //borderWidth: 1,
   },
 });

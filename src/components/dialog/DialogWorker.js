@@ -7,6 +7,7 @@ import Reset from './others/reset/Reset';
 import Setting from './others/setting/Setting';
 import Metric from './personal/metric/Metric';
 import NotificationMode from './general/notificationmode/NotificationMode';
+import ChangeCup from './controls/changecup/ChangeCup';
 
 const DialogWorker = ({ Name, closeDialogHandler }) => {
   if (!Name) {
@@ -37,6 +38,9 @@ const DialogWorker = ({ Name, closeDialogHandler }) => {
       break;
     case 'notificationmode':
       Name = NotificationMode;
+      break;
+    case 'changecup':
+      Name = ChangeCup;
       break;
   }
 

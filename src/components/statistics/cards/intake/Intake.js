@@ -6,6 +6,8 @@ import { changeWaterSystem } from 'global/helpers/helper';
 import { useNavigation } from '@react-navigation/native';
 
 const Intake = () => {
+  const newCompleted = useSelector(state => state.information.completed);
+  const [oldCompleted, setOldCompleted] = useState(0);
   const [totalIntake, setTotalIntake] = useState(0);
   const { dailyGoalType, weightType } = useSelector(state => state.person);
   const navigation = useNavigation();
@@ -33,18 +35,15 @@ const Intake = () => {
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
-      getTableData(null, null, ['completed', 'weightType']).then(rows => {
-        calculateTotalIntake(rows);
-      });
+      if (oldCompleted !== newCompleted) {
+        getTableData(null, null, ['completed', 'weightType']).then(rows => {
+          calculateTotalIntake(rows);
+          setOldCompleted(newCompleted);
+        });
+      }
     });
     return unsubscribe;
-  }, [calculateTotalIntake, navigation]);
-
-  useEffect(() => {
-    getTableData(null, null, ['completed', 'weightType']).then(rows => {
-      calculateTotalIntake(rows);
-    });
-  }, [calculateTotalIntake]);
+  }, [calculateTotalIntake, navigation, newCompleted, oldCompleted]);
 
   return (
     <Card

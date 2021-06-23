@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { View } from 'react-native';
 import Pressable from 'components/pressable/Pressable';
 import styles from './Control.style';
@@ -13,9 +13,11 @@ import Shake from 'animations/Shake';
 import Bounce from 'animations/Bounce';
 import { AdMobInterstitial } from 'expo-ads-admob';
 import { getadUnitID } from 'global/CONSTANTS';
+import DialogWorker from 'components/dialog/DialogWorker';
 
 const Control = props => {
   const dispatch = useDispatch();
+  const [dialog, setDialog] = useState(false);
   const addref = useRef();
 
   const addHandler = () => {
@@ -27,6 +29,14 @@ const Control = props => {
     await AdMobInterstitial.setAdUnitID(getadUnitID('fullScreen'));
     await AdMobInterstitial.requestAdAsync({ servePersonalizedAds: true });
     await AdMobInterstitial.showAdAsync();
+  };
+
+  const openDialog = name => {
+    setDialog(name);
+  };
+
+  const closeDialogHandler = () => {
+    setDialog(false);
   };
 
   return (
@@ -68,12 +78,25 @@ const Control = props => {
       </View>
       <View style={styles.change}>
         <Text>
-          <Icon name="cafe-outline" size={40} color={COLOR.primary} />
+          <Icon
+            name="cafe-outline"
+            size={40}
+            color={COLOR.primary}
+            pressHandler={() => openDialog('changecup')}
+          />
         </Text>
         <Text style={styles.superText}>
-          <Icon name="sync-outline" size={20} color={COLOR.primary} />
+          <Icon
+            name="sync-outline"
+            size={20}
+            color={COLOR.primary}
+            pressHandler={() => openDialog('changecup')}
+          />
         </Text>
       </View>
+      {!!dialog && (
+        <DialogWorker Name={dialog} closeDialogHandler={closeDialogHandler} />
+      )}
     </View>
   );
 };

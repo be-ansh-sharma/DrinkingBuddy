@@ -1,4 +1,4 @@
-package com.drinkingbuddy.generated;
+package com.epoch.drinkingbuddy.generated;
 
 import java.util.Arrays;
 import java.util.List;
