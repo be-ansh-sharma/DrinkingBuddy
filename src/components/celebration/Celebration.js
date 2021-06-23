@@ -6,9 +6,12 @@ import { Text } from 'react-native-paper';
 import Fade from 'animations/Fade';
 import IconButton from 'components/buttons/iconbutton/IconButton';
 import { useNavigation } from '@react-navigation/core';
+import { useSelector } from 'react-redux';
+import { COLOR } from 'global/styles';
 
 const Celebration = () => {
   const celebrationRef = useRef();
+  const darkMode = useSelector(state => state.information.darkMode);
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -35,7 +38,7 @@ const Celebration = () => {
       showsVerticalScrollIndicator={false}
       contentContainerStyle={{ flexGrow: 1 }}
       showsHorizontalScrollIndicator={false}>
-      <StatusBar backgroundColor="white" />
+      <StatusBar backgroundColor={darkMode ? COLOR.dark : COLOR.background} />
       <View style={styles.animation}>
         <LottieView
           ref={celebrationRef}

@@ -82,7 +82,7 @@ const AddRecord = ({ changeHandler, dialogError }) => {
             mode="flat"
             keyboardType="decimal-pad"
             style={{ backgroundColor: 'white' }}
-            value={text}
+            value={Math.round(+text).toString()}
             onChangeText={value => validateText(value)}
           />
         </View>
