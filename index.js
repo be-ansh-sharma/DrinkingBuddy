@@ -16,15 +16,20 @@ const rootReducer = combineReducers({
   slug: slugReducer,
 });
 
-const store = createStore(
-  rootReducer,
-  compose(
-    applyMiddleware(ReduxThunk),
-    window.__REDUX_DEVTOOLS_EXTENSION__
-      ? window.__REDUX_DEVTOOLS_EXTENSION__()
-      : noop => noop,
-  ),
-);
+let store;
+if (__DEV__) {
+  store = createStore(
+    rootReducer,
+    compose(
+      applyMiddleware(ReduxThunk),
+      window.__REDUX_DEVTOOLS_EXTENSION__
+        ? window.__REDUX_DEVTOOLS_EXTENSION__()
+        : noop => noop,
+    ),
+  );
+} else {
+  store = createStore(rootReducer, applyMiddleware(ReduxThunk));
+}
 
 const AppStore = () => {
   return (
