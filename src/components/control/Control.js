@@ -42,7 +42,7 @@ const Control = props => {
   return (
     <View style={styles.container}>
       <View style={styles.ads}>
-        <Shake repeat={true} interval={6000}>
+        <Shake repeat={true} interval={30 * 1000}>
           <Icon
             name="gift-outline"
             size={40}

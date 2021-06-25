@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import styles from './Home.style';
 import Progress from 'components/progress/Progress';
@@ -7,17 +7,29 @@ import Records from 'components/records/Records';
 import * as Notifications from 'expo-notifications';
 import { useDispatch, useSelector } from 'react-redux';
 import { addRecord } from 'store/actions/slug';
-import { setCompleted, setNotifications } from 'store/actions/information';
+import {
+  setCompleted,
+  setNotice,
+  setNotifications,
+} from 'store/actions/information';
 import SmartBanner from 'components/banners/SmartBanner';
+import DialogWorker from 'components/dialog/DialogWorker';
 
 const Home = ({ navigation }) => {
   const dispatch = useDispatch();
   const { weight, weightType, exerciseMinutes, sleep, wake, cup } = useSelector(
     state => state.person,
   );
-  const { goalCompleted, notificationChannelID } = useSelector(
+  const { goalCompleted, notificationChannelID, noticeShown } = useSelector(
     state => state.information,
   );
+  const [dialog, setDialog] = useState(false);
+
+  const closeDialogHandler = () => {
+    dispatch(setNotice());
+    setDialog(false);
+  };
+
   useEffect(() => {
     const responseSubscription = Notifications.addNotificationResponseReceivedListener(
       () => {
@@ -46,6 +58,12 @@ const Home = ({ navigation }) => {
   ]);
 
   useEffect(() => {
+    if (!noticeShown) {
+      setDialog('notice');
+    }
+  }, []);
+
+  useEffect(() => {
     if (goalCompleted === 'ready') {
       dispatch(setCompleted(0));
       navigation.push('Modal', {
@@ -66,6 +84,13 @@ const Home = ({ navigation }) => {
           <Control />
           <Records />
         </View>
+        {!!dialog && (
+          <DialogWorker
+            Name={dialog}
+            closeDialogHandler={closeDialogHandler}
+            params={{ title: 'Notice', reset: 'risk it!' }}
+          />
+        )}
       </ScrollView>
       <SmartBanner />
     </>

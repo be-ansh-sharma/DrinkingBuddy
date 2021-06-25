@@ -9,7 +9,7 @@ import Metric from './personal/metric/Metric';
 import NotificationMode from './general/notificationmode/NotificationMode';
 import ChangeCup from './controls/changecup/ChangeCup';
 
-const DialogWorker = ({ Name, closeDialogHandler }) => {
+const DialogWorker = ({ Name, closeDialogHandler, params }) => {
   if (!Name) {
     return null;
   }
@@ -31,6 +31,7 @@ const DialogWorker = ({ Name, closeDialogHandler }) => {
       Name = Reset;
       break;
     case 'setting':
+    case 'notice':
       Name = Setting;
       break;
     case 'metric':
@@ -44,7 +45,7 @@ const DialogWorker = ({ Name, closeDialogHandler }) => {
       break;
   }
 
-  return <Name closeDialogHandler={closeDialogHandler} />;
+  return <Name params={params} closeDialogHandler={closeDialogHandler} />;
 };
 
 export default DialogWorker;

@@ -3,7 +3,7 @@ import { Dialog, Button, Portal, Text } from 'react-native-paper';
 import { View, Linking } from 'react-native';
 import { COLOR } from 'global/styles';
 
-const Setting = ({ closeDialogHandler }) => {
+const Setting = ({ closeDialogHandler, params }) => {
   const hideDialog = cancel => {
     if (!cancel) {
       return closeDialogHandler();
@@ -16,13 +16,15 @@ const Setting = ({ closeDialogHandler }) => {
     <View>
       <Portal>
         <Dialog visible={true} onDismiss={hideDialog} dismissable={false}>
-          <Dialog.Title style={{ color: COLOR.primary }}>FAQ</Dialog.Title>
+          <Dialog.Title style={{ color: COLOR.primary }}>
+            {params?.title ? params?.title : 'FAQ'}
+          </Dialog.Title>
           <Dialog.Content>
             <View>
               <Text style={{ marginTop: 12, fontSize: 14 }}>
-                There might be instances where the Drinking Buddy does not
+                There might be instances where the Drinking Buddy App does not
                 notify you at the scheduled time. This might be because of the
-                or phone system closing the Drinking Buddy App.
+                system closing the Drinking Buddy App.
               </Text>
               <Text style={{ marginTop: 12, fontSize: 14 }}>
                 If you have cleaner app like CCleaner or greenify. We suggest
@@ -39,7 +41,7 @@ const Setting = ({ closeDialogHandler }) => {
           </Dialog.Content>
           <Dialog.Actions>
             <Button color={COLOR.faded} onPress={() => hideDialog(false)}>
-              Cancel
+              {params?.reset ? params?.reset : 'close'}
             </Button>
             <Button onPress={hideDialog}>Open Settings</Button>
           </Dialog.Actions>

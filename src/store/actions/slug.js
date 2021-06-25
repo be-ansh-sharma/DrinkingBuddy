@@ -4,7 +4,6 @@ import {
   getFromStorage,
   validateSlug,
 } from 'global/helpers/helper';
-
 export const ADD_RECORD = 'ADD_RECORD';
 export const FETCH_SLUG = 'FETCH_SLUG';
 export const DELETE_RECORD = 'DELETE_RECORD';

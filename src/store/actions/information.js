@@ -15,6 +15,7 @@ export const FETCH_INFORMATION = 'FETCH_INFORMATION';
 export const REMOVE_INFORMATION = 'REMOVE_INFORMATION';
 export const SET_COMPLETED = 'SET_COMPLETED';
 export const SET_DARKMODE = 'SET_DARKMODE';
+export const SET_NOTICE = 'SET_NOTICE';
 export const SET_CHANNEL_ID = 'SET_CHANNEL_ID';
 
 export const setQuiteTime = time => {
@@ -125,6 +126,12 @@ export const setChannelID = id => {
   return {
     type: SET_CHANNEL_ID,
     notificationChannelID: id,
+  };
+};
+
+export const setNotice = () => {
+  return {
+    type: SET_NOTICE,
   };
 };
 
