@@ -24,25 +24,24 @@ const Home = ({ navigation }) => {
     state => state.information,
   );
   const [dialog, setDialog] = useState(false);
+  const lastNotificationResponse = Notifications.useLastNotificationResponse();
 
   const closeDialogHandler = () => {
     dispatch(setNotice());
     setDialog(false);
   };
 
-  useEffect(() => {
-    const responseSubscription = Notifications.addNotificationResponseReceivedListener(
-      () => {
-        dispatch(addRecord());
-        dispatch(setCompleted());
-        dispatch(setNotifications());
-      },
-    );
-
-    return () => {
-      responseSubscription.remove();
-    };
-  });
+  React.useEffect(() => {
+    if (
+      lastNotificationResponse &&
+      lastNotificationResponse.actionIdentifier ===
+        Notifications.DEFAULT_ACTION_IDENTIFIER
+    ) {
+      dispatch(addRecord());
+      dispatch(setCompleted());
+      dispatch(setNotifications());
+    }
+  }, [dispatch, lastNotificationResponse]);
 
   useEffect(() => {
     dispatch(setNotifications());
