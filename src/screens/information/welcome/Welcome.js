@@ -22,7 +22,7 @@ const Welcome = props => {
         <Text style={styles.heading}>Hi,</Text>
         <Text style={styles.heading}>I'm you drinking buddy companion</Text>
         <Text style={styles.subText}>
-          I will remind you when to stay hydrated.In order to provide you with
+          I will remind you when to stay hydrated. In order to provide you with
           the tailored advice. I would need some of your basic information. This
           will be secret between us!
         </Text>

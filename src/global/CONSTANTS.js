@@ -92,8 +92,8 @@ export const NotificationSetting = {
 };
 
 const productionIDs = {
-  banner: 'ca-app-pub-5569096931231318/5372186268',
-  fullScreen: 'ca-app-pub-5569096931231318/1503425148',
+  banner: 'ca-app-pub-2290547364208155/4405964235',
+  fullScreen: 'ca-app-pub-2290547364208155/2098337423',
 };
 
 const testIDs = {
