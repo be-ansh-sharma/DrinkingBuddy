@@ -63,7 +63,7 @@ const Others = props => {
         </Pressable>
         <Pressable onPress={donationHandler}>
           <List.Item
-            title="Buy me a Pizza"
+            title="Help me with a Pizza"
             right={() => (
               <Icon
                 name="pizza-outline"
