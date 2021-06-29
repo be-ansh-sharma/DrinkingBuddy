@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
 import styles from './History.style';
 import Chart from 'components/history/chart/Chart';
 import Statistics from 'components/statistics/Statistics';
 import SmartBanner from 'components/banners/SmartBanner';
 
-const History = () => {
+const History = ({ navigation }) => {
+  const [showBanner, setShowBanner] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      if (showBanner === false) {
+        setShowBanner(true);
+      }
+    });
+
+    return unsubscribe;
+  }, [navigation, showBanner]);
+
   return (
     <>
       <ScrollView
@@ -16,7 +28,7 @@ const History = () => {
         <Chart />
         <Statistics />
       </ScrollView>
-      <SmartBanner />
+      {showBanner && <SmartBanner />}
     </>
   );
 };

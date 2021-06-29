@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image } from 'react-native';
+import { View, Image, Linking } from 'react-native';
 import { Text } from 'react-native-paper';
 import Constants from 'expo-constants';
 import styles from './About.style';
@@ -23,7 +23,9 @@ const About = () => {
   };
 
   const rateUsHandler = () => {
-    console.log('rate');
+    Linking.openURL(
+      'https://play.google.com/store/apps/details?id=com.epoch.drinkingbuddy',
+    ).catch(err => console.error('An error occurred', err));
   };
 
   return (
