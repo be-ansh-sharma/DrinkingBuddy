@@ -8,6 +8,7 @@ import {
   REMOVE_INFORMATION,
   SET_CHANNEL_ID,
   SET_NOTICE,
+  SET_NOTIFICATION_TOKEN,
 } from 'store/actions/information';
 import { UPDATE_METRIC } from 'store/actions/person';
 import { DELETE_RECORD, EDIT_RECORD } from 'store/actions/slug';
@@ -33,6 +34,7 @@ const initialState = {
   goalCompleted: false,
   completed: 0,
   notificationChannelID: 'default',
+  notificationToken: '',
   noticeShown: false,
   today: '',
   isSetupFinished: false,
@@ -115,6 +117,12 @@ const information = (state = initialState, action) => {
       state = {
         ...state,
         noticeShown: true,
+      };
+      break;
+    case SET_NOTIFICATION_TOKEN:
+      state = {
+        ...state,
+        notificationToken: action.notificationToken,
       };
       break;
     default:

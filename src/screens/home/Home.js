@@ -11,6 +11,7 @@ import {
   setCompleted,
   setNotice,
   setNotifications,
+  setNotificationToken,
 } from 'store/actions/information';
 import SmartBanner from 'components/banners/SmartBanner';
 import DialogWorker from 'components/dialog/DialogWorker';
@@ -20,10 +21,14 @@ const Home = ({ navigation }) => {
   const { weight, weightType, exerciseMinutes, sleep, wake, cup } = useSelector(
     state => state.person,
   );
-  const { goalCompleted, notificationChannelID, noticeShown } = useSelector(
-    state => state.information,
-  );
+  const {
+    goalCompleted,
+    notificationChannelID,
+    noticeShown,
+    notificationToken,
+  } = useSelector(state => state.information);
   const [dialog, setDialog] = useState(false);
+  const lastNotificationResponse = Notifications.useLastNotificationResponse();
 
   const closeDialogHandler = () => {
     dispatch(setNotice());
@@ -31,18 +36,21 @@ const Home = ({ navigation }) => {
   };
 
   useEffect(() => {
-    const responseSubscription = Notifications.addNotificationResponseReceivedListener(
-      () => {
-        dispatch(addRecord());
-        dispatch(setCompleted());
-        dispatch(setNotifications());
-      },
-    );
-
-    return () => {
-      responseSubscription.remove();
-    };
-  });
+    if (
+      lastNotificationResponse &&
+      lastNotificationResponse?.notification?.request?.identifier !==
+        notificationToken
+    ) {
+      dispatch(addRecord());
+      dispatch(setCompleted());
+      dispatch(setNotifications());
+      dispatch(
+        setNotificationToken(
+          lastNotificationResponse?.notification?.request?.identifier,
+        ),
+      );
+    }
+  }, [dispatch, lastNotificationResponse]);
 
   useEffect(() => {
     dispatch(setNotifications());
@@ -61,7 +69,7 @@ const Home = ({ navigation }) => {
     if (!noticeShown) {
       setDialog('notice');
     }
-  }, []);
+  }, [noticeShown]);
 
   useEffect(() => {
     if (goalCompleted === 'ready') {

@@ -43,7 +43,7 @@ const ChangeCup = ({ closeDialogHandler }) => {
       <Portal>
         <Dialog visible={true} onDismiss={hideDialog} dismissable={false}>
           <Dialog.Title style={{ color: COLOR.primary }}>
-            Selected: {Math.round(cup)} {dailyGoalType}
+            Change Cup Size
           </Dialog.Title>
           <Dialog.Content>
             <View style={styles.container}>

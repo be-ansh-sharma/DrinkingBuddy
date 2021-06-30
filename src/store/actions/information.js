@@ -17,6 +17,7 @@ export const SET_COMPLETED = 'SET_COMPLETED';
 export const SET_DARKMODE = 'SET_DARKMODE';
 export const SET_NOTICE = 'SET_NOTICE';
 export const SET_CHANNEL_ID = 'SET_CHANNEL_ID';
+export const SET_NOTIFICATION_TOKEN = 'SET_NOTIFICATION_TOKEN';
 
 export const setQuiteTime = time => {
   let key = Object.keys(time)[0];
@@ -132,6 +133,13 @@ export const setChannelID = id => {
 export const setNotice = () => {
   return {
     type: SET_NOTICE,
+  };
+};
+
+export const setNotificationToken = token => {
+  return {
+    type: SET_NOTIFICATION_TOKEN,
+    notificationToken: token,
   };
 };
 
