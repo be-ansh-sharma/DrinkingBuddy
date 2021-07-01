@@ -29,7 +29,7 @@ const initialState = {
     hour: 6,
     minute: 0,
   },
-  cup: 200,
+  cup: 300,
 };
 
 const person = (state = initialState, action) => {

@@ -39,20 +39,14 @@ export const checkAndScheduleNotification = async (
 ) => {
   await configureNotification();
   await setupChannels();
-  let scheduledNotifications = await Notifications.getAllScheduledNotificationsAsync();
+  await removeAllNotification();
 
-  let timeList = [];
-
-  scheduledNotifications.forEach(({ trigger }) => {
-    timeList.push(dayjs(trigger.value).format());
-  });
-
-  notifications.forEach(notification => {
-    if (
-      dayjs(notification).isAfter(dayjs()) &&
-      !timeList.includes(dayjs(notification).format())
-    ) {
-      registerForLocalNotificationsAsync(notification, notificationChannelID);
+  notifications.forEach(async notification => {
+    if (dayjs(notification).isAfter(dayjs())) {
+      await registerForLocalNotificationsAsync(
+        notification,
+        notificationChannelID,
+      );
     }
   });
 };

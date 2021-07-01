@@ -4,7 +4,14 @@ import { Text } from 'react-native-paper';
 import Svg, { G, Circle } from 'react-native-svg';
 import { COLOR } from 'global/styles';
 import styles from './Progress.style';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { addRecord } from 'store/actions/slug';
+import * as Notifications from 'expo-notifications';
+import {
+  setNotificationToken,
+  setCompleted,
+  setNotifications,
+} from 'store/actions/information';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 const windowWidth = Dimensions.get('window').width;
@@ -18,7 +25,11 @@ const Progress = () => {
   const circleRef = useRef();
   const animatedValue = useRef(new Animated.Value(0)).current;
   const { dailyGoal, dailyGoalType } = useSelector(state => state.person);
-  const { completed, darkMode } = useSelector(state => state.information);
+  const { completed, darkMode, notificationToken } = useSelector(
+    state => state.information,
+  );
+  const lastNotificationResponse = Notifications.useLastNotificationResponse();
+  const dispatch = useDispatch();
 
   const animation = useCallback(
     toValue => {
@@ -50,6 +61,30 @@ const Progress = () => {
       animatedValue.removeAllListeners();
     };
   }, [animatedValue, animation, completed, dailyGoal]);
+
+  useEffect(() => {
+    let timer;
+    if (
+      lastNotificationResponse &&
+      lastNotificationResponse?.notification?.request?.identifier !==
+        notificationToken
+    ) {
+      timer = setTimeout(() => {
+        dispatch(setCompleted());
+        dispatch(addRecord());
+        dispatch(setNotifications());
+        dispatch(
+          setNotificationToken(
+            lastNotificationResponse?.notification?.request?.identifier,
+          ),
+        );
+      }, 0);
+    }
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [lastNotificationResponse]);
 
   return (
     <View style={{ ...styles.container, height: size, width: size }}>

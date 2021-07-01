@@ -4,14 +4,11 @@ import styles from './Home.style';
 import Progress from 'components/progress/Progress';
 import Control from 'components/control/Control';
 import Records from 'components/records/Records';
-import * as Notifications from 'expo-notifications';
 import { useDispatch, useSelector } from 'react-redux';
-import { addRecord } from 'store/actions/slug';
 import {
   setCompleted,
   setNotice,
   setNotifications,
-  setNotificationToken,
 } from 'store/actions/information';
 import SmartBanner from 'components/banners/SmartBanner';
 import DialogWorker from 'components/dialog/DialogWorker';
@@ -21,36 +18,15 @@ const Home = ({ navigation }) => {
   const { weight, weightType, exerciseMinutes, sleep, wake, cup } = useSelector(
     state => state.person,
   );
-  const {
-    goalCompleted,
-    notificationChannelID,
-    noticeShown,
-    notificationToken,
-  } = useSelector(state => state.information);
+  const { goalCompleted, notificationChannelID, noticeShown } = useSelector(
+    state => state.information,
+  );
   const [dialog, setDialog] = useState(false);
-  const lastNotificationResponse = Notifications.useLastNotificationResponse();
 
   const closeDialogHandler = () => {
     dispatch(setNotice());
     setDialog(false);
   };
-
-  useEffect(() => {
-    if (
-      lastNotificationResponse &&
-      lastNotificationResponse?.notification?.request?.identifier !==
-        notificationToken
-    ) {
-      dispatch(addRecord());
-      dispatch(setCompleted());
-      dispatch(setNotifications());
-      dispatch(
-        setNotificationToken(
-          lastNotificationResponse?.notification?.request?.identifier,
-        ),
-      );
-    }
-  }, [dispatch, lastNotificationResponse]);
 
   useEffect(() => {
     dispatch(setNotifications());
