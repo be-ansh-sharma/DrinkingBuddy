@@ -33,7 +33,7 @@ const Times = () => {
   return (
     <Card
       heading={`${times}/day`}
-      subText="Daily Intake Frequency"
+      subText="Times Daily Intake"
       subStyle={{ alignSelf: 'flex-end', marginRight: 30 }}
     />
   );

@@ -45,7 +45,7 @@ export const changeWaterSystem = (value, system) => {
 export const getInterval = (dailyGoal, quiteTimes, cup) => {
   let totalQuiteTime = 0;
   Object.keys(quiteTimes).map(key => (totalQuiteTime += quiteTimes[key].diff));
-  return +((27 - totalQuiteTime) / (dailyGoal / cup)).toFixed(1);
+  return +((24 - totalQuiteTime) / Math.ceil(dailyGoal / cup)).toFixed(1);
 };
 
 export const getTodayNotification = (
@@ -133,6 +133,14 @@ export const getAllNotifications = (quiteTimes, minutes) => {
 export const validateInformation = information => {
   if (information) {
     const { today } = information;
+
+    // Fallback for previous release
+    if (information.isSetupFinished === true) {
+      information.isSetupFinished = 'home';
+    } else if (information.isSetupFinished === false) {
+      information.isSetupFinished = 'auth';
+    }
+
     if (dayjs().get('day') !== dayjs(today).get('day')) {
       return {
         ...information,
@@ -148,6 +156,7 @@ export const validateInformation = information => {
 
   return {
     today: dayjs().toDate(),
+    isSetupFinished: 'auth',
   };
 };
 

@@ -15,12 +15,15 @@ import DialogWorker from 'components/dialog/DialogWorker';
 
 const Home = ({ navigation }) => {
   const dispatch = useDispatch();
-  const { weight, weightType, exerciseMinutes, sleep, wake, cup } = useSelector(
+  const { weight, weightType, exerciseMinutes, cup } = useSelector(
     state => state.person,
   );
-  const { goalCompleted, notificationChannelID, noticeShown } = useSelector(
-    state => state.information,
-  );
+  const {
+    goalCompleted,
+    notificationChannelID,
+    noticeShown,
+    quiteTime,
+  } = useSelector(state => state.information);
   const [dialog, setDialog] = useState(false);
 
   const closeDialogHandler = () => {
@@ -34,8 +37,7 @@ const Home = ({ navigation }) => {
     weight,
     weightType,
     exerciseMinutes,
-    sleep,
-    wake,
+    quiteTime,
     cup,
     notificationChannelID,
     dispatch,

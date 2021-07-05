@@ -50,9 +50,9 @@ export const CUPSIZE = {
     label: '175',
     value: 175,
   },
-  200: {
-    label: '200',
-    value: 200,
+  250: {
+    label: '250',
+    value: 250,
   },
   300: {
     label: '300',

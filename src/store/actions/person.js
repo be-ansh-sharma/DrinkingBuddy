@@ -36,7 +36,7 @@ export const fetchPerson = () => {
 export const storePerson = (gender, weight, weightType, exerciseMinutes) => {
   return async dispatch => {
     try {
-      let cup = weightType === 'Kg' ? 200 : 6.7;
+      let cup = weightType === 'Kg' ? 250 : 8.45351;
       const person = new Person(gender, weight, weightType, exerciseMinutes);
       dispatch({
         type: STORE_PERSON,
