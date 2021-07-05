@@ -117,5 +117,6 @@ export const getTableCount = async (startDate, endDate, coloums) => {
 };
 
 export const dropTable = async () => {
-  await _db.executeSql('drop table info');
+  ROW_EXIST = false;
+  await _db.executeSql('DELETE FROM info;');
 };

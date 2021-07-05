@@ -17,11 +17,11 @@ const Weight = ({ closeDialogHandler }) => {
   const [weightSelected, setWeightSelected] = useState(--weight);
   const dispatch = useDispatch();
 
-  const hideDialog = cancel => {
+  const hideDialog = async cancel => {
     if (!cancel) {
       return closeDialogHandler();
     }
-    removeAllNotification();
+    await removeAllNotification();
     dispatch(updatePerson('weight', +weightNumbers[weightSelected]));
     closeDialogHandler();
   };

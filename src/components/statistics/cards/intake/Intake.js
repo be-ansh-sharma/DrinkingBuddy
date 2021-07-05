@@ -28,7 +28,13 @@ const Intake = () => {
         }
         return acc + currentCompleted;
       }, 0);
-      setTotalIntake(currentIntake);
+
+      if (dailyGoalType === 'ml') {
+        currentIntake = currentIntake / 1000;
+      } else {
+        currentIntake = currentIntake / 128;
+      }
+      setTotalIntake(currentIntake.toFixed(1));
     },
     [weightType],
   );
@@ -47,7 +53,7 @@ const Intake = () => {
 
   return (
     <Card
-      heading={`${Math.round(totalIntake)} ${dailyGoalType}`}
+      heading={`${totalIntake} ${dailyGoalType === 'ml' ? 'L' : 'Gal'}`}
       subText="Intake so far..."
       subStyle={{ alignSelf: 'flex-end', marginRight: 30 }}
     />

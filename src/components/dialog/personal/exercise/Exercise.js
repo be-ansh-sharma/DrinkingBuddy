@@ -23,11 +23,11 @@ const Exercise = ({ closeDialogHandler }) => {
     }
   };
 
-  const hideDialog = cancel => {
+  const hideDialog = async cancel => {
     if (!cancel) {
       return closeDialogHandler();
     }
-    removeAllNotification();
+    await removeAllNotification();
     dispatch(updatePerson('exercise', +exerciseNumber[exerciseMinutes]));
     closeDialogHandler();
   };

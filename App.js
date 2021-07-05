@@ -55,13 +55,13 @@ const App = () => {
   const { isSetupFinished, darkMode } = useSelector(state => state.information);
 
   useEffect(() => {
-    (async () => {
-      await dispatch(fetchPerson());
-      await dispatch(getInformation());
+    if (isReady !== true) {
+      dispatch(fetchPerson());
+      dispatch(getInformation());
       dispatch(fetchSlug());
       setIsReady(true);
-    })();
-  }, [darkMode, dispatch]);
+    }
+  }, []);
 
   if (!isReady) {
     return <SplashScreen />;

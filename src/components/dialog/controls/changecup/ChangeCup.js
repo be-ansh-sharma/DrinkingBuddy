@@ -16,11 +16,11 @@ const ChangeCup = ({ closeDialogHandler }) => {
   const { cup, dailyGoalType } = useSelector(state => state.person);
   const [current, setCurrent] = useState(cup);
 
-  const hideDialog = cancel => {
+  const hideDialog = async cancel => {
     if (!cancel) {
       return closeDialogHandler();
     }
-    removeAllNotification();
+    await removeAllNotification();
     dispatch(setCup(current));
     closeDialogHandler();
   };

@@ -8,6 +8,7 @@ import { removePerson } from 'store/actions/person';
 import { removeSlug } from 'store/actions/slug';
 import { clearStorage } from 'global/helpers/helper';
 import { useDispatch } from 'react-redux';
+import { dropTable } from 'global/database/Database.helper';
 
 const Reset = ({ closeDialogHandler }) => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const Reset = ({ closeDialogHandler }) => {
     dispatch(removePerson());
     dispatch(removeSlug());
     clearStorage();
+    dropTable();
     closeDialogHandler();
   };
 

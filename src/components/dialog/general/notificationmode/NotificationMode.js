@@ -16,11 +16,11 @@ const NotificationMode = ({ closeDialogHandler }) => {
   );
   const [current, setCurrent] = useState(notificationChannelID);
 
-  const hideDialog = cancel => {
+  const hideDialog = async cancel => {
     if (!cancel) {
       return closeDialogHandler();
     }
-    removeAllNotification();
+    await removeAllNotification();
     dispatch(setChannelID(current));
     closeDialogHandler();
   };

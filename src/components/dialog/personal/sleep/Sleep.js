@@ -22,11 +22,11 @@ const Sleep = ({ closeDialogHandler }) => {
   const [minutes, setMinutes] = useState(sleep.minute);
   const dispatch = useDispatch();
 
-  const hideDialog = cancel => {
+  const hideDialog = async cancel => {
     if (!cancel) {
       return closeDialogHandler();
     }
-    removeAllNotification();
+    await removeAllNotification();
     dispatch(
       setSleep({
         hour: hours,

@@ -34,7 +34,7 @@ const Others = props => {
 
   const feedbackHandler = () => {
     Linking.openURL(
-      'mailto:be.ansh.sharma@gmail.com?subject=Drinking Buddy App Feedback',
+      'mailto:epoch.feedback@gmail.com?subject=Drinking Buddy App Feedback',
     ).catch(err => console.error('An error occurred', err));
   };
 
