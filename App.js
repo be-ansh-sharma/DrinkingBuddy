@@ -63,7 +63,7 @@ const App = () => {
     }
   }, []);
 
-  if (!isReady) {
+  if (!isReady || isSetupFinished === null) {
     return <SplashScreen />;
   }
 

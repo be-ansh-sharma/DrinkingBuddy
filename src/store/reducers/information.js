@@ -37,7 +37,7 @@ const initialState = {
   notificationToken: '',
   noticeShown: false,
   today: '',
-  isSetupFinished: false,
+  isSetupFinished: null,
   darkMode: false,
 };
 
@@ -100,6 +100,7 @@ const information = (state = initialState, action) => {
       break;
     case REMOVE_INFORMATION:
       state = initialState;
+      state.isSetupFinished = false;
       break;
     case UPDATE_METRIC:
       state = {

@@ -134,13 +134,6 @@ export const validateInformation = information => {
   if (information) {
     const { today } = information;
 
-    // Fallback for previous release
-    if (information.isSetupFinished === true) {
-      information.isSetupFinished = 'home';
-    } else if (information.isSetupFinished === false) {
-      information.isSetupFinished = 'auth';
-    }
-
     if (dayjs().get('day') !== dayjs(today).get('day')) {
       return {
         ...information,
@@ -156,7 +149,7 @@ export const validateInformation = information => {
 
   return {
     today: dayjs().toDate(),
-    isSetupFinished: 'auth',
+    isSetupFinished: false,
   };
 };
 

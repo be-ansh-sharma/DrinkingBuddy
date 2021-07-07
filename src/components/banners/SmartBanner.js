@@ -12,7 +12,7 @@ const SmartBanner = () => {
   const adsReceived = () => setHasAds(true);
 
   useEffect(() => {
-    const exitScreenTimer = setTimeout(() => setError(false), 3000);
+    const exitScreenTimer = setTimeout(() => setError(false), 2000);
 
     return () => {
       clearTimeout(exitScreenTimer);
