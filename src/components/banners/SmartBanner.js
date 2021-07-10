@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Dimensions, View } from 'react-native';
 import { AdMobBanner } from 'expo-ads-admob';
-import { getadUnitID } from 'global/CONSTANTS';
+import { getadUnitID } from 'global/helpers/helper';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -12,7 +12,7 @@ const SmartBanner = () => {
   const adsReceived = () => setHasAds(true);
 
   useEffect(() => {
-    const exitScreenTimer = setTimeout(() => setError(false), 2000);
+    const exitScreenTimer = setTimeout(() => setError(false), 3000);
 
     return () => {
       clearTimeout(exitScreenTimer);

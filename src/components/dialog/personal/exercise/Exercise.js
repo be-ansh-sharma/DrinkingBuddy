@@ -9,12 +9,12 @@ import { removeAllNotification } from 'global/helpers/notification';
 import { updatePerson } from 'store/actions/person';
 
 const exerciseNumber = Array.from(Array(240), (_, index) =>
-  (++index).toString().padStart(2, '0'),
+  index === 0 ? '0' : index.toString().padStart(2, '0'),
 );
 
 const Exercise = ({ closeDialogHandler }) => {
   let storeExercise = useSelector(state => state.person.exerciseMinutes);
-  const [exerciseMinutes, setExerciseMinutes] = useState(--storeExercise);
+  const [exerciseMinutes, setExerciseMinutes] = useState(+storeExercise);
   const dispatch = useDispatch();
 
   const exerciseHandler = minutes => {

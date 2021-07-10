@@ -3,6 +3,7 @@ import {
   changeWaterSystem,
   getFromStorage,
   validateSlug,
+  showFullScreenAds,
 } from 'global/helpers/helper';
 export const ADD_RECORD = 'ADD_RECORD';
 export const FETCH_SLUG = 'FETCH_SLUG';
@@ -10,6 +11,8 @@ export const DELETE_RECORD = 'DELETE_RECORD';
 export const EDIT_RECORD = 'EDIT_RECORD';
 export const TRANSFORM_RECORDS = 'TRANSFORM_RECORDS';
 export const REMOVE_SLUG = 'REMOVE_SLUG';
+export const UPDATE_AD_COUNTER = 'UPDATE_AD_COUNTER';
+export const RESET_AD_COUNTER = 'RESET_AD_COUNTER';
 
 export const addRecord = (customTime, customCup) => {
   return (dispatch, getState) => {
@@ -90,5 +93,23 @@ export const transformRecords = metric => {
       type: TRANSFORM_RECORDS,
       records,
     });
+  };
+};
+
+export const validateAdCounter = () => {
+  return async (dispatch, getState) => {
+    const { adsThreshold, currentAdCounter } = getState().slug;
+    console.log(currentAdCounter);
+    console.log(adsThreshold);
+    if (currentAdCounter + 1 >= adsThreshold) {
+      showFullScreenAds();
+      dispatch({
+        type: RESET_AD_COUNTER,
+      });
+    } else {
+      dispatch({
+        type: UPDATE_AD_COUNTER,
+      });
+    }
   };
 };

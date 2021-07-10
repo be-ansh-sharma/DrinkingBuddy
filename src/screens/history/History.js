@@ -4,19 +4,23 @@ import styles from './History.style';
 import Chart from 'components/history/chart/Chart';
 import Statistics from 'components/statistics/Statistics';
 import SmartBanner from 'components/banners/SmartBanner';
+import { useDispatch } from 'react-redux';
+import { validateAdCounter } from 'store/actions/slug';
 
 const History = ({ navigation }) => {
   const [showBanner, setShowBanner] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       if (showBanner === false) {
         setShowBanner(true);
       }
+      dispatch(validateAdCounter());
     });
 
     return unsubscribe;
-  }, [navigation, showBanner]);
+  }, [dispatch, navigation, showBanner]);
 
   return (
     <>

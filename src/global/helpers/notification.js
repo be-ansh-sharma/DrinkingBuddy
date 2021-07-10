@@ -29,6 +29,7 @@ export const registerForLocalNotificationsAsync = async (
 
     return token;
   } catch (err) {
+    await removeAllNotification();
     console.log(err);
   }
 };
@@ -37,27 +38,32 @@ export const checkAndScheduleNotification = async (
   notifications,
   notificationChannelID,
 ) => {
-  await configureNotification();
-  await setupChannels();
-  let scheduledNotifications = await Notifications.getAllScheduledNotificationsAsync();
+  try {
+    await configureNotification();
+    await setupChannels();
+    let scheduledNotifications = await Notifications.getAllScheduledNotificationsAsync();
 
-  let timeList = [];
+    let timeList = [];
 
-  scheduledNotifications.forEach(({ trigger }) => {
-    timeList.push(dayjs(trigger.value).format());
-  });
+    scheduledNotifications.forEach(({ trigger }) => {
+      timeList.push(dayjs(trigger.value).format());
+    });
 
-  await notifications.forEach(async notification => {
-    if (
-      dayjs(notification).isAfter(dayjs()) &&
-      !timeList.includes(dayjs(notification).format())
-    ) {
-      await registerForLocalNotificationsAsync(
-        notification,
-        notificationChannelID,
-      );
-    }
-  });
+    await notifications.forEach(async notification => {
+      if (
+        dayjs(notification).isAfter(dayjs()) &&
+        !timeList.includes(dayjs(notification).format())
+      ) {
+        await registerForLocalNotificationsAsync(
+          notification,
+          notificationChannelID,
+        );
+      }
+    });
+  } catch (err) {
+    await removeAllNotification();
+    console.log(err);
+  }
 };
 
 export const removeAllNotification = async () => {

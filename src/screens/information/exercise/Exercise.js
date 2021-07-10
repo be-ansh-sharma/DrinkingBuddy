@@ -11,12 +11,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import Footer from 'components/information/footer/Footer';
 
 const exerciseNumber = Array.from(Array(240), (_, index) =>
-  (++index).toString().padStart(2, '0'),
+  index === 0 ? '0' : index.toString().padStart(2, '0'),
 );
 
 const Exercise = props => {
   let storeExercise = useSelector(state => state.person.exerciseMinutes);
-  const [exerciseMinutes, setExerciseMinutes] = useState(--storeExercise);
+  const [exerciseMinutes, setExerciseMinutes] = useState(+storeExercise);
   const dispatch = useDispatch();
 
   const exerciseHandler = minutes => {

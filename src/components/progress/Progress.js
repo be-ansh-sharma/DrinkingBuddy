@@ -78,7 +78,7 @@ const Progress = () => {
             lastNotificationResponse?.notification?.request?.identifier,
           ),
         );
-      }, 500);
+      }, 400);
     }
 
     return () => {

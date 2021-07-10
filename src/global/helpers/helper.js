@@ -1,5 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import dayjs from 'global/day';
+import { productionIDs, testIDs } from 'global/CONSTANTS';
+import Constants from 'expo-constants';
+import { AdMobInterstitial } from 'expo-ads-admob';
 
 export const getFromStorage = async key => {
   try {
@@ -161,12 +164,28 @@ export const validateSlug = slug => {
         ...slug,
         today: dayjs().toDate(),
         records: [],
+        currentAdCounter: 1,
+        adsThreshold: 10,
       };
     }
-    return slug;
+    return {
+      ...slug,
+      currentAdCounter: 1,
+      adsThreshold: 10,
+    };
   }
 
   return {
     today: dayjs().toDate(),
   };
+};
+
+export const getadUnitID = key => {
+  return Constants.isDevice && !__DEV__ ? productionIDs[key] : testIDs[key];
+};
+
+export const showFullScreenAds = async () => {
+  await AdMobInterstitial.setAdUnitID(getadUnitID('fullScreen'));
+  await AdMobInterstitial.requestAdAsync({ servePersonalizedAds: false });
+  await AdMobInterstitial.showAdAsync();
 };

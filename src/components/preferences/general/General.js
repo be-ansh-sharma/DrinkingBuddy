@@ -14,13 +14,9 @@ const General = props => {
     state => state.information.notificationChannelID,
   );
 
-  const openDialog = name => {
-    setDialog(name);
-  };
+  const openDialog = name => setDialog(name);
 
-  const closeDialogHandler = () => {
-    setDialog(false);
-  };
+  const closeDialogHandler = () => setDialog(false);
 
   return (
     <View style={styles.container}>

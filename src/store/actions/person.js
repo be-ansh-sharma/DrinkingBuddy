@@ -81,7 +81,7 @@ export const setWeight = weightSystem => {
 export const setExercise = minutes => {
   return {
     type: SET_EXERCISE,
-    exerciseMinutes: minutes,
+    exerciseMinutes: +minutes,
   };
 };
 

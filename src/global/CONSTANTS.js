@@ -1,4 +1,3 @@
-import Constants from 'expo-constants';
 export const weightSystem = {
   metric: {
     label: 'kg',
@@ -91,16 +90,12 @@ export const NotificationSetting = {
   },
 };
 
-const productionIDs = {
+export const productionIDs = {
   banner: 'ca-app-pub-2290547364208155/4405964235',
   fullScreen: 'ca-app-pub-2290547364208155/2098337423',
 };
 
-const testIDs = {
+export const testIDs = {
   banner: 'ca-app-pub-3940256099942544/6300978111',
   fullScreen: 'ca-app-pub-3940256099942544/1033173712',
-};
-
-export const getadUnitID = key => {
-  return Constants.isDevice && !__DEV__ ? productionIDs[key] : testIDs[key];
 };

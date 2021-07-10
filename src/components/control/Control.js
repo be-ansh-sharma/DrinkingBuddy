@@ -11,11 +11,10 @@ import { useDispatch } from 'react-redux';
 import LottieView from 'lottie-react-native';
 import Shake from 'animations/Shake';
 import Bounce from 'animations/Bounce';
-import { AdMobInterstitial } from 'expo-ads-admob';
-import { getadUnitID } from 'global/CONSTANTS';
 import DialogWorker from 'components/dialog/DialogWorker';
+import { showFullScreenAds } from 'global/helpers/helper';
 
-const Control = props => {
+const Control = () => {
   const dispatch = useDispatch();
   const [dialog, setDialog] = useState(false);
   const addref = useRef();
@@ -25,19 +24,11 @@ const Control = props => {
     dispatch(addRecord());
   };
 
-  const adPressHandler = async () => {
-    await AdMobInterstitial.setAdUnitID(getadUnitID('fullScreen'));
-    await AdMobInterstitial.requestAdAsync({ servePersonalizedAds: true });
-    await AdMobInterstitial.showAdAsync();
-  };
+  const adPressHandler = () => showFullScreenAds();
 
-  const openDialog = name => {
-    setDialog(name);
-  };
+  const openDialog = name => setDialog(name);
 
-  const closeDialogHandler = () => {
-    setDialog(false);
-  };
+  const closeDialogHandler = () => setDialog(false);
 
   return (
     <View style={styles.container}>

@@ -5,6 +5,8 @@ import {
   EDIT_RECORD,
   REMOVE_SLUG,
   TRANSFORM_RECORDS,
+  UPDATE_AD_COUNTER,
+  RESET_AD_COUNTER,
 } from 'store/actions/slug';
 import { setToStorage } from 'global/helpers/helper';
 import { syncSlug } from 'global/database/Database.helper';
@@ -12,6 +14,8 @@ import { syncSlug } from 'global/database/Database.helper';
 const initialState = {
   records: [],
   today: '',
+  adsThreshold: 10,
+  currentAdCounter: 1,
 };
 
 const slug = (state = initialState, action) => {
@@ -52,6 +56,19 @@ const slug = (state = initialState, action) => {
       state = {
         ...state,
         records: [...action.records],
+      };
+      break;
+    case UPDATE_AD_COUNTER:
+      state = {
+        ...state,
+        currentAdCounter: state.currentAdCounter + 1,
+      };
+      break;
+    case RESET_AD_COUNTER:
+      state = {
+        ...state,
+        currentAdCounter: 1,
+        adsThreshold: state.adsThreshold + 5,
       };
       break;
     default:
