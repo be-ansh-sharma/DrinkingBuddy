@@ -128,7 +128,7 @@ def jscFlavor = 'org.webkit:android-jsc:+'
 def enableHermes = project.ext.react.get("enableHermes", false);
 
 android {
-    ndkVersion rootProject.ext.ndkVersion
+    ndkVersion "22.1.7171670"
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
@@ -141,8 +141,8 @@ android {
         applicationId "com.epoch.drinkingbuddy"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 18
-        versionName "1.3.4"
+        versionCode 23
+        versionName "1.4.0"
     }
     signingConfigs {
         release {
@@ -181,6 +181,15 @@ android {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
             signingConfig signingConfigs.release
+            ndk {
+                debugSymbolLevel 'SYMBOL_TABLE'
+            }
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            version "3.18.1"
         }
     }
 

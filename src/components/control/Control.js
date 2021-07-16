@@ -57,7 +57,7 @@ const Control = () => {
         />
       </Pressable>
       <View style={styles.infoContainer}>
-        <Bounce repeat={true} interval={20 * 1000}>
+        <Bounce repeat={true} interval={15 * 1000}>
           <Icon
             name="caret-up-outline"
             size={20}

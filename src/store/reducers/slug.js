@@ -14,7 +14,7 @@ import { syncSlug } from 'global/database/Database.helper';
 const initialState = {
   records: [],
   today: '',
-  adsThreshold: 10,
+  adsThreshold: 5,
   currentAdCounter: 1,
 };
 
