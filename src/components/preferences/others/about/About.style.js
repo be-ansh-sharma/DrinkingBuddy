@@ -8,7 +8,6 @@ export default StyleSheet.create({
     marginTop: 40,
   },
   appContainer: {
-    marginTop: 40,
     alignContent: 'center',
     alignItems: 'center',
   },
@@ -26,5 +25,8 @@ export default StyleSheet.create({
     justifyContent: 'flex-end',
     flex: 1,
     padding: 16,
+  },
+  image: {
+    resizeMode: 'center',
   },
 });

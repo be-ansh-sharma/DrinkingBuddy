@@ -6,7 +6,10 @@ import {
   validateInformation,
 } from 'global/helpers/helper';
 import { syncInformation } from 'global/database/Database.helper';
-import { checkAndScheduleNotification } from 'global/helpers/notification';
+import {
+  checkAndScheduleNotification,
+  removeAllNotification,
+} from 'global/helpers/notification';
 
 export const SET_QUITETIME = 'SET_QUITETIME';
 export const SET_NOTIFICATIONS = 'SET_NOTIFICATION';
@@ -23,8 +26,16 @@ export const setQuiteTime = time => {
   let key = Object.keys(time)[0];
   let start = time[key].start;
   let end = time[key].end;
-  let startTime = dayjs().hour(start.hour).minute(start.minute).second(0);
-  let endTime = dayjs().hour(end.hour).minute(end.minute).second(0);
+  let startTime = dayjs()
+    .hour(start.hour)
+    .minute(start.minute)
+    .second(0)
+    .millisecond(0);
+  let endTime = dayjs()
+    .hour(end.hour)
+    .minute(end.minute)
+    .second(0)
+    .millisecond(0);
 
   if (start.hour > 12 && end.hour < 12) {
     endTime = endTime.add(1, 'day');
@@ -46,10 +57,21 @@ export const setQuiteTime = time => {
 export const setNotifications = () => {
   return async (dispatch, getState) => {
     try {
-      const { quiteTime, notificationChannelID } = getState().information;
+      const {
+        quiteTime,
+        notificationChannelID,
+        intervalInMinutes,
+      } = getState().information;
       const { cup, dailyGoal } = getState().person;
-      let intervalInMinutes = getInterval(dailyGoal, quiteTime, cup) * 60;
-      let notifications = getAllNotifications(quiteTime, intervalInMinutes);
+      let currentIntervalInMinutes =
+        getInterval(dailyGoal, quiteTime, cup) * 60;
+      if (intervalInMinutes !== currentIntervalInMinutes) {
+        await removeAllNotification();
+      }
+      let notifications = getAllNotifications(
+        quiteTime,
+        currentIntervalInMinutes,
+      );
       checkAndScheduleNotification(
         notifications.notifications,
         notificationChannelID,
@@ -57,6 +79,7 @@ export const setNotifications = () => {
       dispatch({
         type: SET_NOTIFICATIONS,
         notifications,
+        intervalInMinutes: currentIntervalInMinutes,
       });
     } catch (err) {
       console.log(err);

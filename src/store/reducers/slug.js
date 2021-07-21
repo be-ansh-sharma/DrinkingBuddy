@@ -68,7 +68,7 @@ const slug = (state = initialState, action) => {
       state = {
         ...state,
         currentAdCounter: 1,
-        adsThreshold: state.adsThreshold + 5,
+        adsThreshold: state.adsThreshold + 2,
       };
       break;
     default:

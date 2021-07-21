@@ -30,7 +30,10 @@ const About = () => {
 
   return (
     <View style={styles.container}>
-      <Image source={require('assets/images/splash.png')} />
+      <Image
+        style={styles.image}
+        source={require('assets/images/splash.png')}
+      />
       <View style={styles.appContainer}>
         <Text>Drinking Buddy App</Text>
         <Text>{Constants.nativeAppVersion}</Text>

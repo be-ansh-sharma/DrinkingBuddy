@@ -54,10 +54,15 @@ export const getInterval = (dailyGoal, quiteTimes, cup) => {
 export const getTodayNotification = (
   quiteTimes,
   minutes,
-  current = dayjs().hour(0).minute(0).second(0),
+  current = dayjs().hour(0).minute(0).second(0).millisecond(0),
 ) => {
   let notifications = [];
-  let endDate = current.add(1, 'day').hour(0).minute(0).second(0);
+  let endDate = current
+    .add(1, 'day')
+    .hour(0)
+    .minute(0)
+    .second(0)
+    .millisecond(0);
   while (current.isBefore(endDate)) {
     current = current.add(minutes, 'minute');
     let hasConflict = false;
@@ -66,8 +71,16 @@ export const getTodayNotification = (
       let time = quiteTimes[key];
       let start = time.start;
       let end = time.end;
-      let startTime = current.hour(start.hour).minute(start.minute).second(0);
-      let endTime = current.hour(end.hour).minute(end.minute).second(0);
+      let startTime = current
+        .hour(start.hour)
+        .minute(start.minute)
+        .second(0)
+        .millisecond(0);
+      let endTime = current
+        .hour(end.hour)
+        .minute(end.minute)
+        .second(0)
+        .millisecond(0);
 
       if (start.hour > end.hour) {
         let previousDayStartTiem = startTime.subtract(1, 'day');
@@ -75,7 +88,7 @@ export const getTodayNotification = (
           current.isBetween(previousDayStartTiem, endTime) ||
           current.isBetween(
             startTime,
-            current.add(1, 'day').hour(0).minute(0).second(0),
+            current.add(1, 'day').hour(0).minute(0).second(0).millisecond(0),
           );
         if (hasConflict) {
           break;
@@ -100,7 +113,7 @@ export const getTodayNotification = (
 
 export const getAllNotifications = (quiteTimes, minutes) => {
   let current = dayjs();
-  let today = current.hour(0).minute(0).second(0);
+  let today = current.hour(0).minute(0).second(0).millisecond(0);
   let todayNotifications = getTodayNotification(quiteTimes, minutes);
   let nextNotification;
 
@@ -117,7 +130,7 @@ export const getAllNotifications = (quiteTimes, minutes) => {
     ...getTodayNotification(
       quiteTimes,
       minutes,
-      current.add(1, 'day').hour(0).minute(0).second(0),
+      current.add(1, 'day').hour(0).minute(0).second(0).millisecond(0),
     ),
   ];
 

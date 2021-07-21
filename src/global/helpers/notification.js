@@ -42,7 +42,6 @@ export const checkAndScheduleNotification = async (
     await configureNotification();
     await setupChannels();
     let scheduledNotifications = await Notifications.getAllScheduledNotificationsAsync();
-
     let timeList = [];
 
     scheduledNotifications.forEach(({ trigger }) => {

@@ -45,6 +45,7 @@ const LineChart = ({ rows, storedWeightType }) => {
               dailyGoal = changeWaterSystem(dailyGoal, currentWeightType);
             }
             set = (completed / dailyGoal) * 100;
+            set = set > 100 ? 100 : set;
           } else {
             if (weightType !== 'lbs') {
               completed = changeWaterSystem(completed, currentWeightType);

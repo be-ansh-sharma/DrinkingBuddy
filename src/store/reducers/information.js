@@ -36,6 +36,7 @@ const initialState = {
   notificationChannelID: 'default',
   notificationToken: '',
   noticeShown: false,
+  intervalInMinutes: 0,
   today: '',
   isSetupFinished: null,
   darkMode: false,
@@ -56,6 +57,7 @@ const information = (state = initialState, action) => {
       state = {
         ...state,
         ...action.notifications,
+        intervalInMinutes: action.intervalInMinutes,
       };
       break;
     case SET_SETUP:
