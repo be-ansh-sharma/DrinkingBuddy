@@ -1,4 +1,14 @@
 {
   "name": "DrinkingBuddy",
-  "displayName": "Drinking Buddy"
+  "displayName": "Drinking Buddy",
+  "expo": {
+    "plugins": [
+      [
+        "expo-notifications",
+        {
+          "sounds": ["./assets/sound/pour.wav"]
+        }
+      ]
+    ]
+  }
 }

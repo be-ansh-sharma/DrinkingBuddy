@@ -48,7 +48,10 @@ export const changeWaterSystem = (value, system) => {
 export const getInterval = (dailyGoal, quiteTimes, cup) => {
   let totalQuiteTime = 0;
   Object.keys(quiteTimes).map(key => (totalQuiteTime += quiteTimes[key].diff));
-  return +((24 - totalQuiteTime) / Math.ceil((dailyGoal + cup) / cup)).toFixed(1);
+  return +(
+    (24 - totalQuiteTime) /
+    Math.ceil((dailyGoal + cup / 2) / cup)
+  ).toFixed(1);
 };
 
 export const getTodayNotification = (

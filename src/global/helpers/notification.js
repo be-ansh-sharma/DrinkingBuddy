@@ -93,6 +93,7 @@ const setupChannels = async () => {
       description: 'Default channel for the App',
       enableLights: true,
       lightColor: COLOR.primary,
+      sound: 'pour.wav',
     });
 
     // vibrate only channel
@@ -129,6 +130,7 @@ const setupChannels = async () => {
       description: 'Sound only channel for the App',
       enableLights: true,
       lightColor: COLOR.primary,
+      sound: 'pour.wav',
     });
   } catch (err) {
     console.log(err);
