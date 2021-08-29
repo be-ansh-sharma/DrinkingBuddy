@@ -9,9 +9,12 @@ import {
   setCompleted,
   setNotice,
   setNotifications,
+  updateConsent,
+  updatePersonlization,
 } from 'store/actions/information';
 import SmartBanner from 'components/banners/SmartBanner';
 import DialogWorker from 'components/dialog/DialogWorker';
+import { UMP } from 'react-native-ad-consent';
 
 const Home = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -23,12 +26,32 @@ const Home = ({ navigation }) => {
     notificationChannelID,
     noticeShown,
     quiteTime,
+    consentProvided,
   } = useSelector(state => state.information);
   const [dialog, setDialog] = useState(false);
 
   const closeDialogHandler = () => {
     dispatch(setNotice());
     setDialog(false);
+  };
+
+  const getConsent = async () => {
+    const {
+      consentStatus,
+      isRequestLocationInEeaOrUnknown,
+    } = await UMP.requestConsentInfoUpdate();
+    if (
+      consentStatus === UMP.CONSENT_STATUS.REQUIRED &&
+      isRequestLocationInEeaOrUnknown
+    ) {
+      navigation.push('Modal', {
+        type: 'consent',
+        title: 'Consent',
+        headerShown: false,
+      });
+    } else {
+      dispatch(updateConsent());
+    }
   };
 
   useEffect(() => {
@@ -59,6 +82,14 @@ const Home = ({ navigation }) => {
     }
   }, [dispatch, goalCompleted, navigation]);
 
+  useEffect(() => {
+    if (!consentProvided) {
+      getConsent().catch(() => {
+        dispatch(updatePersonlization(false));
+      });
+    }
+  }, []);
+
   return (
     <>
       <ScrollView
@@ -78,7 +109,7 @@ const Home = ({ navigation }) => {
           />
         )}
       </ScrollView>
-      <SmartBanner />
+      {consentProvided && <SmartBanner />}
     </>
   );
 };

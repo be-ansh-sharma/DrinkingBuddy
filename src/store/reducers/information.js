@@ -9,6 +9,8 @@ import {
   SET_CHANNEL_ID,
   SET_NOTICE,
   SET_NOTIFICATION_TOKEN,
+  UPDATE_CONSENT,
+  UPDATE_ADS_PERSONALIZATIONS,
 } from 'store/actions/information';
 import { UPDATE_METRIC } from 'store/actions/person';
 import { DELETE_RECORD, EDIT_RECORD } from 'store/actions/slug';
@@ -40,6 +42,8 @@ const initialState = {
   today: '',
   isSetupFinished: null,
   darkMode: false,
+  consentProvided: false,
+  personalizedAds: true,
 };
 
 const information = (state = initialState, action) => {
@@ -126,6 +130,18 @@ const information = (state = initialState, action) => {
       state = {
         ...state,
         notificationToken: action.notificationToken,
+      };
+      break;
+    case UPDATE_ADS_PERSONALIZATIONS:
+      state = {
+        ...state,
+        personalizedAds: action.personalizedAds,
+      };
+      break;
+    case UPDATE_CONSENT:
+      state = {
+        ...state,
+        consentProvided: true,
       };
       break;
     default:

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import { Dialog, Button, Portal, Text, List } from 'react-native-paper';
+import { Dialog, Button, Portal, List } from 'react-native-paper';
 import { useDispatch } from 'react-redux';
 import { COLOR } from 'global/styles';
 import { NotificationSetting } from 'global/CONSTANTS';

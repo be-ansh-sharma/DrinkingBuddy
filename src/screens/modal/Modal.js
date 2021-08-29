@@ -3,8 +3,9 @@ import About from 'components/preferences/others/about/About';
 import Privacy from 'components/preferences/others/privacy/Privacy';
 import Attribution from 'components/preferences/others/attribution/Attribution';
 import Celebration from 'components/celebration/Celebration';
+import Consent from 'components/consent/Consent';
 
-const Modal = ({ route, navigation }) => {
+const Modal = ({ route }) => {
   const { type } = route?.params;
   let Component;
   switch (type) {
@@ -19,6 +20,9 @@ const Modal = ({ route, navigation }) => {
       break;
     case 'celebration':
       Component = Celebration;
+      break;
+    case 'consent':
+      Component = Consent;
       break;
   }
 

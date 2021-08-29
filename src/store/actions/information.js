@@ -21,6 +21,8 @@ export const SET_DARKMODE = 'SET_DARKMODE';
 export const SET_NOTICE = 'SET_NOTICE';
 export const SET_CHANNEL_ID = 'SET_CHANNEL_ID';
 export const SET_NOTIFICATION_TOKEN = 'SET_NOTIFICATION_TOKEN';
+export const UPDATE_CONSENT = 'UPDATE_CONSENT';
+export const UPDATE_ADS_PERSONALIZATIONS = 'UPDATE_ADS_PERSONALIZATIONS';
 
 export const setQuiteTime = time => {
   let key = Object.keys(time)[0];
@@ -169,5 +171,18 @@ export const setNotificationToken = token => {
 export const removeInformation = () => {
   return {
     type: REMOVE_INFORMATION,
+  };
+};
+
+export const updatePersonlization = personalizedAds => {
+  return {
+    type: UPDATE_ADS_PERSONALIZATIONS,
+    personalizedAds,
+  };
+};
+
+export const updateConsent = () => {
+  return {
+    type: UPDATE_CONSENT,
   };
 };

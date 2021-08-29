@@ -180,13 +180,13 @@ export const validateSlug = slug => {
         today: dayjs().toDate(),
         records: [],
         currentAdCounter: 1,
-        adsThreshold: 10,
+        adsThreshold: 3,
       };
     }
     return {
       ...slug,
       currentAdCounter: 1,
-      adsThreshold: 10,
+      adsThreshold: 3,
     };
   }
 
@@ -199,8 +199,10 @@ export const getadUnitID = key => {
   return Constants.isDevice && !__DEV__ ? productionIDs[key] : testIDs[key];
 };
 
-export const showFullScreenAds = async () => {
+export const showFullScreenAds = async (personalizedAds = false) => {
   await AdMobInterstitial.setAdUnitID(getadUnitID('fullScreen'));
-  await AdMobInterstitial.requestAdAsync({ servePersonalizedAds: false });
+  await AdMobInterstitial.requestAdAsync({
+    servePersonalizedAds: personalizedAds,
+  });
   await AdMobInterstitial.showAdAsync();
 };

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Dimensions, View } from 'react-native';
 import { AdMobBanner } from 'expo-ads-admob';
 import { getadUnitID } from 'global/helpers/helper';
+import { useSelector } from 'react-redux';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -10,6 +11,7 @@ const SmartBanner = () => {
   const [hasAds, setHasAds] = useState(false);
   const bannerError = () => setError(true);
   const adsReceived = () => setHasAds(true);
+  const { personalizedAds } = useSelector(state => state.information);
 
   useEffect(() => {
     const exitScreenTimer = setTimeout(() => setError(false), 3000);
@@ -31,7 +33,7 @@ const SmartBanner = () => {
       <AdMobBanner
         bannerSize="fullBanner"
         adUnitID={getadUnitID('banner')}
-        servePersonalizedAds={false}
+        servePersonalizedAds={personalizedAds}
         onDidFailToReceiveAdWithError={bannerError}
         onAdViewDidReceiveAd={adsReceived}
       />

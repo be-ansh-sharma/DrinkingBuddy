@@ -7,7 +7,7 @@ import { COLOR } from 'global/styles';
 import { Text } from 'react-native-paper';
 import { setCompleted } from 'store/actions/information';
 import { addRecord } from 'store/actions/slug';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import LottieView from 'lottie-react-native';
 import Shake from 'animations/Shake';
 import Bounce from 'animations/Bounce';
@@ -18,13 +18,14 @@ const Control = () => {
   const dispatch = useDispatch();
   const [dialog, setDialog] = useState(false);
   const addref = useRef();
+  const { personalizedAds } = useSelector(state => state.information);
 
   const addHandler = () => {
     dispatch(setCompleted());
     dispatch(addRecord());
   };
 
-  const adPressHandler = () => showFullScreenAds();
+  const adPressHandler = () => showFullScreenAds(personalizedAds);
 
   const openDialog = name => setDialog(name);
 

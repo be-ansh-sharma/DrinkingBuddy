@@ -99,8 +99,9 @@ export const transformRecords = metric => {
 export const validateAdCounter = () => {
   return async (dispatch, getState) => {
     const { adsThreshold, currentAdCounter } = getState().slug;
+    const { personalizedAds } = getState().information;
     if (currentAdCounter + 1 >= adsThreshold) {
-      showFullScreenAds();
+      showFullScreenAds(personalizedAds);
       dispatch({
         type: RESET_AD_COUNTER,
       });
